@@ -3,14 +3,14 @@ package vo;
 import java.sql.Date;
 
 public class ReviewBean {
+	
 	private int review_num;
 	private String id;
 	private String review;
 	private int rating;
-	private Date date;
+	private Date datetime;
 	private int cafe_num;
 	private int coffee_num;
-	
 	public int getReview_num() {
 		return review_num;
 	}
@@ -35,11 +35,11 @@ public class ReviewBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public Date getDate() {
-		return date;
+	public Date getDatetime() {
+		return datetime;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
 	}
 	public int getCafe_num() {
 		return cafe_num;
@@ -53,4 +53,9 @@ public class ReviewBean {
 	public void setCoffee_num(int coffee_num) {
 		this.coffee_num = coffee_num;
 	}
+	
+	
+	
+	
+	
 }

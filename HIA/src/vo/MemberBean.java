@@ -1,12 +1,12 @@
 package vo;
 
 public class MemberBean {
+	
 	private String id;
 	private String pass;
 	private String name;
 	private String email;
 	private String phone;
-	private String creditCard;
 	private String address;
 	private String customer_owner;
 	
@@ -39,12 +39,6 @@ public class MemberBean {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public String getCreditCard() {
-		return creditCard;
-	}
-	public void setCreditCard(String creditCard) {
-		this.creditCard = creditCard;
 	}
 	public String getAddress() {
 		return address;
