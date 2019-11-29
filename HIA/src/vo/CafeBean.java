@@ -9,10 +9,17 @@ public class CafeBean {
 	private String cafe_location;
 	private String cafe_file;
 	private String open_time;
+	private int price;
 	private double rating;
 	
 	
 	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getCafe_num() {
 		return cafe_num;
 	}

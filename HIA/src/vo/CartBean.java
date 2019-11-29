@@ -8,6 +8,9 @@ public class CartBean {
 	private int price;
 	private int amount;
 	private String id;
+	private String coffee_name;
+	private String cafe_name;
+	
 	public int getCart_num() {
 		return cart_num;
 	}
@@ -50,5 +53,16 @@ public class CartBean {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+	public String getCoffee_name() {
+		return coffee_name;
+	}
+	public void setCoffee_name(String coffee_name) {
+		this.coffee_name = coffee_name;
+	}
+	public String getCafe_name() {
+		return cafe_name;
+	}
+	public void setCafe_name(String cafe_name) {
+		this.cafe_name = cafe_name;
+	}
 }
