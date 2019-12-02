@@ -130,7 +130,6 @@ int listCount = pi.getListCount();
 					</div>
 				</div>
 			</div>
-
 			<%if(cafe_num>0) {%>
 			<h1 id ="h1"><%=coffeeList.get(1).getCafe_name() %></h1>
 			<%} else {%>
@@ -300,7 +299,7 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "./js/jquery-3.4.1.js"></script>
+	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기 
@@ -313,7 +312,7 @@ int listCount = pi.getListCount();
 					}
 				});
 			});
-						
+			
 			$('div.js-show-cart').click(function(){
 				$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
 					var list = this;
@@ -335,9 +334,10 @@ int listCount = pi.getListCount();
 					$(this).addClass('how-active1');
 				}
 			});
+			
 			var cafe_num = $('.cafe').text();
 			if(<%=cafe_num%>!=0){
-				// 리스트에서 커피 선택시 블러 처리하고 카트에 넣기	
+				// 리스트에서 커피 선택시 블러 처리하고 카트에 넣기
 				$('.block2').click(function(){
 					var total = Number($('.total').text());
 					var count = Number($('div.icon-header-noti').attr('data-notify'));
@@ -351,7 +351,7 @@ int listCount = pi.getListCount();
 						total = total + price;
 						$(this).find('img').css('filter','blur(4px)');
 						$('ul.header-cart-wrapitem').append(
-								"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
+							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img'>"+
 									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
 								"</div>"+
@@ -363,9 +363,9 @@ int listCount = pi.getListCount();
 									"<div class = 'price_amount'>"+
 									"<span class='header-cart-item-info'>"+
 										price+
-										"</span>&nbsp;X"+
-										"<input type = 'text' value = '1' class = 'amount'>"+
-										"</div>"+
+									"</span>&nbsp;X"+
+									"<input type = 'text' value = '1' class = 'amount'>"+
+									"</div>"+
 								"</div>"+
 							"</li>"
 						);
@@ -381,10 +381,12 @@ int listCount = pi.getListCount();
 					$('.total').html(total);
 				});
 			}
+			// 검색 버튼 클릭시 검색
 			$('.search').click(function(){
 				var search = $('.search-cafe').val();
 				location.href="CafeList.bo?search="+search+"&category=<%=category%>";
 			});
+			// 검색입력후 엔터로 검색
 			$('.search-cafe').keydown(function(key){
 				if(key.keyCode == 13) {
 					var search = $('.search-cafe').val();
