@@ -1,12 +1,6 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="svc.CartListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src = "js/jquery-3.4.1.js"></script>
-<%
-	CartListService cartListService = new CartListService();
-	ArrayList cartList = cartListService.getCartList();
-%>
 <script>
 	$(document).ready(function(){
 		$.ajax({

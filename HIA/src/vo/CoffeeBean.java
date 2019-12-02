@@ -10,7 +10,7 @@ public class CoffeeBean {
 		private String hot_ice;
 		private String coffee_info;
 		private String coffee_file;
-		private String cafe_name;
+		
 		
 		
 		
@@ -62,11 +62,9 @@ public class CoffeeBean {
 		public void setCoffee_file(String coffee_file) {
 			this.coffee_file = coffee_file;
 		}
-		public String getCafe_name() {
-			return cafe_name;
-		}
-		public void setCafe_name(String cafe_name) {
-			this.cafe_name = cafe_name;
-		}
+		
+		
+		
+
 
 }

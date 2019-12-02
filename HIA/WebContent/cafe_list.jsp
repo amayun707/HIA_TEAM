@@ -34,22 +34,6 @@ int listCount = pi.getListCount();
     height: 50px;
     position: relative;
     left: -4px;}
-.nDisplay{
-	display:none;}
-.cInfo{
-	position: relative;
-    top: -22px;
-    right: -20px;}
-.rating{
-	position: relative;
-	top: -5px;
-    right: 7px;
-    transform: scale(1.4);}
-.cList{
-	position: relative;
-    left: 3px}
-#h1{
-	margin-bottom: 20px;}
 </style>
 <html lang="en">
 <head>
@@ -106,7 +90,7 @@ int listCount = pi.getListCount();
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
-			<div class="flex-w flex-sb-m">
+			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-c-m m-tb-10">
 					<div
 						class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
@@ -129,32 +113,29 @@ int listCount = pi.getListCount();
 					</div>
 				</div>
 			</div>
-			<h1 id = "h1"><%=coffee_name %></h1>
 			<div class="row isotope-grid">
 				<%
 				for(int i = 0; i<cafeList.size(); i++){
 				%>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
-					<div class="block2"><div class="cafe_num nDisplay"><%=cafeList.get(i).getCafe_num()  %></div>
-						<div class="block2-pic hov-img0">	
-							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> 
-							<%if(coffee_name==""){ %>
-							<a href="#"
+					<div class="block2"><div class="cafe_num" style="display:none"><%=cafeList.get(i).getCafe_num()  %></div>
+						<div class="block2-pic hov-img0">
+							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> <a
+ 								href="#" 
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 detail">
 								커피 선택 </a>
-							<%} %>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l cList">
+							<div class="block2-txt-child1 flex-col-l ">
 								<a href="#"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 c_name"><%=cafeList.get(i).getCafe_name() %></a>
-								<%if(coffee_name!=""){ %>￦<div class="stext-105 cl3 cInfo"> <%=cafeList.get(i).getPrice() %></div><%} %>
+									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									카페 이름 : <%=cafeList.get(i).getCafe_name() %></a>
 							</div>
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 rating">
+									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<%=cafeList.get(i).getRating() %></a>
 							</div>
 						</div>
@@ -258,11 +239,11 @@ int listCount = pi.getListCount();
 										<%if(coffee_name==""){ %>
 										<button
 											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04 select">
-											커피 리스트</button>
+											커피 보기<%=cafe.get("cafe_num")%></button>
 											<%}else{ %>
 										<button
 											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04">
-											커피 구매</button>
+											커피 사기<%=cafe.get("cafe_num")%></button>
 											<%} %>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
 											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04"
@@ -406,72 +387,25 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "js/jquery-3.4.1.js"></script>
+	<script src = "./js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
-			var coffee_name = $('#h1').text();
-			if(coffee_name==""){
-				$('.block2').click(function(){
-					$.ajax({
-						url: "cafe_sDetail.jsp", // 클라이언트가 요청을 보낼 서버의 URL 주소
-			    		data: { cafe_num: $(this).find('div.cafe_num').text() },         // HTTP 요청과 함께 서버로 보낼 데이터
-			    		dataType : "json",
-			    		success: function(data){
-			    			$('h4.mtext-105').html(data.cafe_name)
-			    			$('span.mtext-106').html(data.cafe_location);
-			    			$('p.stext-102').html(data.cafe_info);
-			    			$('.select').attr("onclick","location.href='/HIA/CoffeeList.bo?cafe_num="+data.cafe_num+"'");
-			    		},
-			    		error : function(xhr, status, error){
-			    			alert("에러!: " + error);
-			    		}	
-					});
+			$('.block2').click(function(){
+				$.ajax({
+					url: "cafe-sDetail.jsp", // 클라이언트가 요청을 보낼 서버의 URL 주소
+			    	data: { cafe_num: $(this).find('div.cafe_num').text() },         // HTTP 요청과 함께 서버로 보낼 데이터
+			    	dataType : "json",
+			    	success: function(data){
+			    		$('h4.mtext-105').html(data.cafe_name)
+			    		$('span.mtext-106').html(data.cafe_location);
+			    		$('p.stext-102').html(data.cafe_info);
+			    		$('.select').attr("onclick","location.href='/HIA/CoffeeList.bo?cafe_num="+data.cafe_num+"'");
+			    	},
+			    	error : function(xhr, status, error){
+			    		alert("에러!: " + error);
+			    	}	
 				});
-			}else{
-				$('.block2').click(function(){
-					var total = Number($('.total').text());
-					var count = Number($('div.icon-header-noti').attr('data-notify'));
-					var coffee_num = $('#h1').text();
-					var filter= $(this).find('img').css('filter');
-					var coffee_name = $('#h1').text();
-					var cafe_name = $(this).find('a.c_name').text();
-					var cafe_num = $(this).find('div.cafe_num').text();
-					var price = Number($(this).find('div.stext-105').text());
-					if(filter!='blur(4px)'){
-						count = count + 1;
-						total = total + price;
-						$(this).find('img').css('filter','blur(4px)');
-						$('ul.header-cart-wrapitem').append(
-							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
-								"<div class='header-cart-item-img'>"+
-									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
-								"</div>"+
-								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
-								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
-								"<div class='header-cart-item-txt pt'>"+
-									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+coffee_name+"</a>"+
-									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+cafe_name+"</a>"+
-									"<div class = 'price_amount'>"+
-									"<span class='header-cart-item-info'>"+
-										price+
-									"</span>&nbsp;X"+
-									"<input type = 'text' value = '1' class = 'amount'>"+
-									"</div>"+
-								"</div>"+
-							"</li>"
-						);
-					}
-					else{
-						count = count-1;
-						var price = Number($('li.'+coffee_num).find('.amount').val())*Number($('li.'+coffee_num).find('.header-cart-item-info').text());
-						total = total - price;
-						$(this).find('img').css('filter','');
-						$('li').remove('\.'+coffee_num);
-					}
-					$('div.icon-header-noti').attr('data-notify', count);
-					$('.total').html(total);
-				});
-			}
+			});
 			$('.searching').click(function(){
 				var search = $('.search-cafe').val();
 				location.href="CafeList.bo?search="+search;

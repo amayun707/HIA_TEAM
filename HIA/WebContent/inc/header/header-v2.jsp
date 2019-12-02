@@ -1,11 +1,5 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="svc.CartListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	CartListService cartListService = new CartListService();
-	ArrayList cartList = cartListService.getCartList();
-%>
 <header class="header-v2">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">

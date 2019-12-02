@@ -1,6 +1,5 @@
 package action;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,43 +14,22 @@ public class InsertCartAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("insertCartAction");
 		String cafe_num = request.getParameter("cafe_num");
+//		int cafe_num = Integer.parseInt(request.getParameter("cafe_num"));
 		String cart = request.getParameter("cart");
-		System.out.println(cart);
-		int[] item = null;
-		if(cart!="") {
-			String[] items = cart.split(",");
-			item = new int[items.length];
-			for(int i = 0; i<items.length; i++) {
-				item[i] = Integer.parseInt(items[i]);
-				System.out.println(item[i]);
-			}
+		String[] items = cart.split(",");
+		int[] item = new int[items.length];
+		for(int i = 0; i<items.length; i++) {
+			item[i] = Integer.parseInt(items[i]);
+			System.out.println(item[i]);
 		}
-		String amount = request.getParameter("amount");
-		System.out.println(amount);
-		int count[] = null;
-		if(amount!="") {
-			String[] counts = amount.split(",");
-			count = new int[counts.length];
-			for(int i = 0; i<count.length; i++) {
-				count[i] = Integer.parseInt(counts[i]);
-				System.out.println(count[i]);
-			}
-		}
+		
 		InsertCartService insertCartService = new InsertCartService();
-		if(item!=null) {
-			insertCartService.insertCart(item, count);
-		} else {
-			insertCartService.deleteCart();
-		}
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("location.href = document.referrer");
-		out.println("</script>");
-//		ActionForward forward = new ActionForward();
-//		forward.setRedirect(true);
-//		forward.setPath("/Template/CoffeeList.bo?cafe_num="+cafe_num);
-		return null;
+		insertCartService.insertCart(item);
+//		insertCartService.insertCart(cafe_num,coffee_num,price,id);
+		
+		ActionForward forward = new ActionForward();
+		forward.setPath("/CoffeeList.bo?cafe_num="+cafe_num);
+		return forward;
 	}
 
 }

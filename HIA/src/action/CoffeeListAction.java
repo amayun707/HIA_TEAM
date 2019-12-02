@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import svc.CafeListService;
-import svc.CartListService;
 import svc.CoffeeListService;
 import vo.ActionForward;
 import vo.CoffeeBean;
@@ -22,7 +21,7 @@ public class CoffeeListAction implements Action {
 		if(category==null) {
 			category="";
 		}
-		System.out.println("a"+category+"a");
+		
 		String search = request.getParameter("search");
 		if(search==null) {
 			search="";
@@ -59,16 +58,12 @@ public class CoffeeListAction implements Action {
 		}else {
 			coffeeList = coffeeListService.getCoffeeList(page,limit,cafe_num,search,category);
 		}
-
-//		CartListService cartListService = new CartListService();
-//		ArrayList cartList = cartListService.getCartList();
 		
 		ActionForward forward = new ActionForward();
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("coffeeList", coffeeList);
-//		request.setAttribute("cartList", cartList);
-		forward.setPath("/coffee_list.jsp?cafe_num="+cafe_num+"&?category="+category);
+		forward.setPath("/coffeeList.jsp?cafe_num="+cafe_num+"&?category="+category);
 		
 		return forward;
 	}
