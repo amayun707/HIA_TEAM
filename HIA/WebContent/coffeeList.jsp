@@ -16,8 +16,22 @@ int endPage = pi.getEndPage();
 int listCount = pi.getListCount();
 %>
 <style>
-.cCategory{
-display:none;}
+.nDisplay{
+	display:none;}
+.cInfo{
+	position: relative;
+    top: -22px;
+    right: -20px;}
+.rating{
+	position: relative;
+	top: -5px;
+    right: 7px;
+    transform: scale(1.2);}
+.cList{
+	position: relative;
+    left: 3px}
+#h1{
+	margin-bottom: 20px;}
 </style>
 <html lang="en">
 <head>
@@ -74,10 +88,10 @@ display:none;}
 	<!-- Product -->
 	<div class="bg0 m-t-23 p-b-140">
 		<div class="container">
-			<div class="flex-w flex-sb-m p-b-52">
+			<div class="flex-w flex-sb-m">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 aCategory"
-						onclick = "location.href='CoffeeList.bo'">All Coffee</button>
+						onclick = "location.href='CoffeeList.bo?category='">All Coffee</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
 						onclick = "location.href='CoffeeList.bo?category=category1'">category1</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
@@ -90,8 +104,8 @@ display:none;}
 						onclick = "location.href='CoffeeList.bo?category=category5'">category5</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
 						onclick = "location.href='CoffeeList.bo?category=category6'">category6</button>
-					<div class = "cCategory"><%=category %></div>
-					<div class = "cCategory cafe"><%=cafe_num %></div>
+					<div class = "nDisplay category"><%=category %></div>
+					<div class = "nDisplay cafe"><%=cafe_num %></div>
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -117,6 +131,11 @@ display:none;}
 				</div>
 			</div>
 
+			<%if(cafe_num>0) {%>
+			<h1 id ="h1"><%=coffeeList.get(1).getCafe_name() %></h1>
+			<%} else {%>
+			<h1 id= "h1"></h1>
+			<%} %>
 			<div class="row isotope-grid">
 				<%
 					for (int i = 0; i < coffeeList.size(); i++) {
@@ -124,27 +143,28 @@ display:none;}
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
 					<!-- Block2 -->
 					<div class="block2">
-						<div class="block2-pic hov-img0">
+						<div class="block2-pic hov-img0 <%=coffeeList.get(i).getCoffee_num() %>">
 							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> 
 							<%if(cafe_num==0){ %><a
-								href="/Template/CafeList.bo?coffee_name=<%=coffeeList.get(i).getCoffee_name() %>"
+								href="/HIA/CafeList.bo?coffee_name=<%=coffeeList.get(i).getCoffee_name() %>"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								카페 보기 </a>	
 						<%} %>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
+							<div class="block2-txt-child1 flex-col-l cList">
 								<a href="#"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><%=coffeeList.get(i).getCoffee_name() %></a>
-								<span class="stext-105 cl3"> <%=coffeeList.get(i).getPrice() %>
-								</span>
+								￦<div class="stext-105 cl3 cInfo"> <%=coffeeList.get(i).getPrice() %>
+								</div>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
+							<div class="block2-txt-child2 flex-r p-t-3 rating">
 								<%=coffeeList.get(i).getCoffee_category() %>
 							</div>
-							<div class="cCategory coffee"><%=coffeeList.get(i).getCoffee_num() %></div>
+							<div class="nDisplay coffee"><%=coffeeList.get(i).getCoffee_num() %></div>
+							<div class="nDisplay cafe_name"><%=coffeeList.get(i).getCafe_name() %></div>
 						</div>
 					</div>
 				</div>
@@ -172,7 +192,7 @@ display:none;}
 	</div>
 
 	<!-- Modal1 -->
-	<jsp:include page="coffee-sDetail.jsp"/>
+	<jsp:include page="coffee_sDetail.jsp"/>
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -283,58 +303,85 @@ display:none;}
 	<script src = "./js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
-			var category = $('.cCategory').text();
+			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기 
+			$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
+				var coffee_in_cart = $(this).find('div.coffee_in_cart').text();
+				$('div.isotope-grid').find('.block2').each(function(){
+					var coffee_in_list = $(this).find('div.coffee').text();
+					if(coffee_in_cart == coffee_in_list){
+						$(this).find('img').css('filter','blur(4px)');
+					}
+				});
+			});
+						
+			$('div.js-show-cart').click(function(){
+				$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
+					var list = this;
+					var coffee_num = $(this).find('div.coffee_in_cart').text();	
+					//장바구니에서 이미지를 클릭했을 있던 리스트에서 블러 빼기
+					$(this).find('div.header-cart-item-img').click(function(){
+						$('div.isotope-grid').find('\.'+coffee_num).find('img').css('filter','');
+					});
+				});
+			});
+			var category = $('.category').text();
+			//카테고리 선택시 믿줄 귿기
 			$('.filter-tope-group').find('.m-tb-5').each(function(){
-				var cCategory = this.innerHTML;
-				if(category=="null"&cCategory=="All Coffee"){
+				var nDisplay = this.innerHTML;
+				if(category==""&nDisplay=="All Coffee"){
 					$(this).addClass('how-active1');
 				}
-				if(cCategory==category){
+				if(nDisplay==category){
 					$(this).addClass('how-active1');
 				}
 			});
 			var cafe_num = $('.cafe').text();
-			var count = 0;
-			if(<%=cafe_num%>!=0){	
+			if(<%=cafe_num%>!=0){
+				// 리스트에서 커피 선택시 블러 처리하고 카트에 넣기	
 				$('.block2').click(function(){
+					var total = Number($('.total').text());
+					var count = Number($('div.icon-header-noti').attr('data-notify'));
 					var coffee_num = $(this).find('.coffee').text();
 					var filter= $(this).find('img').css('filter');
 					var coffee_name = $(this).find('a.stext-104').text();
+					var cafe_name = $(this).find('div.cafe_name').text();
 					var price = Number($(this).find('span.stext-105').text());
-					var total = Number($('.total').text());
 					if(filter!='blur(4px)'){
 						count = count + 1;
 						total = total + price;
 						$(this).find('img').css('filter','blur(4px)');
 						$('ul.header-cart-wrapitem').append(
-							"<li class='"+coffee_name+" header-cart-item flex-w flex-t m-b-12'>"+
+								"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img'>"+
 									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
 								"</div>"+
-								"<div class='cCategory cafe_num'>"+cafe_num+"</div>"+
-								"<div class='cCategory coffee_num'>"+coffee_num+	"</div>"+
-								"<div class='header-cart-item-txt p-t-8'>"+
-									"<a href='#' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>"+
-										coffee_name+
-									"</a>"+
+								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
+								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
+								"<div class='header-cart-item-txt pt'>"+
+									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+coffee_name+"</a>"+
+									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+cafe_name+"</a>"+
+									"<div class = 'price_amount'>"+
 									"<span class='header-cart-item-info'>"+
 										price+
-									"</span>"+
+										"</span>&nbsp;X"+
+										"<input type = 'text' value = '1' class = 'amount'>"+
+										"</div>"+
 								"</div>"+
 							"</li>"
 						);
 					}
 					else{
 						count = count-1;
+						var price = Number($('li.'+coffee_num).find('.amount').val())*Number($('li.'+coffee_num).find('.header-cart-item-info').text());
 						total = total - price;
 						$(this).find('img').css('filter','');
-						$('li').remove('\.'+coffee_name);
+						$('li').remove('\.'+coffee_num);
 					}
 					$('div.icon-header-noti').attr('data-notify', count);
 					$('.total').html(total);
 				});
 			}
-			$('.searching').click(function(){
+			$('.search').click(function(){
 				var search = $('.search-cafe').val();
 				location.href="CafeList.bo?search="+search+"&category=<%=category%>";
 			});
@@ -343,14 +390,6 @@ display:none;}
 					var search = $('.search-cafe').val();
 					location.href="CoffeeList.bo?search="+search+"&category=<%=category%>";
 				}
-			});
-			$('.addCart').click(function(){
-				var cart = new Array();
-				$('ul.header-cart-wrapitem').find('li').each(function(index, item){
-					var coffee_num = $(item).find('.coffee_num').text();
-					cart.push(coffee_num);
-				});
-				location.href="insertCart.bo?cart="+cart+"&cafe_num=<%=cafe_num%>";
 			});
 		});
 	</script>

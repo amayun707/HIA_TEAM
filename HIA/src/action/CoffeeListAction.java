@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import svc.CafeListService;
+import svc.CartListService;
 import svc.CoffeeListService;
 import vo.ActionForward;
 import vo.CoffeeBean;
@@ -63,7 +64,7 @@ public class CoffeeListAction implements Action {
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("coffeeList", coffeeList);
-		forward.setPath("/coffeeList.jsp?cafe_num="+cafe_num+"&?category="+category);
+		forward.setPath("/coffee_list.jsp?cafe_num="+cafe_num+"&?category="+category);
 		
 		return forward;
 	}
