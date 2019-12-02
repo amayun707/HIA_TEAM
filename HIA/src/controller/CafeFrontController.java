@@ -63,12 +63,7 @@ public class CafeFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-
-		
-		
-		
-		
+		}	
 		
 		
 		// ActionForward 객체 내용에 따라 각각 다른 포워딩 수행
@@ -85,9 +80,6 @@ public class CafeFrontController extends HttpServlet{
 			}
 		}
 	}	
-	
-	
-
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
