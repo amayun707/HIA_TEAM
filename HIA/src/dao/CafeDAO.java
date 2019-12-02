@@ -130,7 +130,7 @@ public class CafeDAO {
 		int startRow = (page -1) * 10;
 		
 		try {
-			String sql = "select a.cafe_num,a.cafe_name,a.cafe_file,a.cafe_location from cafe a, coffee b where a.cafe_num = b.cafe_num and b.coffee_name = ? and a.cafe_name like ? limit ?,?";
+			String sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price from cafe a, coffee b where a.cafe_num = b.cafe_num and b.coffee_name = ? and a.cafe_name like ? limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, coffee_name);
 			pstmt.setString(2, "%"+search+"%");
@@ -144,6 +144,7 @@ public class CafeDAO {
 				cafeBean.setCafe_name(rs.getString("cafe_name"));
 				cafeBean.setCafe_file(rs.getString("cafe_file"));
 				cafeBean.setCafe_location(rs.getString("cafe_location"));
+				cafeBean.setPrice(rs.getInt("price"));
 				cafeList.add(cafeBean);
 			}
 		} catch (SQLException e) {
@@ -185,7 +186,6 @@ public class CafeDAO {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(2);
 		return cafeBean;
 	}
 
@@ -193,7 +193,6 @@ public class CafeDAO {
 
 	public int getCoffeeListCount(int cafe_num, String search, String category) {
 		System.out.println("CafeDAO-getCoffeeListCount");
-		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int listCount = 0;
@@ -227,13 +226,13 @@ public class CafeDAO {
 		int listCount = 0;
 		
 		try {
-			String sql = "select count(*) from coffee where coffee_name like ? and coffee_category like ?";
+			String sql = "select count(distinct coffee_name) from coffee where coffee_name like ? and coffee_category like ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+category+"%");
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				listCount = rs.getInt("count(*)");
+				listCount = rs.getInt("count(distinct coffee_name)");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -255,7 +254,7 @@ public class CafeDAO {
 		ArrayList coffeeList = null;
 		
 		try {
-			String sql="select coffee_file,coffee_name,price,coffee_num,cafe_num,coffee_category from coffee where cafe_num=? and coffee_name like ? and coffee_category like ? limit ?,?";
+			String sql="select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, b.cafe_name from coffee a, cafe b where a.cafe_num = b.cafe_num and a.cafe_num=? and a.coffee_name like ? and a.coffee_category like ? limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cafe_num);
 			pstmt.setString(2, "%"+search+"%");
@@ -272,6 +271,7 @@ public class CafeDAO {
 				coffeeBean.setCoffee_num(rs.getInt("coffee_num"));
 				coffeeBean.setCoffee_category(rs.getString("coffee_category"));
 				coffeeBean.setCafe_num(cafe_num);
+				coffeeBean.setCafe_name(rs.getString("cafe_name"));
 				coffeeList.add(coffeeBean);
 			}
 		} catch (SQLException e) {
@@ -286,7 +286,7 @@ public class CafeDAO {
 	//=====================================================================================================================
 	
 	public ArrayList getCoffeeList(int page, int limit, String search, String category) {
-		System.out.println("CafeDAO-getCoffeeList");
+		System.out.println("CafeDAO-getCoffeeList2");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -294,7 +294,7 @@ public class CafeDAO {
 		ArrayList coffeeList = null;
 		
 		try {
-			String sql="select coffee_file,coffee_name,price,coffee_num, cafe_num, coffee_category from coffee where coffee_name like ? and coffee_category like ? limit ?,?";
+			String sql="select distinct coffee_file,coffee_name, price, coffee_category from coffee where coffee_name like ? and coffee_category like ? limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+category+"%");
@@ -307,8 +307,6 @@ public class CafeDAO {
 				coffeeBean.setCoffee_file(rs.getString("coffee_file"));
 				coffeeBean.setCoffee_name(rs.getString("coffee_name"));
 				coffeeBean.setPrice(rs.getInt("price"));
-				coffeeBean.setCoffee_num(rs.getInt("coffee_num"));
-				coffeeBean.setCafe_num(rs.getInt("cafe_num"));
 				coffeeBean.setCoffee_category(rs.getString("coffee_category"));
 				coffeeList.add(coffeeBean);
 			}
@@ -323,88 +321,27 @@ public class CafeDAO {
 
 //=====================================================================================================================
 
-	public int getReBoardListCount(int cafe_num) {
+	public int deleteCart() {
+		System.out.println("CafeDAO-deleteCart");
 		
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		int listCount = 0;
+		int deleteCount = 0;
 		
-		
+		String sql = "delete from cart";
 		try {
-			String sql = "select count(*) from review where cafe_num=?";
-			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, cafe_num);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				listCount = rs.getInt("count(*)");
-			}
-			
-			
+			deleteCount = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println("Exception : "+e.getMessage());
 		} finally {
-			close(rs);
 			close(pstmt);
 		}
-
-		return listCount;
+		return deleteCount;
 	}
-
-	//=====================================================================================================================
-
-	public ArrayList getReBoardList(int page, int limit, int cafe_num) {
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		int startRow = (page -1) * 10;
-		
-		ArrayList reviewBoardList = null;
-		
-		try {
-			
-			String sql="select review_num,id,review,rating,cafe_num from review where cafe_num=? limit ?,?";
-			
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setInt(1, cafe_num);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, limit);
-			
-			rs = pstmt.executeQuery();
-			
-			reviewBoardList = new ArrayList();
-			
-			while(rs.next()) {
-				
-				ReviewBean reviewBean = new ReviewBean();
-				
-				reviewBean.setReview_num(rs.getInt("review_num"));
-				reviewBean.setId(rs.getString("id"));
-				reviewBean.setReview(rs.getString("review"));
-				reviewBean.setRating(rs.getInt("rating"));
-				reviewBean.setCafe_num(rs.getInt("cafe_num"));
-				
-				reviewBoardList.add(reviewBean);
-				
-			}
-			
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return reviewBoardList;
-		
-	}
-
+	
 	//=====================================================================================================================
 	
-	public boolean insertCart(int[] item) {
+	public boolean insertCart(int[] item, int[] count) {
 		System.out.println("CafeDAO-insertCart");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -414,11 +351,13 @@ public class CafeDAO {
 		int cafe_num = 0;
 		int coffee_num = 0;
 		int price = 0;
+		int amount = 0;
 		String sql;
 		try {
 			sql = "select max(cart_num) from cart";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				num = rs.getInt("max(cart_num)")+1;
 			} else {
@@ -427,31 +366,32 @@ public class CafeDAO {
 		} catch (SQLException e) {
 			System.out.println("Exception : "+e.getMessage());
 		}
-		for(int i : item) {
+		for(int i=0; i<item.length; i++) {
+			coffee_num = item[i];
+			amount = count[i];
 			isInsertSuccess = false;
 			try {
 				sql = "select coffee_num from cart where pay_num=1 and coffee_num=?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, i);
+				pstmt.setInt(1, coffee_num);
 				rs = pstmt.executeQuery();
 				if(!rs.next()) {
-					sql = "select cafe_num, coffee_num, price from coffee where coffee_num =?";
+					sql = "select cafe_num,  price from coffee where coffee_num =?";
 					pstmt = con.prepareStatement(sql);
-					pstmt.setInt(1, i);
+					pstmt.setInt(1, coffee_num);
 					rs = pstmt.executeQuery();
 					if(rs.next()){
 						cafe_num = rs.getInt("cafe_num");
-						coffee_num = rs.getInt("coffee_num");
 						price = rs.getInt("price");
 					}
 					sql = "insert into cart values(?,?,?,?,?,?,?)";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1,num);
-					pstmt.setInt(2, 1);
+					pstmt.setInt(2, 0);
 					pstmt.setInt(3, cafe_num);
 					pstmt.setInt(4, coffee_num);
 					pstmt.setInt(5, price);
-					pstmt.setInt(6, 1);
+					pstmt.setInt(6, amount);
 					pstmt.setString(7, null);
 					int insertCount = pstmt.executeUpdate();
 					if(insertCount>0) {
@@ -461,6 +401,9 @@ public class CafeDAO {
 				}
 			} catch (SQLException e) {
 				System.out.println("Exception : "+e.getMessage());
+			}  finally {
+				close(rs);
+				close(pstmt);
 			}
 		}
 		return isInsertSuccess;
@@ -470,7 +413,7 @@ public class CafeDAO {
 	public ArrayList<CartBean> getCartList() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select coffee_num, cafe_num, price, amount from cart";
+		String sql = "select a.coffee_num, a.cafe_num, a.price, a.amount, b.coffee_name, c.cafe_name from cart a, coffee b, cafe c where a.coffee_num = b.coffee_num and b.cafe_num = c.cafe_num";
 		ArrayList cartList = new ArrayList();
 		
 		try {
@@ -482,13 +425,20 @@ public class CafeDAO {
 				cartBean.setCoffee_num(rs.getInt("coffee_num"));
 				cartBean.setPrice(rs.getInt("price"));
 				cartBean.setAmount(rs.getInt("amount"));
+				cartBean.setCoffee_name(rs.getString("coffee_name"));
+				cartBean.setCafe_name(rs.getString("cafe_name"));
 				cartList.add(cartBean);
 			}
 		} catch (SQLException e) {
 			System.out.println("Exception : "+e.getMessage());
+		}  finally {
+			close(rs);
+			close(pstmt);
 		}
 		return cartList;
 	}
 
+
 //=====================================================================================================================
+
 }

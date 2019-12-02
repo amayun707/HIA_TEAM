@@ -66,19 +66,18 @@ public class CafeListAction implements Action {
 			cafe_num = Integer.parseInt(strCafe_num);
 		}
 		JSONObject cafeBean = null;
-		
 		CafeDetailService cafeDetailService = new CafeDetailService();
 		cafeBean = cafeDetailService.getCafeDetail(cafe_num);
 		
-		CartListService cartListService = new CartListService();
-		ArrayList cartList = cartListService.getCartList();
+//		CartListService cartListService = new CartListService();
+//		ArrayList cartList = cartListService.getCartList();
 		
 		ActionForward forward = new ActionForward();
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("cafeList", cafeList);
 		request.setAttribute("cafeBean", cafeBean);
-		request.setAttribute("cartList", cartList);
+//		request.setAttribute("cartList", cartList);
 		
 		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name);
 		
