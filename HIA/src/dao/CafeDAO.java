@@ -337,13 +337,10 @@ public class CafeDAO {
 	
 	//=====================================================================================================================
 	
-<<<<<<< HEAD
-	public boolean insertCart(int[] item, int[] count) {
-		
-=======
+
 	public boolean insertCart(int[] item, int[] count, String id) {
+		
 		System.out.println("CafeDAO-insertCart");
->>>>>>> branch 'master' of https://github.com/amayun707/HIA_TEAM.git
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		

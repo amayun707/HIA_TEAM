@@ -14,13 +14,10 @@ public class CartListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-<<<<<<< HEAD
-		
-=======
+
 		System.out.println("CartListAction");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
->>>>>>> branch 'master' of https://github.com/amayun707/HIA_TEAM.git
 		List cartList = null;
 		
 		CartListService cartListService = new CartListService();

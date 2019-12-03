@@ -14,14 +14,11 @@ public class InsertCartAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-<<<<<<< HEAD
 
-=======
 		System.out.println("insertCartAction");
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
->>>>>>> branch 'master' of https://github.com/amayun707/HIA_TEAM.git
 		String cafe_num = request.getParameter("cafe_num");
 		String cart = request.getParameter("cart");
 		System.out.println(cart);
