@@ -8,7 +8,7 @@
 	ArrayList cartList = cartListService.getCartList(id);
 	int total = 0;
 %>
-<script src = "js/jquery-3.4.1.js"></script>
+<script src = "./js/jquery-3.4.1.js"></script>
 <script>
 $(document).ready(function(){
 	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
