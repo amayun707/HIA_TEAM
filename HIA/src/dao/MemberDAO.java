@@ -200,17 +200,18 @@ public class MemberDAO {
 		int deleteCount = 0;
 		
 		try {
-			String sql = "SELECT id, pass FROM member WHERE id=?";
+			String sql = "SELECT * FROM member WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
+			
 			if(rs.next()) {
 				if(pass.equals(rs.getString("pass"))){
-					
 					sql = "DELETE FROM member WHERE id=?";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, id);
 					deleteCount = pstmt.executeUpdate();
+					System.out.println(deleteCount);
 				}
 			}
 		}
@@ -218,6 +219,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 		finally {
+			close(rs);
 			close(pstmt);
 		}
 		

@@ -16,7 +16,6 @@ public class CoffeeListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("CoffeeListAction");
 		
 		String category = request.getParameter("category");
 		if(category==null) {

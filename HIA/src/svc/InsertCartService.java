@@ -8,8 +8,6 @@ import dao.CafeDAO;
 public class InsertCartService {
 
 	public void insertCart(int[] item, int[] count) {
-		// TODO Auto-generated method stub
-		System.out.println("InsertCartService");
 		
 		Connection con = null;
 		con = getConnection();

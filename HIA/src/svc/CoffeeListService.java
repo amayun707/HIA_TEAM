@@ -12,7 +12,6 @@ import static db.JdbcUtil.*;
 public class CoffeeListService{
 
 	public int getListCount(int cafe_num, String search, String category) {
-		System.out.println("CoffeeListService-getListCount");
 		
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();
@@ -27,7 +26,6 @@ public class CoffeeListService{
 	}
 	
 	public int getListCount(String search, String category) {
-		System.out.println("CoffeeListService-getListCount");
 		
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();
@@ -45,7 +43,6 @@ public class CoffeeListService{
 	
 	
 	public ArrayList<CoffeeBean> getCoffeeList(int page, int limit, int cafe_num, String search, String category) {
-		System.out.println("CoffeeListService-getCoffeeList");
 		
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();
@@ -59,8 +56,7 @@ public class CoffeeListService{
 	}
 
 	public ArrayList<CoffeeBean> getCoffeeList(int page, int limit, String search, String category) {
-		System.out.println("CoffeeListService-getCoffeeList");
-		
+
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();
 		cafeDAO.setConnection(con);

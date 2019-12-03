@@ -74,7 +74,7 @@ if(id == null){
 							type="password" id="pass" name="pass" required="required" size="20"><br>
 					</div>
 					<div class="form-group text-center">
-						<button type="submit" id="d-submit" class="btn btn-dark" onclick="location.href='MemberDeletePro.me'">
+						<button type="submit" id="d-submit" class="btn btn-dark">
               			회원탈퇴<i class="fa fa-check spaceLeft"></i></button>
         				<button type="button" class="btn btn-dark" onclick="location.href='Main.me'">
              			 취소<i class="fa fa-times spaceLeft"></i></button>

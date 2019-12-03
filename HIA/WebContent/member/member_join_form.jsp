@@ -202,11 +202,7 @@
 </head>
 <body class="animsition">
 	<%
-		String customer_owner = request.getParameter("customer_owner");
-
-		if (customer_owner == null) {
-			response.sendRedirect("MemberStart.me");
-		}
+	String customer_owner = request.getParameter("customer_owner");
 	%>
 	<!-- Header -->
 	<jsp:include page="../inc/header/header-v4.jsp" />
@@ -215,7 +211,17 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
 		style="background-image: url('images/bg-01.jpg');">
-		<h2 class="ltext-105 cl0 txt-center">일반 회원 가입</h2>
+		<%
+		if(customer_owner.equals("c")){
+		%>
+		<h2 class="ltext-105 cl0 txt-center">일반 회원가입</h2>
+		<%
+		} else{
+		%>
+		<h2 class="ltext-105 cl0 txt-center">업주 회원가입</h2>
+		<%
+		}
+		%>
 	</section>
 
 	<!-- 일반 회원 가입 페이지 -->
@@ -224,25 +230,8 @@
 		<section class="bg0 p-t-104 p-b-116">
 			<div class="container">
 				<div class="flex-w flex-tr row justify-content-center">
-					<div
-						class="size-210-1 bor10 flex-w flex-col-m p-lr-100 p-tb-30 w-full-md">
-						<input type="hidden" name="customer_owner"
-							value="<%=customer_owner%>">
-						<%
-							if (customer_owner == "c") {
-						%>
-						<h3 class="mtext-105 cl2 txt-center p-t-30 p-b-30">
-							<b>일반회원 회원가입</b>
-						</h3>
-						<%
-							} else if (customer_owner == "o") {
-						%>
-						<h3 class="mtext-105 cl2 txt-center p-t-30 p-b-30">
-							<b>업주회원 회원가입</b>
-						</h3>
-						<%
-							}
-						%>
+					<div class="size-210-1 bor10 flex-w flex-col-m p-lr-100 p-tb-30 w-full-md">
+						<input type="hidden" name="customer_owner">
 						<br> <label>아이디</label>
 						<div class="bor8_1 how-pos4-parent row text-center">
 							<input class="stext-111 cl2 plh5 size-50 p-l-10 p-r-10 p-t-10 p-b-10"

@@ -30,21 +30,20 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 <title>Insert title here</title>
+<script src="./js/jquery-3.4.1.js"></script>
 <script type="text/javascript">
 
-	function Customer(customer) {
+	$(document).ready(function() {
+		$('#customer').click(function(){
+			$('#customer_owner').val('c');
+			$('#MemberStart').submit();
+		});
 		
-		customer = "c";
-		document.MemberStart.customer_owner.value = customer;
-		document.MemberStart.submit();
-	}
-	
-	function Owner(owner) {
-		
-		owner = "o";
-		document.MemberStart.customer_owner.value = owner;
-		document.MemberStart.submit();
-	}
+		$('#owner').click(function(){
+			$('#customer_owner').val('o');
+			$('#MemberStart').submit();
+		});
+	});
 	
 </script>
 </head>
@@ -56,23 +55,23 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Member Selection
+			회원 가입 선택
 		</h2>
 	</section>
 	<!-- Content page -->
-	<form action="MemberJoin.me" method="post" name="MemberStart">
+	<form action="MemberJoin.me" method="post" id="MemberStart" name="MemberStart">
 	<section class="bg0 p-t-104 p-b-116">
 		<div class="container">
 			<div class="flex-w flex-tr">
 				<div class="size-210 bor10 flex-w flex-col-m p-lr-100 p-tb-30 w-full-md">
-						<input type="hidden" name="customer_owner">
+					<input type="hidden" id="customer_owner" name="customer_owner" value="" />
 						<h3 class="mtext-105 cl2 txt-center p-t-30 p-b-30"><b>일반회원 회원가입</b></h3>
 						<p class="stext-115 cl6 size-127 p-t-18">
 								&nbsp;&nbsp;<b>일반 회원이란,</b><br><br>
 								 저희 사이트를 방문하여 커피를 주문하거나<br>전포거리카페에 대한 정보를 얻을 수 있는<br>기본적인 서비스를 제공받는 회원입니다.
 						</p>
 						<input class="flex-c-m stext-101 cl0 size-126 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer"
-						type="button" value="일반 회원  GO!GO!" onclick="Customer()">
+						type="button" id="customer" value="일반 회원  GO!GO!" onclick="Customer()">
 				</div>
 				<div class="size-210 bor10 flex-w flex-col-m p-lr-100 p-tb-30 w-full-md">
 					<input type="hidden" name="customer_owner">
@@ -82,7 +81,7 @@
 								 저희 사이트를 통해 가게에 홍보를 하거나<br>사이트를 사용하는 고객 층을 확보할 수 있는<br>업주들을 위한 서비스를 제공받는 회원입니다.
 						</p>
 						<input class="flex-c-m stext-101 cl0 size-126 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer"
-						type="button" value="카페 업주  GO!GO!" onclick="Owner()">
+						type="button" id="owner" value="카페 업주  GO!GO!" onclick="Owner()">
 				</div>
 			</div>
 		</div>

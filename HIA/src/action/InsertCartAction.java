@@ -13,7 +13,7 @@ public class InsertCartAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("insertCartAction");
+
 		String cafe_num = request.getParameter("cafe_num");
 		String cart = request.getParameter("cart");
 		

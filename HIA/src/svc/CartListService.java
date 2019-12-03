@@ -11,7 +11,6 @@ import static db.JdbcUtil.*;
 public class CartListService {
 
 	public ArrayList getCartList() {
-		System.out.println("CartListService");
 		
 		Connection con = getConnection();
 		

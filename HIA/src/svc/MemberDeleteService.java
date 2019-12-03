@@ -13,7 +13,6 @@ public class MemberDeleteService {
 		Connection con = getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		
 		boolean isDeleteSuccess = false;
 		
 		int deleteCount = memberDAO.deleteMember(id, pass);

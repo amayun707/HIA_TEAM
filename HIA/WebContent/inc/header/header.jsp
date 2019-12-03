@@ -21,7 +21,7 @@
 							<a href="MemberLogin.me" class="flex-c-m trans-04 p-lr-25">
 								로그인
 							</a>
-							<a href="MemberJoin.me" class="flex-c-m trans-04 p-lr-25">
+							<a href="MemberStart.me" class="flex-c-m trans-04 p-lr-25">
 								회원가입
 							</a>
 						<%

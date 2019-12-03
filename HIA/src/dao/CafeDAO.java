@@ -34,7 +34,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 
 	public int getCafeListCount(String search) {
-		System.out.println("CafeDAO-getCafeListCount");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -60,7 +59,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 
 	public int getCafeListCount(String coffee_name, String search) {
-		System.out.println("CafeDAO-getCafeListCount2");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -87,7 +85,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 
 	public ArrayList getCafeList(int page, int limit, String search) {
-		System.out.println("CafeDAO-getCafeList");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -122,7 +119,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 
 	public ArrayList getCafeList(int page, int limit, String coffee_name, String search) {
-		System.out.println("CafeDAO-getCafeList2");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -159,7 +155,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 	
 	public JSONObject getCafeDetail(int cafe_num) {
-		System.out.println("CafeDAO-getCafeDetail");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -219,7 +214,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 
 	public int getCoffeeListCount(String search, String category) {
-		System.out.println("CafeDAO-getCoffeeListCount");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -246,7 +240,6 @@ public class CafeDAO {
 	//=====================================================================================================================
 
 	public ArrayList getCoffeeList(int page, int limit, int cafe_num, String search, String category) {
-		System.out.println("CafeDAO-getCoffeeList");
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -344,7 +337,7 @@ public class CafeDAO {
 	//=====================================================================================================================
 	
 	public boolean insertCart(int[] item, int[] count) {
-		System.out.println("CafeDAO-insertCart");
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		

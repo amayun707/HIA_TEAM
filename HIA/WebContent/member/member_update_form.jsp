@@ -236,7 +236,7 @@ String detailAddress = Address[2];
 						<label>주소</label>
 						<div class="input-group triple-input row"width: 100%;">
 							<div class="input-group triple-input bor8_2">
-								<input class="www3 form-control" type="text" id="postcode" required="required">
+								<input class="www3 form-control" type="text" id="postcode">
 								<div class="input-group triple-input ">
 									<button type="button" id="join-submit" class="btn btn-secondary" onclick="ad_check()">
 									우편번호<i class="fa fa-check spaceLeft"></i></button>
@@ -264,7 +264,7 @@ String detailAddress = Address[2];
 							<i class="fa fa-check spaceLeft"></i></button>
 							<button type="button" class="btn btn-dark" onclick="history.back()">취소
 							<i class="fa fa-times spaceLeft"></i></button>
-							<button type="button" class="btn btn-dark" onclick="location.href='MemberDelete.me'">탈퇴
+							<button type="button" class="btn btn-dark" onclick="location.href='MemberDelete.me'">회원탈퇴
 							<i class="fa fa-check spaceLeft"></i></button>
 						</div>
 					</div>
