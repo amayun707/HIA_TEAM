@@ -2,16 +2,16 @@
 <%@page import="vo.CartBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%
 	CartListService cartListService = new CartListService();
-	ArrayList cartList = cartListService.getCartList();
+	String id  = (String)session.getAttribute("id");
+	ArrayList cartList = cartListService.getCartList(id);
 	int total = 0;
 %>
 <script src = "js/jquery-3.4.1.js"></script>
 <script>
 $(document).ready(function(){
+	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
 	$('div.js-show-cart').click(function(){
 		//장바구니를 열었을 때 총 금액 얼마인지 설정.
 		$('ul.header-cart-wrapitem').find('.amount').each(function(){
@@ -72,14 +72,40 @@ $(document).ready(function(){
 			var coffee_amount = $(this).find('.amount').val();
 			amount.push(coffee_amount);
 		});
-		location.href="insertCart.bo?cart="+cart+"&amount="+amount;
+		$.ajax({
+    		type : "POST",
+			url: "insertCart.bo", // 클라이언트가 요청을 보낼 서버의 URL 주소
+			dataType : "text",
+    		data: { 'cart' : String(cart),
+    					'amount' : String(amount)},         // HTTP 요청과 함께 서버로 보낼 데이터
+    		success: function(data){
+    		},
+    		error : function(xhr, status, error){
+    			alert("에러!: " + error);
+    		}	
+		});
+	});
+	$('.modal_payP').click(function(){
+		$('ul#payList').children().remove();
+		$('span.totalP2').html(Number($('.total').text()));
+		$('ul.header-cart-wrapitem').find('li').each(function(){
+			$(this).clone().appendTo('ul#payList');
+		});
+		$('div.modalP').addClass('view');
+	});
+	$('div.close').click(function(){
+		$('div.modalP').removeClass('view');
 	});
 });
+
 </script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <style>
 .padding2{
-padding-top: 20px;
-padding-bottom: 40px;}
+	padding-top: 20px;
+	padding-bottom: 40px;}
+
 .price_amount{
 	width: 80px;}
 .header-cart-item-info{
@@ -97,6 +123,71 @@ padding-bottom: 40px;}
 	margin-bottom: 8px;}
 .cCategory{
 display:none;}
+.modalP {
+	display: none; position: fixed; z-index: 10001; 
+	left: 0; top: 0;
+	width: 100%; height: 100%; overflow: auto;}    
+.modal-contentP {
+	background-color: #fefefe;
+	margin: 15% auto; 
+	padding: 20px; width: 20%;	height: 70%;
+	position: relative; top: -20%;}
+
+.close {
+	width: 5%;
+    position: relative;
+    left: 0px;
+	font-size: 28px;
+	font-weight: bold;}
+.close:hover, .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;}
+.view{
+	display:block; !important}
+#payList{
+	list-style-type: none;
+    padding-left: 20px;
+    height: 380px;
+    overflow-y: scroll; 
+    margin-bottom: 20px;}
+#payList>li{
+    pointer-events: none;} 
+.pay{
+	display: block;
+	margin-bottom: 60px;}
+.wpahr{
+	width: 100px;
+	float: left;
+	font-size: 30px;
+	font-weight: bold;}
+.totalP{
+	width: 100%;
+    height: 60px;}
+.totalP1{
+	width: 90px;
+    float: left;
+    font-size: 20px;
+    margin-left: 62px;}
+.totalP2{
+	width: 100px;
+    float: left;
+    font-size: 20px;
+    text-align: right;}
+.totalP3{
+	float: left;
+    padding-top: 5px;}
+.getTime{
+	position: relative;
+    left: 63px;
+    font-size: 20px;
+    margin-bottom: 10px;}
+select{
+	width: 80px;}
+option{
+	text-align: center;}
+#payList input{
+	background-color: #FFFFFF;}
 </style>
 <div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
@@ -148,12 +239,41 @@ display:none;}
 							장바구니 담기
 						</a>
 
-						<a href="shoping-cart.jsp" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							9매
+						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP addCart">
+							구매
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
-\ No newline at end of file
 	</div>
+	
+    <!-- The Modal -->
+    <div id="myModal" class="modalP">
+ 
+      <!-- Modal content -->
+      <div class="modal-contentP">
+	    <div class = "pay">
+    	    <div class = "wpahr">Payment</div><div class="close">&times;</div>
+      	</div>
+        	<ul id = "payList">
+        	</ul>
+        	<div class = "getTime">
+        	수령시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        		<select>
+        			<option>09:00</option>
+        			<option>09:30</option>
+        			<option>10:00</option>
+        			<option>10:30</option>
+        		</select>
+        	</div>
+        	<div class = "totalP">
+    	    <div class = "totalP1">결제금액</div><span class="totalP2">1000</span><div class="totalP3">원</div>
+      		</div>
+      		<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP">
+							구매
+			</a>                                                       
+      </div>
+ 
+    </div>
+	

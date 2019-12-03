@@ -8,6 +8,7 @@
 PageInfo pi = (PageInfo)request.getAttribute("pageInfo");
 ArrayList<CoffeeBean> coffeeList =  (ArrayList)request.getAttribute("coffeeList");
 String category = request.getParameter("category");
+String id = (String)session.getAttribute("id");
 int cafe_num = Integer.parseInt(request.getParameter("cafe_num"));
 int nowPage = pi.getPage();
 int maxPage = pi.getMaxPage();
@@ -18,18 +19,6 @@ int listCount = pi.getListCount();
 <style>
 .nDisplay{
 	display:none;}
-.cInfo{
-	position: relative;
-    top: -22px;
-    right: -20px;}
-.rating{
-	position: relative;
-	top: -5px;
-    right: 7px;
-    transform: scale(1.2);}
-.cList{
-	position: relative;
-    left: 3px}
 #h1{
 	margin-bottom: 20px;}
 </style>
@@ -152,14 +141,14 @@ int listCount = pi.getListCount();
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l cList">
+							<div class="block2-txt-child1 flex-col-l ">
 								<a href="#"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><%=coffeeList.get(i).getCoffee_name() %></a>
-								￦<div class="stext-105 cl3 cInfo"> <%=coffeeList.get(i).getPrice() %>
-								</div>
+								<span class="stext-105 cl3"> <%=coffeeList.get(i).getPrice() %>
+								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3 rating">
+							<div class="block2-txt-child2 flex-r p-t-3">
 								<%=coffeeList.get(i).getCoffee_category() %>
 							</div>
 							<div class="nDisplay coffee"><%=coffeeList.get(i).getCoffee_num() %></div>
@@ -299,7 +288,7 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "./js/jquery-3.4.1.js"></script>
+	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기 
