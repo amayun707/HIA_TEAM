@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import svc.CafeListService;
 import svc.CartListService;
@@ -60,13 +61,17 @@ public class CoffeeListAction implements Action {
 			coffeeList = coffeeListService.getCoffeeList(page,limit,cafe_num,search,category);
 		}
 
+//		CartListService cartListService = new CartListService();
+//		ArrayList cartList = cartListService.getCartList();
+		
 		ActionForward forward = new ActionForward();
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("coffeeList", coffeeList);
-
+//		request.setAttribute("cartList", cartList);
 		forward.setPath("/coffee_list.jsp?cafe_num="+cafe_num+"&?category="+category);
-		
+		HttpSession session  = request.getSession();
+		session.setAttribute("id","test1");
 		return forward;
 	}
 }

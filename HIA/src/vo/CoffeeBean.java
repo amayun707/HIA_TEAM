@@ -68,8 +68,5 @@ public class CoffeeBean {
 		public void setCafe_name(String cafe_name) {
 			this.cafe_name = cafe_name;
 		}
-		
-		
-
 
 }

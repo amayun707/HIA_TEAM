@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
@@ -66,18 +67,22 @@ public class CafeListAction implements Action {
 			cafe_num = Integer.parseInt(strCafe_num);
 		}
 		JSONObject cafeBean = null;
-		
 		CafeDetailService cafeDetailService = new CafeDetailService();
 		cafeBean = cafeDetailService.getCafeDetail(cafe_num);
+		
+//		CartListService cartListService = new CartListService();
+//		ArrayList cartList = cartListService.getCartList();
 		
 		ActionForward forward = new ActionForward();
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("cafeList", cafeList);
 		request.setAttribute("cafeBean", cafeBean);
+//		request.setAttribute("cartList", cartList);
 		
 		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name);
-		
+		HttpSession session  = request.getSession();
+		session.setAttribute("id","test1");
 		return forward;
 	}
 }

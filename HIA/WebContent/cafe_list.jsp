@@ -9,6 +9,7 @@ PageInfo pi = (PageInfo)request.getAttribute("pageInfo");
 ArrayList<CafeBean> cafeList =  (ArrayList)request.getAttribute("cafeList");
 JSONObject cafe = (JSONObject)request.getAttribute("cafeBean");
 String coffee_name = request.getParameter("coffee_name");
+String id = (String)session.getAttribute("id");
 int nowPage = pi.getPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
@@ -36,21 +37,8 @@ int listCount = pi.getListCount();
     left: -4px;}
 .nDisplay{
 	display:none;}
-.cInfo{
-	position: relative;
-    top: -22px;
-    right: -20px;}
-.rating{
-	position: relative;
-	top: -5px;
-    right: 7px;
-    transform: scale(1.4);}
-.cList{
-	position: relative;
-    left: 3px}
 #h1{
 	margin-bottom: 20px;}
-	
 </style>
 <html lang="en">
 <head>
@@ -138,24 +126,25 @@ int listCount = pi.getListCount();
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
 					<!-- Block2 -->
 					<div class="block2"><div class="cafe_num nDisplay"><%=cafeList.get(i).getCafe_num()  %></div>
-						<div class="block2-pic hov-img0">	
+						<div class="block2-pic hov-img0 <%=cafeList.get(i).getCoffee_num() %>">	
 							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> 
 							<%if(coffee_name==""){ %>
-							<a href="#" 
+							<a href="#"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 detail">
 								커피 선택 </a>
 							<%} %>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l cList">
+							<div class="block2-txt-child1 flex-col-l ">
 								<a href="#"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 c_name"><%=cafeList.get(i).getCafe_name() %></a>
-								<%if(coffee_name!=""){ %>￦<div class="stext-105 cl3 cInfo"> <%=cafeList.get(i).getPrice() %></div><%} %>
+								<%if(coffee_name!=""){ %><span class="stext-105 cl3"> <%=cafeList.get(i).getPrice() %></span><%} %>
+								<%if(coffee_name!=""){ %><div class="nDisplay coffee_num"><%=cafeList.get(i).getCoffee_num() %></div><%} %>
 							</div>
 							<div class="block2-txt-child2 flex-r p-t-3">
 								<a href="#"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 rating">
+									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<%=cafeList.get(i).getRating() %></a>
 							</div>
 						</div>
@@ -407,86 +396,105 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "./js/jquery-3.4.1.js"></script>
+	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
+			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기
+			$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
+				var coffee_in_cart = $(this).find('div.coffee_in_cart').text();
+				$('div.isotope-grid').find('.block2').each(function(){
+					var coffee_in_list = $(this).find('div.coffee_num').text();
+					if(coffee_in_cart == coffee_in_list){
+						$(this).find('img').css('filter','blur(4px)');
+					}
+				});
+			});
+			
+			$('div.js-show-cart').click(function(){
+				$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
+					var list = this;
+					var coffee_num = $(this).find('div.coffee_in_cart').text();	
+					//장바구니에서 이미지를 클릭했을 있던 리스트에서 블러 빼기
+					$(this).find('div.header-cart-item-img').click(function(){
+						$('div.isotope-grid').find('\.'+coffee_num).find('img').css('filter','');
+					});
+				});
+			});
+			
 			var coffee_name = $('#h1').text();
 			if(coffee_name==""){
 				$('.block2').click(function(){
 					$.ajax({
 						url: "cafe_sDetail.jsp", // 클라이언트가 요청을 보낼 서버의 URL 주소
-			    		data: { cafe_num: $(this).find('div.cafe_num').text() },         // HTTP 요청과 함께 서버로 보낼 데이터				    		dataType : "json",
+			    		data: { cafe_num: $(this).find('div.cafe_num').text() },         // HTTP 요청과 함께 서버로 보낼 데이터
+			    		dataType : "json",
 			    		success: function(data){
 			    			$('h4.mtext-105').html(data.cafe_name)
-						    $('span.mtext-106').html(data.cafe_location);
-						 	$('p.stext-102').html(data.cafe_info);
-						 	$('.select').attr("onclick","location.href='/HIA/CoffeeList.bo?cafe_num="+data.cafe_num+"'");
-						},
-						error : function(xhr, status, error){
-						  	alert("에러!: " + error);
-						}	
+			    			$('span.mtext-106').html(data.cafe_location);
+			    			$('p.stext-102').html(data.cafe_info);
+			    			$('.select').attr("onclick","location.href='/HIA/CoffeeList.bo?cafe_num="+data.cafe_num+"'");
+			    		},
+			    		error : function(xhr, status, error){
+			    			alert("에러!: " + error);
+			    		}	
 					});
-			 	});	
-			});
-		}
-		else{
-			$('.block2').click(function(){
-				var total = Number($('.total').text());
-				var count = Number($('div.icon-header-noti').attr('data-notify'));
-				var coffee_num = $('#h1').text();
-				var filter= $(this).find('img').css('filter');
-				var coffee_name = $('#h1').text();
-				var cafe_name = $(this).find('a.c_name').text();
-				var cafe_num = $(this).find('div.cafe_num').text();
-				var price = Number($(this).find('div.stext-105').text());
-				if(filter!='blur(4px)'){
-					
-					count = count + 1;
-					total = total + price;
-					$(this).find('img').css('filter','blur(4px)');
-					$('ul.header-cart-wrapitem').append(
-						"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
-							"<div class='header-cart-item-img'>"+
-								"<img src='images/item-cart-01.jpg' alt='IMG'>"+
-							"</div>"+
-							"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
-							"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
-							"<div class='header-cart-item-txt pt'>"+
-								"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+coffee_name+"</a>"+
-								"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+cafe_name+"</a>"+
-								"<div class = 'price_amount'>"+
-								"<span class='header-cart-item-info'>"+
-									price+
-								"</span>&nbsp;X"+
-								"<input type = 'text' value = '1' class = 'amount'>"+
+				});
+			}else{
+				$('.block2').click(function(){
+					var total = Number($('.total').text());
+					var count = Number($('div.icon-header-noti').attr('data-notify'));
+					var coffee_num = $(this).find('div.coffee_num').text();
+					var filter= $(this).find('img').css('filter');
+					var coffee_name = $('#h1').text();
+					var cafe_name = $(this).find('a.c_name').text();
+					var cafe_num = $(this).find('div.cafe_num').text();
+					var price = Number($(this).find('span.stext-105').text());
+					if(filter!='blur(4px)'){
+						count = count + 1;
+						total = total + price;
+						$(this).find('img').css('filter','blur(4px)');
+						$('ul.header-cart-wrapitem').append(
+							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
+								"<div class='header-cart-item-img'>"+
+									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
 								"</div>"+
-							"</div>"+
-						"</li>"
-					);
-				}
-				else{
-					count = count-1;
-					var price = Number($('li.'+coffee_num).find('.amount').val())*Number($('li.'+coffee_num).find('.header-cart-item-info').text());
-					total = total - price;
-					$(this).find('img').css('filter','');
-					$('li').remove('\.'+coffee_num);
-				}
-				$('div.icon-header-noti').attr('data-notify', count);
-				$('.total').html(total);
-			});
-		}
-		$('.searching').click(function(){
-			var search = $('.search-cafe').val();
-			location.href="CafeList.bo?search="+search;
-		});
-		
-		$('.search-cafe').keydown(function(key){
-			if(key.keyCode == 13) {
-			var search = $('.search-cafe').val();
-				location.href="CafeList.bo?search="+search;
+								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
+								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
+								"<div class='header-cart-item-txt pt'>"+
+									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+coffee_name+"</a>"+
+									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+cafe_name+"</a>"+
+									"<div class = 'price_amount'>"+
+									"<span class='header-cart-item-info'>"+
+										price+
+									"</span>&nbsp;X"+
+									"<input type = 'text' value = '1' class = 'amount'>"+
+									"</div>"+
+								"</div>"+
+							"</li>"
+						);
+					}
+					else{
+						count = count-1;
+						var price = Number($('li.'+coffee_num).find('.amount').val())*Number($('li.'+coffee_num).find('.header-cart-item-info').text());
+						total = total - price;
+						$(this).find('img').css('filter','');
+						$('li').remove('\.'+coffee_num);
+					}
+					$('div.icon-header-noti').attr('data-notify', count);
+					$('.total').html(total);
+				});
 			}
+			$('.searching').click(function(){
+				var search = $('.search-cafe').val();
+				location.href="CafeList.bo?search="+search;
+			});
+			$('.search-cafe').keydown(function(key){
+				if(key.keyCode == 13) {
+					var search = $('.search-cafe').val();
+					location.href="CafeList.bo?search="+search;
+				}
+			});
 		});
-	});
 </script>
 </body>
 </html>

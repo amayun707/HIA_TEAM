@@ -9,11 +9,18 @@ public class CafeBean {
 	private String cafe_location;
 	private String cafe_file;
 	private String open_time;
+	private int coffee_num;
 	private int price;
 	private double rating;
 	
 	
 	
+	public int getCoffee_num() {
+		return coffee_num;
+	}
+	public void setCoffee_num(int coffee_num) {
+		this.coffee_num = coffee_num;
+	}
 	public int getPrice() {
 		return price;
 	}

@@ -10,7 +10,7 @@ import vo.CartBean;
 import static db.JdbcUtil.*;
 public class CartListService {
 
-	public ArrayList getCartList() {
+	public ArrayList getCartList(String id) {
 		System.out.println("CartListService");
 		
 		Connection con = getConnection();
@@ -19,7 +19,7 @@ public class CartListService {
 		cafeDAO.setConnection(con);
 		
 		ArrayList<CartBean>  cartList = null;
-		cartList = cafeDAO.getCartList();
+		cartList = cafeDAO.getCartList(id);
 		
 		close(con);
 		return cartList;
