@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberUpdateProAction;
+import action.PaymentProAction;
 import vo.ActionForward;
 
 @WebServlet("*.or")
@@ -24,11 +26,20 @@ public class OrderFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("*.or")) {
+		if(command.equals("/Payment.or")) {
 			forward = new ActionForward();
+			forward.setPath("/payment.jsp");
 		}
-		else if(command.equals("*.or")) {
-			forward = new ActionForward();
+		else if(command.equals("/PaymentPro.or")) {
+			
+			action = new PaymentProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) { 

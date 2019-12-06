@@ -1,9 +1,15 @@
+<%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
+int cost = Integer.parseInt(request.getParameter("total"));
+String id  = (String)session.getAttribute("id");
+
+MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
+
 %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -19,17 +25,15 @@ $(function(){
     
     IMP.request_pay({
     	
-        pg : 'kakaopay',
+        pg : 'html5_inicis',
         pay_method : 'card',
         merchant_uid : 'merchant_' + new Date().getTime(),
-        name : '주문명:결제테스트',
-        amount : 14000,
-        buyer_email : 'iamport@siot.do',
-        buyer_name : '구매자이름',
-        buyer_tel : '010-1234-5678',
-        buyer_addr : '서울특별시 강남구 삼성동',
-        buyer_postcode : '123-456',
-        m_redirect_url : 'http://localhost:8080/HIA/Main.me'
+        name : 'HIA_커피주문',
+        amount : '<%=cost %>',
+        buyer_email : '<%=memberbean.getEmail() %>',
+        buyer_name : '<%=memberbean.getName() %>',
+        buyer_tel : '<%=memberbean.getPhone() %>',
+        buyer_addr : '<%=memberbean.getAddress() %>'
         
     }, function(rsp) {
         if ( rsp.success ) {
@@ -41,28 +45,28 @@ $(function(){
                     imp_uid : rsp.imp_uid
                 }
             }).done(function(data) {
+            	
                 if ( everythings_fine ) {
                     msg = '결제가 완료되었습니다.';
                     msg += '\n고유ID : ' + rsp.imp_uid;
                     msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '\결제 금액 : ' + rsp.paid_amount;
+                    msg += '\n결제 금액 : ' + rsp.paid_amount;
                     msg += '카드 승인번호 : ' + rsp.apply_num;
                     
-                    alert(msg);
-                    
+                    alert(msg);     
                 } 
                 else {
                 	alert("결제 오류");
                 }
             });
             
-            location.href='index.jsp?msg='+msg;
+            location.href='http://localhost:8080/HIA/index.jsp?msg='+msg;
         } 
         else {
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             
-            location.href="/Main.me";
+            location.href="http://localhost:8080/HIA/Main.me";
             alert(msg);
         }
     });

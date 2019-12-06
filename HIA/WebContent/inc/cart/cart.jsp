@@ -252,6 +252,7 @@ option{
     <div id="myModal" class="modalP">
  
       <!-- Modal content -->
+      <form action="PaymentPro.or" method="post" id="payment" name="payment">
       <div class="modal-contentP">
 	    <div class = "pay">
     	    <div class = "wpahr">Payment</div><div class="close">&times;</div>
@@ -270,10 +271,9 @@ option{
         	<div class = "totalP">
     	    <div class = "totalP1">결제금액</div><span class="totalP2">1000</span><div class="totalP3">원</div>
       		</div>
-      		<a href="payment.jsp" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP">
-							구매
-			</a>                                                       
+      		<input type="hidden" name="total" value="<%=total %>">
+      		<input type="submit" value= "구매  " class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP">                                                 
       </div>
- 
+	 </form>
     </div>
 	
