@@ -17,6 +17,7 @@ import action.MemberLoginProAction;
 import action.MemberLogoutProAction;
 import action.MemberUpdateAction;
 import action.MemberUpdateProAction;
+import action.SendMailAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -141,7 +142,24 @@ public class MemberFrontController extends HttpServlet {
 			catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if(command.equals("/WebSendMail.me")) {
+			
+			//action = new WebSendMailAction();
+			action = new SendMailAction();
+			try {
+				forward = action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/Mail.me")) {
+			
+			forward = new ActionForward();
+			forward.setPath("mail.jsp");
+		} 
+		
+		
 		
 		
 		
