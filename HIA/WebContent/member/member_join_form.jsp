@@ -231,7 +231,7 @@
 			<div class="container">
 				<div class="flex-w flex-tr row justify-content-center">
 					<div class="size-210-1 bor10 flex-w flex-col-m p-lr-100 p-tb-30 w-full-md">
-						<input type="hidden" name="customer_owner">
+						<input type="hidden" name="customer_owner" value=<%=customer_owner %>>
 						<br> <label>아이디</label>
 						<div class="bor8_1 how-pos4-parent row text-center">
 							<input class="stext-111 cl2 plh5 size-50 p-l-10 p-r-10 p-t-10 p-b-10"
@@ -265,8 +265,8 @@
 						<label>E-Mail</label>
 						<div class="input-group triple-input row"width: 100%;">
 							<div class="input-group triple-input bor8_2">
-								<input class="www2 form-control" type="text" name="email1" required="required">&nbsp;@&nbsp;
-								<input class="www2 form-control" type="text" name="email2" required="required">
+								<input class="www2 form-control" type="text" id="email1" name="email1" required="required">&nbsp;@&nbsp;
+								<input class="www2 form-control" type="text" id="email2" name="email2" required="required">
 							</div>
 							<select id="mail_select" onChange="selectEmail(this)">
 								<option value="" selected>선택하세요</option>
@@ -274,8 +274,9 @@
 								<option value="gmail.com">gmail.com</option>
 								<option value="hanmail.com">hanmail.com</option>
 								<option value="1">직접입력</option>
-							</select> <input type="hidden">
-							<button type="submit" id="emailCheck" class="btn btn-secondary" onclick="sendEmail()">
+							</select>
+							<input type ="hidden" id="emailCheck" name="emailCheck">
+							<button type="button" id="emailckButton" class="btn btn-secondary" onclick="sendEmail()">
 							메일인증전송<i class="fa fa-check spaceLeft"></i> </button>
 						</div>
 						<span class="stext-111-2 cl2 plh3 size-50 p-r-30 p-b-10"></span>
@@ -301,7 +302,7 @@
 							<div class="input-group triple-input bor8_2">
 								<input class="www3 form-control" type="text" id="postcode" required="required">
 								<div class="input-group triple-input ">
-									<button type="submit" id="join-submit" class="btn btn-secondary" onclick="ad_check()">
+									<button type="button" class="btn btn-secondary" onclick="ad_check()">
 									우편번호<i class="fa fa-check spaceLeft"></i></button>
 								</div>
 							</div>

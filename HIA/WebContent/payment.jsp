@@ -60,7 +60,8 @@ $(function(){
                 }
             });
             
-            location.href='http://localhost:8080/HIA/index.jsp?msg='+msg;
+            alert('결제 완료되었습니다. 감사합니다.');
+            location.href="http://localhost:8080/HIA/Main.me";
         } 
         else {
             msg = '결제에 실패하였습니다.';

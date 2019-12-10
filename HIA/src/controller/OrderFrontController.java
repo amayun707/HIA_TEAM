@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberUpdateProAction;
 import action.PaymentProAction;
+import action.ReceiptListAction;
 import vo.ActionForward;
 
 @WebServlet("*.or")
@@ -33,6 +34,17 @@ public class OrderFrontController extends HttpServlet {
 		else if(command.equals("/PaymentPro.or")) {
 			
 			action = new PaymentProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/ReceiptListPro.or")) {
+			
+			action = new ReceiptListAction();
 			
 			try {
 				forward = action.execute(request, response);

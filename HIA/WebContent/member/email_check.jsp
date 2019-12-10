@@ -10,10 +10,9 @@
 <body>
 <%
 request.setCharacterEncoding("utf-8");
-// String email1 = request.getParameter("email1");
-// String email2 = request.getParameter("email2");
-// String email = email1 + "@" + email2;
-String email = request.getParameter("email");
+String email1 = request.getParameter("email1");
+String email2 = request.getParameter("email2");
+String email = email1 + "@" + email2;
 
 SMTPAuthenticatior sa = new SMTPAuthenticatior();
 String random = sa.sendMail(email);
@@ -21,7 +20,6 @@ String random = sa.sendMail(email);
 <script type="text/javascript">
 	
 	alert("인증번호를 발송하였습니다");
-	//인증번호를 확인하기 위해 인증번호 값 전달
 	document.emailcheck.eCheck2.value="<%=random%>";
 	
 	function checkEmail() {

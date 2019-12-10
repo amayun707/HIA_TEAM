@@ -2,7 +2,7 @@ package vo;
 
 import java.sql.Date;
 
-public class paymentBean {
+public class PaymentBean {
 	private int pay_num;
 	private Date orderTime;
 	private Date getTime;
