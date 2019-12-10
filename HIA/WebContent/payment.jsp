@@ -7,7 +7,7 @@
 <%
 int cost = Integer.parseInt(request.getParameter("total"));
 String id  = (String)session.getAttribute("id");
-
+String getTime = request.getParameter("getTime");
 MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
 
 %>
@@ -61,13 +61,13 @@ $(function(){
             });
             
             alert('결제 완료되었습니다. 감사합니다.');
-            location.href="http://localhost:8080/HIA/Main.me";
+            location.href="insertPayment.or?cost=<%=cost%>&getTime=<%=getTime%>";
         } 
         else {
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
             
-            location.href="http://localhost:8080/HIA/Main.me";
+            location.href="insertPayment.or?cost=<%=cost%>&getTime=<%=getTime%>";
             alert(msg);
         }
     });

@@ -22,7 +22,7 @@ public class CafeListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		System.out.println("CafeListAction");
 		String search = request.getParameter("search");
 		if(search==null) {
 			search = "";
@@ -34,7 +34,7 @@ public class CafeListAction implements Action {
 
 		
 		int page = 1; 
-		int limit = 10; 
+		int limit = 20; 
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page")); 
 		}
@@ -70,17 +70,15 @@ public class CafeListAction implements Action {
 		CafeDetailService cafeDetailService = new CafeDetailService();
 		cafeBean = cafeDetailService.getCafeDetail(cafe_num);
 		
-//		CartListService cartListService = new CartListService();
-//		ArrayList cartList = cartListService.getCartList();
-		
 		ActionForward forward = new ActionForward();
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("cafeList", cafeList);
 		request.setAttribute("cafeBean", cafeBean);
-//		request.setAttribute("cartList", cartList);
 		
 		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name);
+		HttpSession session  = request.getSession();
+		session.setAttribute("id","test1");
 		return forward;
 	}
 }

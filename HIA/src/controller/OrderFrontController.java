@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.InsertPaymentAction;
 import action.MemberUpdateProAction;
 import action.PaymentProAction;
 import action.ReceiptListAction;
@@ -51,6 +52,14 @@ public class OrderFrontController extends HttpServlet {
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+		else if(command.equals("/insertPayment.or")) {
+			action = new InsertPaymentAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception  e ) {
+				System.out.println("Exception :" +e.getMessage());
 			}
 		}
 		

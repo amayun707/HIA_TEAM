@@ -11,6 +11,7 @@ import static db.JdbcUtil.*;
 public class CafeListService {
 	
 	public int getCafeListCount(String search) {
+		System.out.println("CafeListService-getCafeListCount");
 		
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();
@@ -25,6 +26,7 @@ public class CafeListService {
 	}
 
 	public int getCafeListCount(String coffee_name, String search) {
+		System.out.println("CafeListService-getCafeListCount");
 		
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();
@@ -54,6 +56,7 @@ public class CafeListService {
 	}
 
 	public ArrayList<CafeBean> getCafeList(int page, int limit, String coffee_name, String search) {
+		System.out.println("CafeListService-getCafeList");
 		
 		Connection con = getConnection();
 		CafeDAO cafeDAO = CafeDAO.getInstance();

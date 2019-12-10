@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 public class CartBean {
 	private int cart_num;
 	private int pay_num;
@@ -10,7 +12,23 @@ public class CartBean {
 	private String id;
 	private String coffee_name;
 	private String cafe_name;
+	private Date date;
+	private String getTime;
 	
+	
+	
+	public String getGetTime() {
+		return getTime;
+	}
+	public void setGetTime(String getTime) {
+		this.getTime = getTime;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public int getCart_num() {
 		return cart_num;
 	}
