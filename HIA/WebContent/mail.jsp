@@ -125,14 +125,6 @@
 			</div>
 		</div>
 	</section>	
-	
-	
-	<!-- Map -->
-	<div class="map">
-		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-	</div>
-
-
 
 	<!-- Footer -->
 	<jsp:include page="./inc/footer/footer.jsp"/>
@@ -180,10 +172,7 @@
 		});
 	</script>
 <!--===============================================================================================-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="js/map-custom.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="./js/main.js"></script>
 
 </body>
 </html>

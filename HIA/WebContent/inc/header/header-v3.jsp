@@ -38,7 +38,7 @@
 							</li>
 
 							<li>
-								<a href="about.jsp">About</a>
+								<a href="Mail.me">About</a>
 							</li>
 
 							<li>

@@ -78,7 +78,7 @@
 							</li>
 
 							<li class="active-menu">
-								<a href="about.jsp">About</a>
+								<a href="Mail.me">About</a>
 							</li>
 
 							<li>

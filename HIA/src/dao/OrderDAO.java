@@ -108,10 +108,9 @@ public class OrderDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int num = 0;
-		String sql = "select max(pay_num) from payment where id = ?";
+		String sql = "select max(pay_num) from payment";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
