@@ -17,6 +17,8 @@ public class ReceiptListAction implements Action {
 		ArrayList<PaymentBean> receiptList = new ArrayList<PaymentBean>();
 		receiptList = ReceiptListService.getReceiptList();
 		
+		request.setAttribute("receiptList", receiptList);
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/receipt.jsp");
 		

@@ -46,24 +46,39 @@
 ArrayList<PaymentBean> receiptList = (ArrayList<PaymentBean>)request.getAttribute("receiptList");
 %>
     <form id="ReceiptList" method="post" name="ReceiptList">
+    <%
+    if(receiptList != null) {
+    	int i2 = 0;
+    	int j2 = 0;
+    	int iNum = 0;
+    	int jNum = 0;
+    %>
         <section class="bg0 p-t-104 p-b-116">
+        <%
+    	for(int i=i2; i<receiptList.size(); i++) {
+    		
+//     		while(receiptList.get(i).getPay_num() != jNum){
+//             	i2++;
+//             	j2++;
+//             	iNum++;
+            	
+//             	if(receiptList.get(i).getPay_num() != jNum){
+//             		break;
+//             	}
+//             }
+    	%>
             <div class="container">
                 <div class="flex-w flex-tr row justify-content-center">
                     <div class="size-210-1 bor10 flex-w flex-col-m p-lr-100 p-tb-30 w-full-md">
                         <table>
-                        <%
-                        if(receiptList != null) {
-                            %>
                             <tr align="center">
                                 <td width="100px">번호</td>
                                 <td width="100px">주문시간</td>
                                 <td width="100px">수령시간</td>
                                 <td width="100px">결제금액</td>
                                 <td width="100px">수령자</td>
+                                <td></td>
                             </tr>
-                            <%
-                            for(int i=0; i<receiptList.size(); i++) {
-                            %>
                                 <tr align="center">
                                     <td width="100px"><%=receiptList.get(i).getPay_num() %></td>
                                     <td width="100px"><%=receiptList.get(i).getOrderTime() %></td>
@@ -78,14 +93,36 @@ ArrayList<PaymentBean> receiptList = (ArrayList<PaymentBean>)request.getAttribut
                                        </div>
                                     </td>
                                 </tr>
-                
-                            <%} %>
-                        <%} %>
+                                <tr align="center">
+                                	<td></td>
+                                	<td width="100px">커피주문</td>
+                                	<td width="100px">커피명</td>
+                                	<td width="100px">커피가격</td>
+                                	<td width="100px">커피수량</td>
+                                </tr>
+                                <%
+                                for(int j=j2; j<receiptList.size(); j++) {
+                                %>
+                                	<tr align="center">
+                                		<td></td><td>→</td>
+                                		<td width="100px"><%=receiptList.get(j).getCoffee_name() %></td>
+                                		<td width="100px"><%=receiptList.get(j).getPrice() %></td>
+                                		<td width="100px"><%=receiptList.get(j).getAmount() %></td>
+                                	</tr>
+                                <%
+//                                 iNum = receiptList.get(i).getPay_num();
+//                                 jNum = receiptList.get(j).getPay_num();
+                                }
+//                                 System.out.println(iNum);
+//                                 System.out.println(jNum);
+                                %>
                         </table>
                     </div>
                 </div>
             </div>
+        <%} %>
         </section>
+    <%} %>
     </form>
 </body>
 </html>

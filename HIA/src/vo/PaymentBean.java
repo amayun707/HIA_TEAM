@@ -11,8 +11,15 @@ public class PaymentBean {
 	private int price;
 	private int amount;
 	private String coffee_name;
+	private String cafe_name;
 	
 	
+	public String getCafe_name() {
+		return cafe_name;
+	}
+	public void setCafe_name(String cafe_name) {
+		this.cafe_name = cafe_name;
+	}
 	public String getGetTime() {
 		return getTime;
 	}

@@ -34,9 +34,9 @@ public class OrderDAO {
 		ArrayList<PaymentBean> receiptList = new ArrayList<PaymentBean>();
 		
 		try {
-			String sql = "select p.pay_num, p.orderTime, p.getTime, p.id, p.cost, c.price, c.coffee_num, c.amount, co.coffee_name "
-					+ "from payment p, cart c, coffee co "
-					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and p.pay_num=1 ORDER BY pay_num asc";
+			String sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
+					+ "from payment p, cart c, coffee co, cafe cf "
+					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num=1 ORDER BY pay_num asc";
 			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -45,6 +45,7 @@ public class OrderDAO {
 				
 				PaymentBean paymentBean = new PaymentBean();
 				paymentBean.setPay_num(rs.getInt("pay_num"));
+				paymentBean.setCafe_name(rs.getString("cafe_name"));
 				paymentBean.setOrderTime(rs.getDate("orderTime"));
 				paymentBean.setGetTime(rs.getString("getTime"));
 				paymentBean.setId(rs.getString("id"));
