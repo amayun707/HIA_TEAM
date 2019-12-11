@@ -32,8 +32,10 @@ public class OrderDAO {
 		ArrayList<PaymentBean> receiptList = new ArrayList<PaymentBean>();
 		
 		try {
-			//String sql = "select p.pay_num, p.orderTime, p.getTime, p.id, p.cost, c.coffee_num, c.amount from payment p, cart c WHERE p.pay_num = c.pay_num ORDER BY pay_num asc";
-			String sql = "select * from payment";
+			String sql = "select p.pay_num, p.orderTime, p.getTime, p.id, p.cost, c.price, c.coffee_num, c.amount, co.coffee_name "
+					+ "from payment p, cart c, coffee co "
+					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and p.pay_num=1 ORDER BY pay_num asc";
+			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -42,11 +44,12 @@ public class OrderDAO {
 				PaymentBean paymentBean = new PaymentBean();
 				paymentBean.setPay_num(rs.getInt("pay_num"));
 				paymentBean.setOrderTime(rs.getDate("orderTime"));
-				paymentBean.setGetTime(rs.getDate("getTime"));
+				paymentBean.setGetTime(rs.getString("getTime"));
 				paymentBean.setId(rs.getString("id"));
 				paymentBean.setCost(rs.getInt("cost"));
-				// 추가적인 정보 담을 수 있는 방법...
-				
+				paymentBean.setPrice(rs.getInt("price"));
+				paymentBean.setAmount(rs.getInt("amount"));
+				paymentBean.setCoffee_name(rs.getString("coffee_name"));
 				
 				receiptList.add(paymentBean);
 			}

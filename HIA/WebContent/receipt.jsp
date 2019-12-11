@@ -62,7 +62,7 @@ ArrayList<PaymentBean> receiptList = (ArrayList<PaymentBean>)request.getAttribut
                                 <td width="100px">수령자</td>
                             </tr>
                             <%
-                            for(int i = 0; i < receiptList.size(); i++) {
+                            for(int i=0; i<receiptList.size(); i++) {
                             %>
                                 <tr align="center">
                                     <td width="100px"><%=receiptList.get(i).getPay_num() %></td>

@@ -14,11 +14,8 @@ public class ReceiptListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ArrayList<PaymentBean> ReceiptList = new ArrayList<PaymentBean>();
-		ReceiptList = ReceiptListService.getReceiptList();
-		
-		// 장바구니 정보 리스트 추가
-		
+		ArrayList<PaymentBean> receiptList = new ArrayList<PaymentBean>();
+		receiptList = ReceiptListService.getReceiptList();
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("/receipt.jsp");

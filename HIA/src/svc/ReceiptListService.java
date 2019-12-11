@@ -16,12 +16,12 @@ public class ReceiptListService {
 		OrderDAO orderDAO = OrderDAO.getInstance();
 		orderDAO.setConnection(con);
 		
-		ArrayList<PaymentBean> ReceiptList = null;
-		ReceiptList = orderDAO.selectReceiptList();
+		ArrayList<PaymentBean> receiptList = null;
+		receiptList = orderDAO.selectReceiptList();
 		
 		close(con);
 		
-		return ReceiptList;
+		return receiptList;
 	}
 
 }
