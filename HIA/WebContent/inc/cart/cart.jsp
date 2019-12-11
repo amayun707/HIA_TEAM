@@ -8,7 +8,7 @@
 	ArrayList cartList = cartListService.getCartList(id);
 	int total = 0;
 %>
-<script src = "./js/jquery-3.4.1.js"></script>
+<script src = "js/jquery-3.4.1.js"></script>
 <script>
 $(document).ready(function(){
 	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
@@ -85,6 +85,7 @@ $(document).ready(function(){
     		}	
 		});
 	});
+	//결제 누르면 결제창의 리스트 초기화 후 카트에 있는 리스트 넣어주기.
 	$('.modal_payP').click(function(){
 		$('ul#payList').children().remove();
 		$('span.totalP2').html(Number($('.total').text()));
@@ -93,9 +94,38 @@ $(document).ready(function(){
 		});
 		$('div.modalP').addClass('view');
 	});
+	//결제창의 닫기 버튼 클릭시 결제창 닫힘.
 	$('div.close').click(function(){
 		$('div.modalP').removeClass('view');
 	});
+	
+	//결제창의 결제 버튼 누르면 결제api 넘어가기 + db에 결제 정보 저장
+	$('a.order').click(function(){
+		var total =  Number($('span.totalP2').text());
+		var getTime =  $('.getTime').val();
+		alert(getTime);
+		location.href="PaymentPro.or?total="+total+"&getTime="+getTime;
+// 		$.ajax({
+// 			type: "POST",
+// 			url: "PaymentPro.or",
+// 			dateType: "text",
+// 			data: {
+// 				cost: Number($('span.totalP2').text()),
+// 				getTime: $('#getTime').val()
+// 			},
+// 			success: function(){
+// 				alert(1234);
+// 			},
+// 			error: function(){
+// 				alert('abcd');
+// 			}
+// 		});
+	});
+	$('.payBtn').click(function(){
+		$('ul#payList').children().remove();
+		$(this).closest('li.header-cart-item').clone().appendTo('ul#payList');	
+		$('div.modalP').addClass('view');
+	});	
 });
 
 </script>
@@ -107,7 +137,7 @@ $(document).ready(function(){
 	padding-bottom: 40px;}
 
 .price_amount{
-	width: 80px;}
+	width: 140px;}
 .header-cart-item-info{
 	float: left; }
 .amount{
@@ -188,6 +218,9 @@ option{
 	text-align: center;}
 #payList input{
 	background-color: #FFFFFF;}
+.payBtn{
+	float:right;
+	margin-left: 30px;}
 </style>
 <div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
@@ -252,16 +285,15 @@ option{
     <div id="myModal" class="modalP">
  
       <!-- Modal content -->
-      <form action="PaymentPro.or" method="post" id="payment" name="payment">
       <div class="modal-contentP">
 	    <div class = "pay">
     	    <div class = "wpahr">Payment</div><div class="close">&times;</div>
       	</div>
         	<ul id = "payList">
         	</ul>
-        	<div class = "getTime">
+        	<div>
         	수령시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        		<select>
+        		<select class = "getTime">
         			<option>09:00</option>
         			<option>09:30</option>
         			<option>10:00</option>
@@ -271,9 +303,9 @@ option{
         	<div class = "totalP">
     	    <div class = "totalP1">결제금액</div><span class="totalP2">1000</span><div class="totalP3">원</div>
       		</div>
-      		<input type="hidden" name="total" value="<%=total %>">
-      		<input type="submit" value= "구매  " class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP">                                                 
+      		<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 order">
+							구매
+			</a>                                                 
       </div>
-	 </form>
     </div>
 	

@@ -16,6 +16,7 @@ public class PaymentProAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		int total = Integer.parseInt(request.getParameter("total"));
+		String getTime = request.getParameter("getTime");
 		
 		MemberSelectService memberselectservice = new MemberSelectService();
 		MemberBean memberbean = memberselectservice.getMember(id);

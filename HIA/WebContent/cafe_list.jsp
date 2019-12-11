@@ -396,7 +396,7 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "./js/jquery-3.4.1.js"></script>
+	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기
@@ -432,7 +432,7 @@ int listCount = pi.getListCount();
 			    			$('h4.mtext-105').html(data.cafe_name)
 			    			$('span.mtext-106').html(data.cafe_location);
 			    			$('p.stext-102').html(data.cafe_info);
-			    			$('.select').attr("onclick","location.href='/HIA/CoffeeList.bo?cafe_num="+data.cafe_num+"'");
+			    			$('.select').attr("onclick","location.href='CoffeeList.bo?cafe_num="+data.cafe_num+"'");
 			    		},
 			    		error : function(xhr, status, error){
 			    			alert("에러!: " + error);
@@ -464,10 +464,8 @@ int listCount = pi.getListCount();
 									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+coffee_name+"</a>"+
 									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+cafe_name+"</a>"+
 									"<div class = 'price_amount'>"+
-									"<span class='header-cart-item-info'>"+
-										price+
-									"</span>&nbsp;X"+
-									"<input type = 'text' value = '1' class = 'amount'>"+
+									"<span class='header-cart-item-info'>"+price+
+									"</span>&nbsp;X<button class = 'payBtn'>구매</button><input type = 'text' value = '1' class = 'amount'>"+
 									"</div>"+
 								"</div>"+
 							"</li>"

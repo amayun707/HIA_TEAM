@@ -7,7 +7,13 @@
 <%
 PageInfo pi = (PageInfo)request.getAttribute("pageInfo");
 ArrayList<CoffeeBean> coffeeList =  (ArrayList)request.getAttribute("coffeeList");
-String category = request.getParameter("category");
+String search = request.getParameter("search");
+String category=request.getParameter("category");
+if(category==null){
+	category="";
+}
+String sortBy = request.getParameter("sortBy");
+int price = Integer.parseInt(request.getParameter("price"));
 String id = (String)session.getAttribute("id");
 int cafe_num = Integer.parseInt(request.getParameter("cafe_num"));
 int nowPage = pi.getPage();
@@ -21,6 +27,21 @@ int listCount = pi.getListCount();
 	display:none;}
 #h1{
 	margin-bottom: 20px;}
+<%if(cafe_num!=0){%>
+.wid{
+	width:39%;
+	transform: translateX(823px);}
+<%} else {%>
+.wid{
+	width: 20%;
+	transform: translateX(900px);}
+<%}%>
+.p-r{
+	margin-right:70px;}
+.filterwid{
+	width: 141px;}
+.widful{
+	width: 100%; padding-left:100px;}
 </style>
 <html lang="en">
 <head>
@@ -79,34 +100,39 @@ int listCount = pi.getListCount();
 		<div class="container">
 			<div class="flex-w flex-sb-m">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 aCategory"
-						onclick = "location.href='CoffeeList.bo?category='">All Coffee</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						onclick = "location.href='CoffeeList.bo?category=category1'">category1</button>
+						value="">All Coffee</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						onclick = "location.href='CoffeeList.bo?category=category2'">category2</button>
+						value="category1">category1</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						onclick = "location.href='CoffeeList.bo?category=category3'">category3</button>
+						value="category2">category2</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						onclick = "location.href='CoffeeList.bo?category=category4'">category4</button>
+						value="category3">category3</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						onclick = "location.href='CoffeeList.bo?category=category5'">category5</button>
+						value="category4">category4</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						onclick = "location.href='CoffeeList.bo?category=category6'">category6</button>
+						value="category5">category5</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+						value="category6">category6</button>
 					<div class = "nDisplay category"><%=category %></div>
 					<div class = "nDisplay cafe"><%=cafe_num %></div>
 				</div>
-
+		
 				<div class="flex-w flex-c-m m-tb-10">
-					<div
-						class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+				<%if(cafe_num>0) {%>
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
+					</div>
+				<%} %>
+					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-						<i
-							class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						<i	class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Search
 					</div>
 				</div>
-
+					
 				<!-- Search product -->
 				<div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
@@ -119,11 +145,73 @@ int listCount = pi.getListCount();
 					</div>
 				</div>
 			</div>
-			<%if(cafe_num>0) {%>
-			<h1 id ="h1"><%=coffeeList.get(1).getCafe_name() %></h1>
-			<%} else {%>
+			
+			<%if(cafe_num>0) {
+					if(coffeeList.size()>0){%>
+			<h1 id ="h1"><%=coffeeList.get(0).getCafe_name() %></h1>
+			<%	}
+				} else {%>
 			<h1 id= "h1"></h1>
 			<%} %>
+			<!-- Filter -->
+			<%if(cafe_num>0){ %>
+				<div class="dis-none panel-filter wid p-t-10">
+					<div class="wrap-filter flex-w bg6 widful p-t-27 p-lr-15-sm">
+						<div class="filterwid p-r p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Sort By
+							</div>
+
+							<ul class = "filul">
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">가나다순</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">가격 : 오름차순</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">가격 : 내림차순</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">인기순</a>
+								</li>
+							</ul>
+						</div>
+						<div class="filterwid p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Price
+							</div>
+
+							<ul class="filul2">
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">모두</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">1000원 - 2000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">2000원 - 3000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">3000원 - 4000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">4000원 - 5000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">5000원+</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<%} %>
 			<div class="row isotope-grid">
 				<%
 					for (int i = 0; i < coffeeList.size(); i++) {
@@ -134,7 +222,7 @@ int listCount = pi.getListCount();
 						<div class="block2-pic hov-img0 <%=coffeeList.get(i).getCoffee_num() %>">
 							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> 
 							<%if(cafe_num==0){ %><a
-								href="/HIA/CafeList.bo?coffee_name=<%=coffeeList.get(i).getCoffee_name() %>"
+								href="CafeList.bo?coffee_name=<%=coffeeList.get(i).getCoffee_name() %>"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 								카페 보기 </a>	
 						<%} %>
@@ -144,7 +232,9 @@ int listCount = pi.getListCount();
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="#"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"><%=coffeeList.get(i).getCoffee_name() %></a>
+								<%if(cafe_num!=0){ %>
 								<span class="stext-105 cl3"> <%=coffeeList.get(i).getPrice() %>
+								<%} %>
 								</span>
 							</div>
 
@@ -164,7 +254,7 @@ int listCount = pi.getListCount();
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="#"
 					class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More </a>
+					Load More "<%=category %>"</a>
 			</div>
 		</div>
 	</div>
@@ -288,7 +378,7 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "./js/jquery-3.4.1.js"></script>
+	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기 
@@ -312,16 +402,77 @@ int listCount = pi.getListCount();
 					});
 				});
 			});
-			var category = $('.category').text();
-			//카테고리 선택시 믿줄 귿기
+			
+			//카테고리 클릭시 카테고리 별 이동
 			$('.filter-tope-group').find('.m-tb-5').each(function(){
-				var nDisplay = this.innerHTML;
-				if(category==""&nDisplay=="All Coffee"){
+				$(this).click(function(){
+					var category = $(this).val();
+					location.href="CoffeeList.bo?cafe_num=<%=cafe_num%>&category="+category
+				});
+			});
+			
+			//카테고리 믿줄 귿기
+			$('.filter-tope-group').find('.m-tb-5').each(function(){
+				if($(this).val()=="<%=category%>") {
 					$(this).addClass('how-active1');
 				}
-				if(nDisplay==category){
-					$(this).addClass('how-active1');
+			});
+			
+			//필터 믿줄 귿기
+			$('ul.filul').find('li').each(function(){
+				var sortBy = "<%=sortBy%>";
+				if(sortBy=="price desc") {
+					sortBy = "가격 : 내림차순"
+				} else if(sortBy=="price asc") {
+					sortBy = "가격 : 오름차순";
+				} else if(sortBy=="count") {
+					sortBy = "인기순";
+				} else if(sortBy=="coffee_name asc") {
+					sortBy = "가나다순";
+				}  
+				if($(this).find('a').text()==sortBy) {
+					$(this).find('a').addClass('filter-link-active');
 				}
+			});
+
+			$('ul.filul2').find('li').each(function(){
+				var price = "<%=price%>";
+				if(price=="0"){
+					price="모두";
+				}else if(price=="1000"){
+					price="1000원 - 2000원";
+				}else if(price=="2000"){
+					price="2000원 - 3000원";
+				}else if(price=="3000"){
+					price="3000원 - 4000원";
+				}else if(price=="4000"){
+					price="4000원 - 5000원";
+				}else if(price=="5000"){
+					price="5000원+";
+				}
+				if($(this).find('a').text()==price){
+					$(this).find('a').addClass('filter-link-active');
+				}
+			});
+			
+			
+			//필터 선택시 줄귿기
+			$('ul.filul').find('li').each(function(){
+				$(this).click(function(){
+					$('ul.filul').find('li').each(function(){
+						$(this).find('a').removeClass('filter-link-active');
+					});
+					$(this).find('a').addClass('filter-link-active');
+				});			
+			});
+			
+			$('ul.filul2').find('li').each(function(){
+				$(this).click(function(){
+					$('ul.filul2').find('li').each(function(){
+						$(this).find('a').removeClass('filter-link-active');
+					});
+					$(this).find('a').addClass('filter-link-active');
+				});			
 			});
 			
 			var cafe_num = $('.cafe').text();
@@ -350,10 +501,8 @@ int listCount = pi.getListCount();
 									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+coffee_name+"</a>"+
 									"<a href='#' class='header-cart-item-name mb hov-cl1 trans-04'>"+cafe_name+"</a>"+
 									"<div class = 'price_amount'>"+
-									"<span class='header-cart-item-info'>"+
-										price+
-									"</span>&nbsp;X"+
-									"<input type = 'text' value = '1' class = 'amount'>"+
+									"<span class='header-cart-item-info'>"+price+
+									"</span>&nbsp;X<button class = 'payBtn'>구매</button><input type = 'text' value = '1' class = 'amount'>"+
 									"</div>"+
 								"</div>"+
 							"</li>"
@@ -373,13 +522,55 @@ int listCount = pi.getListCount();
 			// 검색 버튼 클릭시 검색
 			$('.search').click(function(){
 				var search = $('.search-cafe').val();
-				location.href="CafeList.bo?search="+search+"&category=<%=category%>";
+				if(<%=cafe_num%>>0){
+					location.href="CoffeeList.bo?cafe_num=<%=cafe_num%>&search="+search+"&category=<%=category%>";
+				} else {
+					location.href="CoffeeList.bo?search="+search+"&category=<%=category%>";
+				}
 			});
 			// 검색입력후 엔터로 검색
 			$('.search-cafe').keydown(function(key){
 				if(key.keyCode == 13) {
 					var search = $('.search-cafe').val();
-					location.href="CoffeeList.bo?search="+search+"&category=<%=category%>";
+					if(<%=cafe_num%>>0){
+						location.href="CoffeeList.bo?cafe_num=<%=cafe_num%>&search="+search+"&category=<%=category%>";
+					} else {
+						location.href="CoffeeList.bo?search="+search+"&category=<%=category%>";
+					}
+				}
+			});
+			
+			//필터 닫았을 때 필터로 검색
+			$('div.js-show-filter').click(function(){
+				if($('div.js-show-filter').hasClass('show-filter') == false){
+					if(<%=cafe_num%>>0){
+						var SortBy = $('ul.filul').find('a.filter-link-active').text();
+						var Price = $('ul.filul2').find('a.filter-link-active').text();
+						if(Price=="모두"){
+							Price="0";
+						}else if(Price=="1000원 - 2000원"){
+							Price="1000";
+						}else if(Price=="2000원 - 3000원"){
+							Price="2000";
+						}else if(Price=="3000원 - 4000원"){
+							Price="3000";
+						}else if(Price=="4000원 - 5000원"){
+							Price="4000";
+						}else if(Price=="5000원+"){
+							Price="5000";
+						}
+						if(SortBy=="가격 : 내림차순") {
+							SortBy = "price desc"
+						} else if(SortBy=="가격 : 오름차순") {
+							SortBy = "price asc";
+						} else if(SortBy=="인기순") {
+							SortBy = "count";
+						} else if(SortBy=="가나다순") {
+							SortBy = "coffee_name asc";
+						}  
+					var category = "<%=category%>";
+					location.href="CoffeeList.bo?cafe_num=<%=cafe_num%>&SortBy="+SortBy+"&Price="+Price+"&category="+category;
+					}
 				}
 			});
 		});
