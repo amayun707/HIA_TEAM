@@ -8,7 +8,7 @@
 	ArrayList cartList = cartListService.getCartList(id);
 	int total = 0;
 %>
-<script src = "js/jquery-3.4.1.js"></script>
+<script src = "./js/jquery-3.4.1.js"></script>
 <script>
 $(document).ready(function(){
 	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
@@ -99,28 +99,13 @@ $(document).ready(function(){
 		$('div.modalP').removeClass('view');
 	});
 	
-	//결제창의 결제 버튼 누르면 결제api 넘어가기 + db에 결제 정보 저장
 	$('a.order').click(function(){
 		var total =  Number($('span.totalP2').text());
 		var getTime =  $('.getTime').val();
 		alert(getTime);
 		location.href="PaymentPro.or?total="+total+"&getTime="+getTime;
-// 		$.ajax({
-// 			type: "POST",
-// 			url: "PaymentPro.or",
-// 			dateType: "text",
-// 			data: {
-// 				cost: Number($('span.totalP2').text()),
-// 				getTime: $('#getTime').val()
-// 			},
-// 			success: function(){
-// 				alert(1234);
-// 			},
-// 			error: function(){
-// 				alert('abcd');
-// 			}
-// 		});
 	});
+	
 	$('.payBtn').click(function(){
 		$('ul#payList').children().remove();
 		$(this).closest('li.header-cart-item').clone().appendTo('ul#payList');	

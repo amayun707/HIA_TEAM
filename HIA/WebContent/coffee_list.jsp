@@ -293,7 +293,7 @@ int listCount = pi.getListCount();
 	<script src="vendor/daterangepicker/daterangepicker.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/slick/slick.min.js"></script>
-	<script src="js/slick-custom.js"></script>
+	<script src="./js/slick-custom.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/parallax100/parallax100.js"></script>
 	<script>
@@ -376,9 +376,9 @@ int listCount = pi.getListCount();
 		});
 	</script>
 	<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="./js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "js/jquery-3.4.1.js"></script>
+	<script src = "./js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기 
