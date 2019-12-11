@@ -31,7 +31,16 @@ public class CafeListAction implements Action {
 		if(coffee_name==null) {
 			coffee_name="";
 		}
-
+		String sortBy = "cafe_name";
+		String strSortBy = request.getParameter("SortBy");
+		if(strSortBy!= null) {
+			sortBy = strSortBy;
+		}
+		String strPrice = request.getParameter("Price");
+		int price = 0;
+		if(strPrice!=null) {
+			price = Integer.parseInt(strPrice);
+		}
 		
 		int page = 1; 
 		int limit = 20; 
@@ -44,7 +53,7 @@ public class CafeListAction implements Action {
 		if(coffee_name=="") {
 			listCount = cafeListService.getCafeListCount(search);
 		}else {
-			listCount = cafeListService.getCafeListCount(coffee_name, search);
+			listCount = cafeListService.getCafeListCount(coffee_name, search, price);
 		}
 		
 		int maxPage = (int)((double)listCount / limit + 0.95); //0.95 는 올림처리를 위한 덧셈
@@ -56,9 +65,9 @@ public class CafeListAction implements Action {
 		
 		ArrayList<CafeBean> cafeList = null;
 		if(coffee_name=="") {
-			cafeList = cafeListService.getCafeList(page,limit,search);
+			cafeList = cafeListService.getCafeList(page,limit,search, sortBy);
 		}else {
-			cafeList = cafeListService.getCafeList(page,limit,coffee_name,search);
+			cafeList = cafeListService.getCafeList(page,limit,coffee_name,search, sortBy, price);
 		}
 
 		String strCafe_num = request.getParameter("cafe_num");
@@ -76,7 +85,7 @@ public class CafeListAction implements Action {
 		request.setAttribute("cafeList", cafeList);
 		request.setAttribute("cafeBean", cafeBean);
 		
-		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name);
+		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name+"&sortBy="+sortBy+"&price="+price);
 		HttpSession session  = request.getSession();
 		session.setAttribute("id","test1");
 		return forward;

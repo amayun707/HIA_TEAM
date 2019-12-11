@@ -10,6 +10,8 @@ ArrayList<CafeBean> cafeList =  (ArrayList)request.getAttribute("cafeList");
 JSONObject cafe = (JSONObject)request.getAttribute("cafeBean");
 String coffee_name = request.getParameter("coffee_name");
 String id = (String)session.getAttribute("id");
+String sortBy = request.getParameter("sortBy");
+int price = Integer.parseInt(request.getParameter("price"));
 int nowPage = pi.getPage();
 int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
@@ -17,6 +19,8 @@ int endPage = pi.getEndPage();
 int listCount = pi.getListCount();
 %>
 <!DOCTYPE html>
+<html lang="en">
+<head>
 <style>
 .width{
 	width : 70%;
@@ -39,9 +43,20 @@ int listCount = pi.getListCount();
 	display:none;}
 #h1{
 	margin-bottom: 20px;}
+.wid{
+<%if(coffee_name!=""){%>
+	width:32%;
+<%} else {%>
+	width:17%;
+<%}%>
+}
+.p-r{
+	margin-right:70px;}
+.filterwid{
+	width: 141px;}
+.widful{
+	width: 100%; padding-left:50px;}
 </style>
-<html lang="en">
-<head>
 <title>Product</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -97,6 +112,11 @@ int listCount = pi.getListCount();
 		<div class="container">
 			<div class="flex-w flex-sb-m">
 				<div class="flex-w flex-c-m m-tb-10">
+					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						 Filter
+					</div>
 					<div
 						class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
@@ -117,6 +137,71 @@ int listCount = pi.getListCount();
 							name="search-product" placeholder="Search">
 					</div>
 				</div>
+			</div>
+			<div class="dis-none panel-filter wid p-t-10">
+					<div class="wrap-filter flex-w bg6 widful p-t-27 p-lr-15-sm">
+						<div class="filterwid p-r p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Filter
+							</div>
+
+							<ul class = "filul">
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">가나다순</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">인기순</a>
+								</li><li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">위치순</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">별점순</a>
+								</li>
+								<%if(coffee_name!=""){ %>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">가격 : 오름차순</a>
+								</li>
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">가격 : 내림차순</a>
+								</li>
+								<%} %>
+							</ul>
+						</div>
+						
+						<%if(coffee_name!=""){ %>
+						<div class="filterwid p-r-15 p-b-27">
+							<div class="mtext-102 cl2 p-b-15">
+								Price
+							</div>
+			
+							<ul class="filul2">
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">모두</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">1000원 - 2000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">2000원 - 3000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">3000원 - 4000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">4000원 - 5000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">5000원+</a>
+								</li>
+							</ul>
+						</div>
+						<%} %>
+					</div>
 			</div>
 			<h1 id = "h1"><%=coffee_name %></h1>
 			<div class="row isotope-grid">
@@ -490,6 +575,104 @@ int listCount = pi.getListCount();
 				if(key.keyCode == 13) {
 					var search = $('.search-cafe').val();
 					location.href="CafeList.bo?search="+search;
+				}
+			});
+			
+			//필터 선택시 줄귿기
+			$('ul.filul').find('li').each(function(){
+				$(this).click(function(){
+					$('ul.filul').find('li').each(function(){
+						$(this).find('a').removeClass('filter-link-active');
+					});
+					$(this).find('a').addClass('filter-link-active');
+				});			
+			});
+			$('ul.filul2').find('li').each(function(){
+				$(this).click(function(){
+					$('ul.filul2').find('li').each(function(){
+						$(this).find('a').removeClass('filter-link-active');
+					});
+					$(this).find('a').addClass('filter-link-active');
+				});			
+			});
+			
+			//필터 믿줄 귿기
+			$('ul.filul').find('li').each(function(){
+				var sortBy = "<%=sortBy%>";
+				if(sortBy=="cafe_name") {
+					sortBy = "가나다순"
+				} else if(sortBy=="count") {
+					sortBy = "인기순";
+				} else if(sortBy=="cafe_location") {
+					sortBy = "위치순";
+				} else if(sortBy=="rating desc") {
+					sortBy = "별점순";
+				}  else if(sortBy=="b.price asc") {
+					sortBy = "가격 : 오름차순";
+				} else if(sortBy=="b.price desc") {
+					sortBy = "가격 : 내림차순";
+				}  
+				if($(this).find('a').text()==sortBy) {
+					$(this).find('a').addClass('filter-link-active');
+				}
+			});
+
+			$('ul.filul2').find('li').each(function(){
+				var price = "<%=price%>";
+				if(price=="0"){
+					price="모두";
+				}else if(price=="1000"){
+					price="1000원 - 2000원";
+				}else if(price=="2000"){
+					price="2000원 - 3000원";
+				}else if(price=="3000"){
+					price="3000원 - 4000원";
+				}else if(price=="4000"){
+					price="4000원 - 5000원";
+				}else if(price=="5000"){
+					price="5000원+";
+				}
+				if($(this).find('a').text()==price){
+					$(this).find('a').addClass('filter-link-active');
+				}
+			});
+			
+			//필터 닫았을 때 필터로 검색
+			$('div.js-show-filter').click(function(){
+				if($('div.js-show-filter').hasClass('show-filter') == false){
+					var SortBy = $('ul.filul').find('a.filter-link-active').text();
+					var Price = 0;
+					if(SortBy=="가나다순") {
+						SortBy = "cafe_name"
+					} else if(SortBy=="인기순") {
+						SortBy = "count";
+					} else if(SortBy=="위치순") {
+						SortBy = "cafe_location";
+					} else if(SortBy=="별점순") {
+						SortBy = "rating desc";
+					}  else if(SortBy=="가격 : 오름차순") {
+						SortBy = "b.price asc";
+					}  else if(SortBy=="가격 : 내림차순") {
+						SortBy = "b.price desc";
+					}  
+					
+					if(coffee_name!=""){
+						var Price = $('ul.filul2').find('a.filter-link-active').text();
+						if(Price=="모두"){
+							Price=0;
+						}else if(Price=="1000원 - 2000원"){
+							Price=1000;
+						}else if(Price=="2000원 - 3000원"){
+							Price=2000;
+						}else if(Price=="3000원 - 4000원"){
+							Price=3000;
+						}else if(Price=="4000원 - 5000원"){
+							Price=4000;
+						}else if(Price=="5000원+"){
+							Price=5000;
+						}
+					}
+					location.href="CafeList.bo?coffee_name=<%=coffee_name%>&SortBy="+SortBy+"&Price="+Price;
 				}
 			});
 		});

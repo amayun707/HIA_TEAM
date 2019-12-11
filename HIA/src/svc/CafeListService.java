@@ -25,7 +25,7 @@ public class CafeListService {
 		return listCount;
 	}
 
-	public int getCafeListCount(String coffee_name, String search) {
+	public int getCafeListCount(String coffee_name, String search, int price) {
 		System.out.println("CafeListService-getCafeListCount");
 		
 		Connection con = getConnection();
@@ -33,14 +33,14 @@ public class CafeListService {
 		cafeDAO.setConnection(con);
 		
 		int listCount = 0;
-		listCount = cafeDAO.getCafeListCount(coffee_name, search);
+		listCount = cafeDAO.getCafeListCount(coffee_name, search, price);
 		
 		close(con);
 		
 		return listCount;
 	}
 	
-	public ArrayList<CafeBean> getCafeList(int page, int limit, String search) {
+	public ArrayList<CafeBean> getCafeList(int page, int limit, String search, String sortBy) {
 		System.out.println("CafeListService-getCafeList");
 		
 		Connection con = getConnection();
@@ -48,14 +48,14 @@ public class CafeListService {
 		cafeDAO.setConnection(con);
 		
 		ArrayList cafeList = null;
-		cafeList = cafeDAO.getCafeList(page,limit,search);
+		cafeList = cafeDAO.getCafeList(page,limit,search,sortBy);
 		
 		close(con);
 		
 		return cafeList;
 	}
 
-	public ArrayList<CafeBean> getCafeList(int page, int limit, String coffee_name, String search) {
+	public ArrayList<CafeBean> getCafeList(int page, int limit, String coffee_name, String search, String sortBy, int price) {
 		System.out.println("CafeListService-getCafeList");
 		
 		Connection con = getConnection();
@@ -63,7 +63,7 @@ public class CafeListService {
 		cafeDAO.setConnection(con);
 		
 		ArrayList cafeList = null;
-		cafeList = cafeDAO.getCafeList(page,limit,coffee_name,search);
+		cafeList = cafeDAO.getCafeList(page,limit,coffee_name,search,sortBy,price);
 		
 		close(con);
 		return cafeList;
