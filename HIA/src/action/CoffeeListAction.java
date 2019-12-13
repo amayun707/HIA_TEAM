@@ -77,7 +77,9 @@ public class CoffeeListAction implements Action {
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("coffeeList", coffeeList);
 		forward.setPath("/coffee_list.jsp?cafe_num="+cafe_num+"&?category="+category+"&search="+search+"&sortBy="+sortBy+"&price="+price);
-		
+
+		HttpSession session  = request.getSession();
+
 		return forward;
 	}
 }
