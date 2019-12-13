@@ -28,11 +28,7 @@ public class CafeFrontController extends HttpServlet{
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/DaaMain.bo")) {
-			// 포워딩 대상이 뷰페이지(*.jsp) 일 경우 ActionForward 객체 생성하여 URL 전달
-			forward = new ActionForward();
-			forward.setPath("/index.jsp");
-		} else if(command.equals("/CafeList.bo")) {
+		if(command.equals("/CafeList.bo")) {
 			action = new CafeListAction();
 			try {
 				forward = action.execute(request, response);

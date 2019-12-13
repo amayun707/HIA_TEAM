@@ -32,7 +32,6 @@ public class MemberFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		if(command.equals("/Main.me")) {
-			
 			forward = new ActionForward();
 			forward.setPath("/index.jsp");
 		}
