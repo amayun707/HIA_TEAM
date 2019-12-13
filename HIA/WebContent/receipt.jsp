@@ -96,6 +96,7 @@ ArrayList receiptList2 = (ArrayList)receiptList.get(1);
                                 for(int j=0; j<receiptList2.size(); j++) {
                                 	
                                 	PaymentBean paymentBean2 = (PaymentBean)receiptList2.get(j);
+                                	
                                 	int iNum = paymentBean1.getPay_num();
                                 	int jNum = paymentBean2.getPay_num();
                                 	
