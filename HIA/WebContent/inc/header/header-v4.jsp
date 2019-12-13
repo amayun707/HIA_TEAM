@@ -66,11 +66,11 @@
 							</li>
 
 							<li>
-								<a href="/HIA/CafeList.bo">cafe</a>
+								<a href="CafeList.bo">cafe</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="/HIA/CoffeeList.bo">coffee</a>
+							<li>
+								<a href="CoffeeList.bo">coffee</a>
 							</li>
 
 							<li>
