@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.PaymentBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -43,29 +44,20 @@
 </head>
 <body>
 <%
-ArrayList<PaymentBean> receiptList = (ArrayList<PaymentBean>)request.getAttribute("receiptList");
+List receiptList = (List)request.getAttribute("receiptList");
+
+ArrayList receiptList1 = (ArrayList)receiptList.get(0);
+ArrayList receiptList2 = (ArrayList)receiptList.get(1);
 %>
     <form id="ReceiptList" method="post" name="ReceiptList">
     <%
     if(receiptList != null) {
-    	int i2 = 0;
-    	int j2 = 0;
-    	int iNum = 0;
-    	int jNum = 0;
     %>
         <section class="bg0 p-t-104 p-b-116">
         <%
-    	for(int i=i2; i<receiptList.size(); i++) {
+    	for(int i=0; i<receiptList1.size(); i++) {
     		
-//     		while(receiptList.get(i).getPay_num() != jNum){
-//             	i2++;
-//             	j2++;
-//             	iNum++;
-            	
-//             	if(receiptList.get(i).getPay_num() != jNum){
-//             		break;
-//             	}
-//             }
+    		PaymentBean paymentBean1 = (PaymentBean)receiptList1.get(i);
     	%>
             <div class="container">
                 <div class="flex-w flex-tr row justify-content-center">
@@ -80,15 +72,15 @@ ArrayList<PaymentBean> receiptList = (ArrayList<PaymentBean>)request.getAttribut
                                 <td></td>
                             </tr>
                                 <tr align="center">
-                                    <td width="100px"><%=receiptList.get(i).getPay_num() %></td>
-                                    <td width="100px"><%=receiptList.get(i).getOrderTime() %></td>
-                                    <td width="100px"><%=receiptList.get(i).getGetTime() %></td>
-                                    <td width="100px"><%=receiptList.get(i).getCost() %></td>
-                                    <td width="100px"><%=receiptList.get(i).getId() %></td>
+                                    <td width="100px"><%=paymentBean1.getPay_num() %></td>
+                                    <td width="100px"><%=paymentBean1.getOrderTime() %></td>
+                                    <td width="100px"><%=paymentBean1.getGetTime() %></td>
+                                    <td width="100px"><%=paymentBean1.getCost() %></td>
+                                    <td width="100px"><%=paymentBean1.getId() %></td>
                                     <td>
                                        <div class="form-group text-center p-t-10">
                                         <button type="button" class="btn btn-dark" 
-                                        onclick="location.href='ReceiptDeletePro.or?pay_num=<%=receiptList.get(i).getPay_num() %>'">
+                                        onclick="location.href='ReceiptDeletePro.or?pay_num=<%=paymentBean1.getPay_num() %>'">
                                                                                          주문확인<i class="fa fa-check spaceLeft"></i></button>
                                        </div>
                                     </td>
@@ -101,20 +93,23 @@ ArrayList<PaymentBean> receiptList = (ArrayList<PaymentBean>)request.getAttribut
                                 	<td width="100px">커피수량</td>
                                 </tr>
                                 <%
-                                for(int j=j2; j<receiptList.size(); j++) {
+                                for(int j=0; j<receiptList2.size(); j++) {
+                                	
+                                	PaymentBean paymentBean2 = (PaymentBean)receiptList2.get(j);
+                                	int iNum = paymentBean1.getPay_num();
+                                	int jNum = paymentBean2.getPay_num();
+                                	
+                                	if(iNum == jNum){
                                 %>
                                 	<tr align="center">
                                 		<td></td><td>→</td>
-                                		<td width="100px"><%=receiptList.get(j).getCoffee_name() %></td>
-                                		<td width="100px"><%=receiptList.get(j).getPrice() %></td>
-                                		<td width="100px"><%=receiptList.get(j).getAmount() %></td>
+                                		<td width="100px"><%=paymentBean2.getCoffee_name() %></td>
+                                		<td width="100px"><%=paymentBean2.getPrice() %></td>
+                                		<td width="100px"><%=paymentBean2.getAmount() %></td>
                                 	</tr>
                                 <%
-//                                 iNum = receiptList.get(i).getPay_num();
-//                                 jNum = receiptList.get(j).getPay_num();
+                                	}
                                 }
-//                                 System.out.println(iNum);
-//                                 System.out.println(jNum);
                                 %>
                         </table>
                     </div>

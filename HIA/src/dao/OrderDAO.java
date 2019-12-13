@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.CartBean;
 import vo.PaymentBean;
@@ -26,24 +27,48 @@ public class OrderDAO {
 		this.con = con;
 	}
 
-	public ArrayList<PaymentBean> selectReceiptList() {
+	public List selectReceiptList() {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		PaymentBean paymentBean;
 		
-		ArrayList<PaymentBean> receiptList = new ArrayList<PaymentBean>();
+		ArrayList<PaymentBean> receiptList1 = new ArrayList<PaymentBean>();
+		ArrayList<PaymentBean> receiptList2 = new ArrayList<PaymentBean>();
+		List receiptList = new ArrayList();
 		
 		try {
 			String sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
 					+ "from payment p, cart c, coffee co, cafe cf "
-					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num=1 ORDER BY pay_num asc";
+					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 "
+					+ "GROUP BY p.pay_num ORDER BY pay_num asc";
 			
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				
-				PaymentBean paymentBean = new PaymentBean();
+				paymentBean = new PaymentBean();
+				paymentBean.setPay_num(rs.getInt("pay_num"));
+				paymentBean.setCafe_name(rs.getString("cafe_name"));
+				paymentBean.setOrderTime(rs.getDate("orderTime"));
+				paymentBean.setGetTime(rs.getString("getTime"));
+				paymentBean.setId(rs.getString("id"));
+				paymentBean.setCost(rs.getInt("cost"));
+				
+				receiptList1.add(paymentBean);
+			}
+			
+			sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
+				+ "from payment p, cart c, coffee co, cafe cf "
+				+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 ORDER BY pay_num asc";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				paymentBean = new PaymentBean();
 				paymentBean.setPay_num(rs.getInt("pay_num"));
 				paymentBean.setCafe_name(rs.getString("cafe_name"));
 				paymentBean.setOrderTime(rs.getDate("orderTime"));
@@ -54,8 +79,12 @@ public class OrderDAO {
 				paymentBean.setAmount(rs.getInt("amount"));
 				paymentBean.setCoffee_name(rs.getString("coffee_name"));
 				
-				receiptList.add(paymentBean);
+				receiptList2.add(paymentBean);
 			}
+			
+			receiptList.add(receiptList1);
+			receiptList.add(receiptList2);
+			
 		} 
 		catch (Exception e) {
 			System.out.println("selectReceiptList 오류 - " + e.getMessage());

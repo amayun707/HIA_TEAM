@@ -1,6 +1,7 @@
 package action;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,8 +15,7 @@ public class ReceiptListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		ArrayList<PaymentBean> receiptList = new ArrayList<PaymentBean>();
-		receiptList = ReceiptListService.getReceiptList();
+		List receiptList = ReceiptListService.getReceiptList();
 		
 		request.setAttribute("receiptList", receiptList);
 		
