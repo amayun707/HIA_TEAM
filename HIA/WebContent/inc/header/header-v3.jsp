@@ -22,11 +22,11 @@
 							</li>
 
 							<li>
-								<a href="/HIA/CafeList.bo">Cafe Order</a>
+								<a href="CafeList.bo">Cafe Order</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="/HIA/CoffeeList.bo">Coffee Order</a>
+								<a href="CoffeeList.bo">Coffee Order</a>
 							</li>
 
 							<li>
@@ -101,11 +101,11 @@
 				</li>
 
 				<li>
-					<a href="/HIA/CafeList.bo">Cafe Order</a>
+					<a href="CafeList.bo">Cafe Order</a>
 				</li>
 
 				<li class="label1" data-label1="hot">
-					<a href="/HIA/CoffeeList.bo">Coffee Order</a>
+					<a href="CoffeeList.bo">Coffee Order</a>
 				</li>
 
 				<li>
