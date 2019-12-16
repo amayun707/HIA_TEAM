@@ -24,7 +24,7 @@ public class InsertPaymentAction implements Action {
 		int insertCount = insertPaymentService.insertPayment(id, getTime, cost);
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("DaaMain.bo");
+		forward.setPath("Main.me");
 		
 		return forward;
 	}
