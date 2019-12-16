@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.CafeDetailAction;
 import action.CafeListAction;
 import action.CartListAction;
 import action.CoffeeListAction;
+import action.CommentListAction;
+import action.CommentWriteProAction;
 import action.InsertCartAction;
 import vo.ActionForward;
 
@@ -59,7 +62,31 @@ public class CafeFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}	
+		} else if(command.equals("/cafeDetail.bo")) {
+			// BoardDetailAction 클래스로 이동
+			action = new CafeDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/commentWirtePro.bo")) {
+			// BoardDetailAction 클래스로 이동
+			action = new CommentWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/commentListAction.bo")) {
+			// BoardDetailAction 클래스로 이동
+			action = new CommentListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}		
 		
 		
 		// ActionForward 객체 내용에 따라 각각 다른 포워딩 수행

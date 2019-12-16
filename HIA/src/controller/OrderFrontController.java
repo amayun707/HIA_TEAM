@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.InsertPaymentAction;
 import action.MemberUpdateProAction;
+import action.PaymentListAction;
 import action.PaymentProAction;
 import action.ReceiptListAction;
 import vo.ActionForward;
@@ -60,6 +61,14 @@ public class OrderFrontController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch(Exception  e ) {
 				System.out.println("Exception :" +e.getMessage());
+			}
+		}
+		else if(command.equals("/PaymentList.or")) {
+			action = new PaymentListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception  e ) {
+				System.out.println("Exception : "+e.getMessage());
 			}
 		}
 		

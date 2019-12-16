@@ -778,6 +778,38 @@ public class CafeDAO {
 		return favoriteList;
 	}
 
+	public CafeBean selectCafe(int cafe_num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CafeBean cafeBean = null;
+		
+		try {
+			String sql = "SELECT * FROM cafe WHERE cafe_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cafe_num);
+			rs = pstmt.executeQuery();
+			
+			// 게시물이 존재할 경우 BoardBean 객체에 모든 데이터 저장
+			if(rs.next()) {
+				cafeBean = new CafeBean();
+				
+				cafeBean.setCafe_num(rs.getInt("cafe_num"));
+				cafeBean.setCafe_name(rs.getString("cafe_name"));
+				cafeBean.setId(rs.getString("id"));
+				cafeBean.setCafe_info(rs.getString("cafe_info"));
+				cafeBean.setCafe_location(rs.getString("cafe_location"));
+				cafeBean.setOpen_time(rs.getString("openTime"));
+				cafeBean.setRating(rs.getDouble("rating"));
+				cafeBean.setCafe_file(rs.getString("cafe_file"));
+			}
+		} catch (SQLException e) {
+			System.out.println("CafeDAO : getCafe() " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cafeBean;
+	}
 	
 //=====================================================================================================================
 	
