@@ -806,7 +806,7 @@ div .logo1 {
    <!-- Title page -->
    <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
       <h2 class="ltext-105 cl0 txt-center">
-         Contact
+         Street View Map
       </h2>
    </section>   
 
@@ -1809,7 +1809,7 @@ kakao.maps.event.addListener(rectangle3, 'click', function(mouseEvent) {
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
    <script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
-   <script src="js/main.js"></script>
+   <script src="./js/main.js"></script>
 
 </body>
 </html>

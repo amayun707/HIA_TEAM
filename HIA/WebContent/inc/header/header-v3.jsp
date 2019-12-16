@@ -8,41 +8,33 @@
 			<div class="wrap-menu-desktop">
 				<nav class="limiter-menu-desktop p-l-45">
 					
-					<!-- Logo desktop -->		
-					<a href="#" class="logo">
-						<img src="images/icons/logo-02.png" alt="IMG-LOGO">
+					<!-- Logo desktop -->	
+					<div class="stext-107 cl7 hov-cl1 trans-04"> 전포카페거리</div><br>	
+					<a href="Main.me" class="logo">
+						<img src="images/icons/hia_logo.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="index.jsp">Home</a>
-								<ul class="sub-menu">
-									<li><a href="index.jsp">Homepage 1</a></li>
-									<li><a href="home-02.jsp">Homepage 2</a></li>
-									<li><a href="home-03.jsp">Homepage 3</a></li>
-								</ul>
+								<a href="Main.me">Home</a>
 							</li>
 
 							<li>
-								<a href="/HIA/CafeList.bo">cafe</a>
+								<a href="/HIA/CafeList.bo">Cafe Order</a>
 							</li>
 
 							<li class="label1" data-label1="hot">
-								<a href="/HIA/CoffeeList.bo">coffee</a>
+								<a href="/HIA/CoffeeList.bo">Coffee Order</a>
 							</li>
 
 							<li>
-								<a href="blog.jsp">Blog</a>
+								<a href="streetview.jsp">Street View</a>
 							</li>
-
+							
 							<li>
-								<a href="Mail.me">About</a>
-							</li>
-
-							<li>
-								<a href="contact.jsp">Contact</a>
+								<a href="Mail.me">Member Service</a>
 							</li>
 						</ul>
 					</div>	
@@ -52,13 +44,13 @@
 						<div class="flex-c-m h-full p-r-25 bor6">
 							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="0">
 								<i class="zmdi zmdi-shopping-cart"></i>
-							</div>
+							</div><br>「장바구니」
 						</div>
 							
 						<div class="flex-c-m h-full p-lr-19">
 							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
 								<i class="zmdi zmdi-menu"></i>
-							</div>
+							</div><br>「구매내역」
 						</div>
 					</div>
 				</nav>
@@ -69,15 +61,23 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->		
 			<div class="logo-mobile">
-				<a href="index.jsp"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+			<div class="stext-107 cl7 hov-cl1 trans-04"> 전포카페거리</div><br>
+				<a href="Main.me"><img src="images/icons/hia_logo.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
 				<div class="flex-c-m h-full p-r-5">
+				
+					<div class="flex-c-m h-full p-r-10">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
+							<i class="zmdi zmdi-search"></i>
+						</div>
+					</div>
+					
 					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
 						<i class="zmdi zmdi-shopping-cart"></i>
-					</div>
+					</div><br>「장바구니」
 				</div>
 			</div>
 
@@ -94,53 +94,28 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.jsp">Home</a>
-					<ul class="sub-menu-m">
-						<li><a href="index.jsp">Homepage 1</a></li>
-						<li><a href="home-02.jsp">Homepage 2</a></li>
-						<li><a href="home-03.jsp">Homepage 3</a></li>
-					</ul>
+					<a href="Main.me">Home</a>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
 				</li>
 
 				<li>
-					<a href="product.jsp">Shop</a>
+					<a href="/HIA/CafeList.bo">Cafe Order</a>
+				</li>
+
+				<li class="label1" data-label1="hot">
+					<a href="/HIA/CoffeeList.bo">Coffee Order</a>
 				</li>
 
 				<li>
-					<a href="shoping-cart.jsp" class="label1 rs1" data-label1="hot">Features</a>
+					<a href="streetview.jsp">Street View</a>
 				</li>
-
+							
 				<li>
-					<a href="blog.jsp">Blog</a>
-				</li>
-
-				<li>
-					<a href="about.jsp">About</a>
-				</li>
-
-				<li>
-					<a href="contact.jsp">Contact</a>
+					<a href="Mail.me">Member Service</a>
 				</li>
 			</ul>
 		</div>
 
-		<!-- Modal Search -->
-		<div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<button class="flex-c-m btn-hide-modal-search trans-04">
-				<i class="zmdi zmdi-close"></i>
-			</button>
-
-			<form class="container-search-header">
-				<div class="wrap-search-header">
-					<input class="plh0" type="text" name="search" placeholder="Search...">
-
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-				</div>
-			</form>
-		</div>
 	</header>
