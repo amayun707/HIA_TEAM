@@ -17,6 +17,7 @@ int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 int listCount = pi.getListCount();
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +57,17 @@ int listCount = pi.getListCount();
 	width: 141px;}
 .widful{
 	width: 100%; padding-left:50px;}
+.select {
+	text-align: center;
+	margin-bottom: 20px;
+	margin-left: 50px;
+}	
+
+.select1 {
+	margin-right: 30px;
+}
+
+
 </style>
 <title>Product</title>
 <meta charset="UTF-8">
@@ -340,9 +352,10 @@ int listCount = pi.getListCount();
 											커피 구매</button>
 											<%} %>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
-											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04"
-											onclick = "location.href='#'">
-											카페 상세<%=cafe.get("cafe_name")%></button>
+											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04 select1"> 
+<%-- 											onclick = "location.href='cafeDetail.bo?cafe_num=<%=cafe.get("cafe_num") %>&page=<%=nowPage%>'"> --%>
+<%-- 											카페 상세<%=cafe.get("cafe_name")%> --%>
+											카페상세</button>
 								</div>
 							</div>
 
@@ -479,9 +492,9 @@ int listCount = pi.getListCount();
 		});
 	</script>
 	<!--===============================================================================================-->
-	<script src="./js/main.js"></script>
+	<script src="js/main.js"></script>
 	<!--===============================================================================================-->
-	<script src = "./js/jquery-3.4.1.js"></script>
+	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기
@@ -518,6 +531,7 @@ int listCount = pi.getListCount();
 			    			$('span.mtext-106').html(data.cafe_location);
 			    			$('p.stext-102').html(data.cafe_info);
 			    			$('.select').attr("onclick","location.href='CoffeeList.bo?cafe_num="+data.cafe_num+"'");
+			    			$('.select1').attr("onclick","location.href='cafeDetail.bo?cafe_num="+data.cafe_num+"'");
 			    		},
 			    		error : function(xhr, status, error){
 			    			alert("에러!: " + error);

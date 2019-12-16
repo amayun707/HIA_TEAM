@@ -44,13 +44,13 @@
 						<div class="flex-c-m h-full p-r-25 bor6">
 							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="0">
 								<i class="zmdi zmdi-shopping-cart"></i>
-							</div><br>「장바구니」
+							</div>
 						</div>
 							
 						<div class="flex-c-m h-full p-lr-19">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-								<i class="zmdi zmdi-menu"></i>
-							</div><br>「구매내역」
+							<div class="cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
+								<img src="images/icons/icon_receipt.png" alt="receipt">
+							</div>
 						</div>
 					</div>
 				</nav>
@@ -77,7 +77,7 @@
 					
 					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
 						<i class="zmdi zmdi-shopping-cart"></i>
-					</div><br>「장바구니」
+					</div>
 				</div>
 			</div>
 

@@ -41,7 +41,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->	
-					<div class="stext-107 cl7 hov-cl1 trans-04"> 전포카페거리</div><br>
+					<div class="stext-107 cl7 hov-cl1 trans-04">전포카페거리</div><br>
 					<a href="Main.me" class="logo">
 						<img src="images/icons/hia_logo.png" alt="IMG-LOGO">
 					</a>
@@ -76,11 +76,11 @@
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
 							<i class="zmdi zmdi-shopping-cart"></i>
-						</div><br>「장바구니」
+						</div>
 
-						<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
-							<i class="zmdi zmdi-favorite-outline"></i>
-						</a><br>「구매내역」
+						<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
+							<img src="images/icons/icon_receipt.png" alt="receipt">
+						</a>
 					</div>
 				</nav>
 			</div>	
@@ -99,11 +99,11 @@
 
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
 					<i class="zmdi zmdi-shopping-cart"></i>
-				</div><br>「장바구니」
+				</div>
 
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a><br>「구매내역」
+				<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-r-11 p-l-10 " data-notify="0">
+					<img src="images/icons/icon_receipt.png" alt="receipt">
+				</a>
 			</div>
 
 			<!-- Button show menu -->

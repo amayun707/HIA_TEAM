@@ -2,6 +2,7 @@ package action;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import svc.FavoriteListService;
 import svc.PaymentListService;
+import svc.ReceiptListService;
 import vo.ActionForward;
 import vo.CartBean;
 
@@ -27,7 +29,10 @@ public class PaymentListAction implements Action {
 		FavoriteListService favoriteMapService = new FavoriteListService();
 		String favoriteList =  favoriteMapService.getFavoriteList(id);
 		
+		List receiptList = ReceiptListService.getReceiptList();
+		
 		ActionForward forward = new ActionForward();
+		request.setAttribute("receiptList", receiptList);
 		request.setAttribute("paymentList", paymentList);
 		request.setAttribute("favoriteList",favoriteList);
 		forward.setPath("/shoping-cart.jsp");

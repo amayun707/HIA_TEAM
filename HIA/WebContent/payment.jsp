@@ -66,7 +66,7 @@ $(function(){
         else {
             msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
-            
+            alert("결제 오류");
             location.href="Main.me";
             alert(msg);
         }

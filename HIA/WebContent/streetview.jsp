@@ -167,6 +167,7 @@
 
 div .logo1 {
 	background-image: url("/logo1.png");
+	
 }
 
 </style>
@@ -208,7 +209,7 @@ div .logo1 {
 			var contentA1 = '<div class="wrap">' + 
 			            '    <div class="info">' + 
 			            '        <div class="title">' + 
-			            '            전포카페거리' + 
+			            '            <div style="text-align: center;color: brown;">전포카페거리</div>' + 
 			            '            <div class="close" onclick="closeOverlayA1()" title="닫기"></div>' + 
 			            '        </div>' + 
 			            '        <div class="body">' + 
@@ -218,7 +219,7 @@ div .logo1 {
 			            '            <div class="desc">' + 
 			            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
 			            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-			            '                <div><a href="/jidotest.jsp?cafenum=13">지도 테스트</a></div>' + 
+			            '                <div><a href="cafeDetail.bo?cafe_num=1&page=1">지도 테스트</a></div>' + 
 			            '            </div>' + 
 			            '        </div>' + 
 			            '    </div>' +    
@@ -781,6 +782,7 @@ div .logo1 {
 		
 		
 	}); // jQuery 끝
+<!-- ******************************************** jQuey 로 버튼 이벤트 하는 부분 끝 ************************************** -->
 </script>
 </head>
 
@@ -886,9 +888,11 @@ div .logo1 {
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9e772246650bffce859982157dde262e"></script>
 
 <script>
+window.onload = function(){
+	toMap();
+}
 
 
-toMap();
 
 
 
@@ -1808,7 +1812,7 @@ kakao.maps.event.addListener(rectangle3, 'click', function(mouseEvent) {
    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
    <script src="js/map-custom.js"></script>
 <!--===============================================================================================-->
-   <script src="./js/main.js"></script>
+   <script src="js/main.js"></script>
 
 </body>
 </html>
