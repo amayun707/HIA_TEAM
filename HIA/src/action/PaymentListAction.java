@@ -26,10 +26,8 @@ public class PaymentListAction implements Action {
 		PaymentListService paymentListService = new PaymentListService();
 		ArrayList<CartBean> paymentList = paymentListService.getPaymentList(id);
 		
-		FavoriteListService favoriteMapService = new FavoriteListService();
-		String favoriteList =  favoriteMapService.getFavoriteList(id);
-		
-		System.out.println(favoriteList);
+		FavoriteListService favoriteListService = new FavoriteListService();
+		String favoriteList =  favoriteListService.getFavoriteList(id);
 		
 		List receiptList = ReceiptListService.getReceiptList();
 		

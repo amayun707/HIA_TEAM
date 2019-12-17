@@ -5,13 +5,15 @@
 <%
 	ArrayList<CartBean> paymentList = (ArrayList<CartBean>)request.getAttribute("paymentList");
 	String favoriteList = (String)request.getAttribute("favoriteList");
-	String[] favorite = favoriteList.split("/");
-	int size = favorite.length;
+	String[] favorite = new String[4];
+	if(favoriteList!=""){
+		favorite = favoriteList.split("/");
+	}
 	String[] coffee = {"","",""};
 	String[] cafe = {"","",""};
 	String[] getTime = {"","",""};
 	String cost = "";
-	if(size>0){
+	if(favoriteList!=""){
 		coffee = favorite[0].split(",");
 		cafe = favorite[1].split(",");
 		getTime = favorite[2].split(",");
@@ -150,11 +152,11 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-<%-- 								<%if(size>0){  --%>
-<%-- 									for(int i = 0; i<coffee.length; i+=2) { %> --%>
-<%-- 									<%=coffee[i] %>(<%=coffee[i+1] %>)<br><br> --%>
-<%-- 									<%}  --%>
-<%-- 									}%> --%>
+								<%if(favoriteList!=""){ 
+ 									for(int i = 0; i<coffee.length; i+=2) { %> 
+									<%=coffee[i] %>(<%=coffee[i+1] %>)<br><br>
+									<%} 
+									}%> 
 								</p>
 							</div>
 							</div>
@@ -167,7 +169,7 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-								<%if(size>0){ 
+								<%if(favoriteList!=""){ 
 									for(int i = 0; i<cafe.length; i+=2) { %>
 									<%=cafe[i] %>(<%=cafe[i+1] %>)<br><br>
 									<%} 
@@ -184,7 +186,7 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-								<%if(size>0){ 
+								<%if(favoriteList!=""){ 
 									for(int i = 0; i<getTime.length; i+=2) { %>
 									<%=getTime[i] %>(<%=getTime[i+1] %>)<br><br>
 									<%}
