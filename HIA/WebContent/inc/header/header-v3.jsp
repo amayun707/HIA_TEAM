@@ -1,8 +1,12 @@
+<%@page import="vo.MemberBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="svc.CartListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <header class="header-v3">
+<%
+String id = (String)session.getAttribute("id");
+%>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<div class="wrap-menu-desktop">
@@ -41,7 +45,6 @@
 
 					<!-- Icon header -->
 					<%
-					String id = (String)session.getAttribute("id");
 					if(id != null){
 					%>
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
@@ -71,6 +74,9 @@
 			</div>
 
 			<!-- Icon header -->
+			<%
+			if(id != null){
+			%>
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
 				<div class="flex-c-m h-full p-r-5">
 				
@@ -85,6 +91,7 @@
 					</div>
 				</div>
 			</div>
+			<%} %>
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">

@@ -1,4 +1,4 @@
-<%@page import="vo.MemberBean"%>
+<%@page import="svc.MemberSelectService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="svc.CartListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +6,7 @@
 <header>
 <%
 String id = (String)session.getAttribute("id");
-MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
+String customer_owner = (String)session.getAttribute("customer_owner");
 %>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
@@ -27,7 +27,6 @@ MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
 						<%
 						} 
 						else if(id != null){
-							System.out.println(memberbean.getCustomer_owner());
 						%>
 							<a href="Update.me" class="flex-c-m trans-04 p-lr-25">
 								<%=id %>님 [로그인]
@@ -86,14 +85,14 @@ MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 						<%
-						if(memberbean.getCustomer_owner().equals("c")){
+						if(customer_owner.equals("c")){
 						%>
 						<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
 							<img src="images/icons/icon_receipt.png" alt="receipt">
 						</a>
 						<%
 						}
-						else if(memberbean.getCustomer_owner().equals("o")){
+						else if(customer_owner.equals("o")){
 						%>
 						<a href="ReceiptListPro.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
 							<img src="images/icons/icon_receipt.png" alt="receipt">
@@ -114,16 +113,31 @@ MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
 			</div>
 
 			<!-- Icon header -->
+			<%
+			if(id != null){	 
+			%>
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
 
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
 
-				<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-r-11 p-l-10 " data-notify="0">
+				<%
+				if(customer_owner.equals("c")){
+				%>
+				<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
 					<img src="images/icons/icon_receipt.png" alt="receipt">
 				</a>
+				<%
+				}
+				else if(customer_owner.equals("o")){
+				%>
+				<a href="ReceiptListPro.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
+					<img src="images/icons/icon_receipt.png" alt="receipt">
+				</a>
+				<%} %>
 			</div>
+			<%} %>
 
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">

@@ -72,14 +72,20 @@ public class MemberDAO {
 			
 			if(rs.next()){
 				
-				sql = "SELECT pass FROM member WHERE id=?";
+				sql = "SELECT pass,customer_owner FROM member WHERE id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
 					if(pass.equals(rs.getString("pass"))){
-						loginResult = 1;
+						
+						if(rs.getString("customer_owner").equals("c")) {
+							loginResult = 1;
+						} 
+						else {
+							loginResult = 2;
+						}
 					}
 					else{
 						loginResult = -1;

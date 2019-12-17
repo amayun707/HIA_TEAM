@@ -1,3 +1,4 @@
+<%@page import="svc.MemberSelectService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="svc.CartListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,6 +11,10 @@
 		});
 	});
 </script>
+<%
+String id = (String)session.getAttribute("id");
+String customer_owner = (String)session.getAttribute("customer_owner");
+%>
 <header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
@@ -19,7 +24,6 @@
 					<div class="left-top-bar"></div>
 					<div class="right-top-bar flex-w h-full">
 					<%
-						String id = (String)session.getAttribute("id");
 						if(id == null){
 					%>
 							<a href="MemberLogin.me" class="flex-c-m trans-04 p-lr-25">
@@ -88,9 +92,20 @@
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<a href="PaymentList.or" class="cl2 hov-cl1 trans-04 p-l-22 p-r-11 " data-notify="0">
+						<%
+						if(customer_owner.equals("c")){
+						%>
+						<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
 							<img src="images/icons/icon_receipt.png" alt="receipt">
 						</a>
+						<%
+						}
+						else if(customer_owner.equals("o")){
+						%>
+						<a href="ReceiptListPro.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
+							<img src="images/icons/icon_receipt.png" alt="receipt">
+						</a>
+						<%} %>
 					</div>
 					<%} %>
 				</nav>

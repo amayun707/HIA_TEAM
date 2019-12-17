@@ -23,10 +23,6 @@ public class MemberLoginProAction implements Action {
 		
 		MemberLoginProService memberLoginProService = new MemberLoginProService();
 		int loginResult = memberLoginProService.memberLogin(id, pass);
-		
-		MemberSelectService memberselectservice = new MemberSelectService();
-		MemberBean memberbean = memberselectservice.getMember(id);
-		request.setAttribute("memberbean", memberbean);
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -46,7 +42,13 @@ public class MemberLoginProAction implements Action {
 		else {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			request.setAttribute("memberbean", memberbean);
+			
+			if(loginResult == 2) {
+				session.setAttribute("customer_owner", "o");
+			} 
+			else if(loginResult == 1) {
+				session.setAttribute("customer_owner", "c");
+			}
 			
 			forward = new ActionForward();
 			forward.setPath("Main.me");
