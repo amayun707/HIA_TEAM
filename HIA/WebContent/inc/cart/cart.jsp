@@ -14,7 +14,6 @@
 .padding2{
 	padding-top: 20px;
 	padding-bottom: 40px;}
-
 .price_amount{
 	width: 140px;}
 .header-cart-item-info{
@@ -149,11 +148,11 @@ option{
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 addCart">
+						<a href="#" class="flex-c-m stext-102 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 addCart">
 							장바구니 담기
 						</a>
 
-						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP addCart">
+						<a href="#" class="flex-c-m stext-102 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP addCart">
 							구매
 						</a>
 					</div>
@@ -172,19 +171,19 @@ option{
       	</div>
         	<ul id = "payList">
         	</ul>
-        	<div>
+        	<div class = "getTime">
         	수령시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-        		<select class = "getTime">
-        			<option>09:00</option>
-        			<option>09:30</option>
-        			<option>10:00</option>
-        			<option>10:30</option>
+        		<select id = "getTime">
+        			<option value = "09:00">09:00</option>
+        			<option value = "09:30">09:30</option>
+        			<option value = "10:00">10:00</option>
+        			<option value = "10:30">10:30</option>
         		</select>
         	</div>
         	<div class = "totalP">
     	    <div class = "totalP1">결제금액</div><span class="totalP2">1000</span><div class="totalP3">원</div>
       		</div>
-      		<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 order">
+      		<a href="#" class="flex-c-m stext-102 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 order">
 							구매
 			</a>                                                 
       </div>
@@ -290,6 +289,7 @@ $(document).ready(function(){
 	$('.payBtn').click(function(){
 		$('ul#payList').children().remove();
 		$(this).closest('li.header-cart-item').clone().appendTo('ul#payList');	
+		$('span.totalP2').html(Number($(this).parent().find('span.header-cart-item-info').text())*Number($(this).parent().find('.amount').val()));
 		$('div.modalP').addClass('view');
 	});	
 });
