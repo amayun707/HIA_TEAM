@@ -29,12 +29,16 @@ int listCount = pi.getListCount();
 	margin-bottom: 20px;}
 <%if(cafe_num!=0){%>
 .wid{
-	width:39%;
-	transform: translateX(823px);}
+	width:28%;
+	transform: translateX(823px);
+	position: absolute;
+    z-index: 100;}
 <%} else {%>
 .wid{
 	width: 20%;
-	transform: translateX(900px);}
+	transform: translateX(900px);
+	position: absolute;
+    z-index: 100;}
 <%}%>
 .p-r{
 	margin-right:70px;}
