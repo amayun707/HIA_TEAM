@@ -29,8 +29,6 @@ public class PaymentListAction implements Action {
 		FavoriteListService favoriteListService = new FavoriteListService();
 		String favoriteList =  favoriteListService.getFavoriteList(id);
 		
-		System.out.println(favoriteList);
-		
 		List receiptList = ReceiptListService.getReceiptList();
 		
 		ActionForward forward = new ActionForward();
