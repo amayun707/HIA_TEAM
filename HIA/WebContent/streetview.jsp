@@ -167,9 +167,15 @@
 
 div .logo1 {
 	background-image: url("/logo1.png");
-	
 }
 
+.title {
+	text-align: center;
+}
+
+.close {
+	margin-left: 10px;
+}
 </style>
 
 <!-- ====================================CSS 끝===================================== -->
@@ -209,7 +215,7 @@ div .logo1 {
 			var contentA1 = '<div class="wrap">' + 
 			            '    <div class="info">' + 
 			            '        <div class="title">' + 
-			            '            <div style="text-align: center;color: brown;">전포카페거리</div>' + 
+			            '            <div style="text-align: center;color: red;">전포카페거리</div>' + 
 			            '            <div class="close" onclick="closeOverlayA1()" title="닫기"></div>' + 
 			            '        </div>' + 
 			            '        <div class="body">' + 
@@ -219,7 +225,7 @@ div .logo1 {
 			            '            <div class="desc">' + 
 			            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
 			            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-			            '                <div><a href="cafeDetail.bo?cafe_num=1&page=1">지도 테스트</a></div>' + 
+			            '                <div><a href="cafeDetail.bo?cafe_num=1&page=1">카페상페이지 <<<< 클릭!</a></div>' + 
 			            '            </div>' + 
 			            '        </div>' + 
 			            '    </div>' +    

@@ -41,6 +41,8 @@
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<script src="./js/jquery-3.4.1.js"></script>
+<META HTTP-EQUIV="refresh" CONTENT="15">
 </head>
 <body>
 <%
@@ -54,6 +56,11 @@ ArrayList receiptList2 = (ArrayList)receiptList.get(1);
     if(receiptList != null) {
     %>
         <section class="bg0 p-t-104 p-b-116">
+        <div class="form-group text-center p-t-10">
+              <button type="button" class="btn btn-dark" 
+              onclick="location.href='Main.me'">
+                               영업종료<i class="fa fa-check spaceLeft"></i></button>
+        </div>
         <%
     	for(int i=0; i<receiptList1.size(); i++) {
     		
