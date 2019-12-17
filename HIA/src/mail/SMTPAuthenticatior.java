@@ -32,8 +32,8 @@ public class SMTPAuthenticatior extends Authenticator{
 	
 	public String sendMail(String email) {
 		
-		String from = email;
-		String to = "amayun707@gmail.com";
+		String from = "amayun707@gmail.com";
+		String to = email;
 		String subject = "뜨아아 사이트 이메일 인증번호입니다.";
 		String random = getRandomPassword(15);
 		String content = "인증번호 : "+ random + " 입니다.";

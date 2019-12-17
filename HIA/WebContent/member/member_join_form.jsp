@@ -263,7 +263,7 @@
 						<span class="stext-111-2 cl2 plh3 size-50 p-r-30 p-b-10"></span>
 
 						<label>E-Mail</label>
-						<div class="input-group triple-input row"width: 100%;">
+						<div class="input-group triple-input row" width: 100%;">
 							<div class="input-group triple-input bor8_2">
 								<input class="www2 form-control" type="text" id="email1" name="email1" required="required">&nbsp;@&nbsp;
 								<input class="www2 form-control" type="text" id="email2" name="email2" required="required">
