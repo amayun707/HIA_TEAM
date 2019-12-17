@@ -282,7 +282,7 @@ $(document).ready(function(){
 	
 	$('a.order').click(function(){
 		var total =  Number($('span.totalP2').text());
-		var getTime =  $('.getTime').val();
+		var getTime =  $('#getTime').val();
 		location.href="PaymentPro.or?total="+total+"&getTime="+getTime;
 	});
 	
