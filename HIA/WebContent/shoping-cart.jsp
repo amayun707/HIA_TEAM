@@ -18,21 +18,6 @@
 		cost = favorite[3];
 	}
 %>
-<style>
-th{
- 	width: 200px; 
-	font-size: 20px;}
-.cn{
-	text-align: center;}
-.cList{
-	width: 400px;
-	display: inherit;
-	margin-bottom: 20px;
-	border-bottom :1px dashed #d9d9d9;}
-#cList{
-	width: 400px;
-	display: inherit;}
-</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +48,21 @@ th{
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<style>
+th{
+ 	width: 200px; 
+	font-size: 20px;}
+.cn{
+	text-align: center;}
+.cList{
+	width: 400px;
+	display: inherit;
+	margin-bottom: 20px;
+	border-bottom :1px dashed #d9d9d9;}
+#cList{
+	width: 400px;
+	display: inherit;}
+</style>
 </head>
 <body class="animsition">
 	
@@ -150,9 +150,11 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-									<%for(int i = 0; i<coffee.length; i+=2) { %>
-									<%=coffee[i] %>(<%=coffee[i+1] %>)<br><br>
-								<%} %>
+<%-- 								<%if(size>0){  --%>
+<%-- 									for(int i = 0; i<coffee.length; i+=2) { %> --%>
+<%-- 									<%=coffee[i] %>(<%=coffee[i+1] %>)<br><br> --%>
+<%-- 									<%}  --%>
+<%-- 									}%> --%>
 								</p>
 							</div>
 							</div>
@@ -165,9 +167,11 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-									<%for(int i = 0; i<cafe.length; i+=2) { %>
+								<%if(size>0){ 
+									for(int i = 0; i<cafe.length; i+=2) { %>
 									<%=cafe[i] %>(<%=cafe[i+1] %>)<br><br>
-									<%} %>
+									<%} 
+									}%>
 								</p>
 							</div>
 							</div>
@@ -180,9 +184,11 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-									<%for(int i = 0; i<getTime.length; i+=2) { %>
+								<%if(size>0){ 
+									for(int i = 0; i<getTime.length; i+=2) { %>
 									<%=getTime[i] %>(<%=getTime[i+1] %>)<br><br>
-									<%} %>
+									<%}
+									}%>
 								</p>
 							</div>
 							</div>

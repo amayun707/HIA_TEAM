@@ -234,7 +234,8 @@ option{
 							<a href="#" class="header-cart-item-name mb hov-cl1 trans-04"><%=cartBean.getCoffee_name() %></a>
 							<a href="#" class="header-cart-item-name mb hov-cl1 trans-04"><%=cartBean.getCafe_name() %></a>
 							<div class = "price_amount">
-							<span class="header-cart-item-info"><%=cartBean.getPrice() %></span>&nbsp;X<input type = "text" value = "<%=cartBean.getAmount() %>" class = "amount">
+							<span class="header-cart-item-info"><%=cartBean.getPrice() %>
+							</span>&nbsp;X<button class = "payBtn">구매</button><input type = "text" value = "<%=cartBean.getAmount() %>" class = "amount">
 							</div>
 						</div>
 					</li>
