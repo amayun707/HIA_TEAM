@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import svc.MemberLoginProService;
+import svc.MemberSelectService;
 import vo.ActionForward;
+import vo.MemberBean;
 
 public class MemberLoginProAction implements Action {
 
@@ -16,11 +18,15 @@ public class MemberLoginProAction implements Action {
 		
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
-		
+
 		ActionForward forward = null;
 		
 		MemberLoginProService memberLoginProService = new MemberLoginProService();
 		int loginResult = memberLoginProService.memberLogin(id, pass);
+		
+		MemberSelectService memberselectservice = new MemberSelectService();
+		MemberBean memberbean = memberselectservice.getMember(id);
+		request.setAttribute("memberbean", memberbean);
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -40,6 +46,7 @@ public class MemberLoginProAction implements Action {
 		else {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
+			request.setAttribute("memberbean", memberbean);
 			
 			forward = new ActionForward();
 			forward.setPath("Main.me");

@@ -1,8 +1,13 @@
+<%@page import="vo.MemberBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="svc.CartListService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <header>
+<%
+String id = (String)session.getAttribute("id");
+MemberBean memberbean = (MemberBean)request.getAttribute("memberbean");
+%>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->
@@ -11,7 +16,6 @@
 					<div class="left-top-bar"></div>
 					<div class="right-top-bar flex-w h-full">
 					<%
-						String id = (String)session.getAttribute("id");
 						if(id == null){
 					%>
 							<a href="MemberLogin.me" class="flex-c-m trans-04 p-lr-25">
@@ -23,6 +27,7 @@
 						<%
 						} 
 						else if(id != null){
+							System.out.println(memberbean.getCustomer_owner());
 						%>
 							<a href="Update.me" class="flex-c-m trans-04 p-lr-25">
 								<%=id %>님 [로그인]
@@ -80,10 +85,20 @@
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
-
+						<%
+						if(memberbean.getCustomer_owner().equals("c")){
+						%>
 						<a href="PaymentList.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
 							<img src="images/icons/icon_receipt.png" alt="receipt">
 						</a>
+						<%
+						}
+						else if(memberbean.getCustomer_owner().equals("o")){
+						%>
+						<a href="ReceiptListPro.or" class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11" data-notify="0">
+							<img src="images/icons/icon_receipt.png" alt="receipt">
+						</a>
+						<%} %>
 					</div>
 				</nav>
 			</div>	
