@@ -177,12 +177,12 @@ public class SendMailAction implements Action {
 		
 		
 		//보내는 사람 세팅 // 
-		  msg.setFrom(new InternetAddress("arrpam2006@gmail.com"));
+		  msg.setFrom(new InternetAddress("amayun707@gmail.com"));
 
 
 
 		  // 받는사람 (메일 주소의 유효성 확인) // 받는사람메일 주소 //테스트
-		  String[] sendMailAddress = new String[] { "arrpam2006@gmail.com", "arr_pam_2006@naver.com"  };
+		  String[] sendMailAddress = new String[] { "amayun707@gmail.com", "amayun707@naver.com"  };
 
 		  //메일정보담아서 배열로 만듬
 		  InternetAddress[] toAddress = new InternetAddress[sendMailAddress.length];
@@ -234,8 +234,8 @@ public class SendMailAction implements Action {
 		private MyAuthentication() {
 			
 			// 보내는 사람 메일 인증
-			id = "arrpam2006"; 
-			pw = "dltkdguq1492@"; 
+			id = "amayun707"; 
+			pw = "aigkwfyosqdamvix"; 
 			pa = new PasswordAuthentication(id, pw);
 		}
 		
