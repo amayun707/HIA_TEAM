@@ -577,6 +577,7 @@ int listCount = pi.getListCount();
 					}
 				}
 			});
+			
 		});
 	</script>
 </body>

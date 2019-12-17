@@ -721,56 +721,60 @@ public class CafeDAO {
 
 	public String getFavoriteList(String id) {
 		System.out.println("CafeDAO-getFavoriteList");
-		
+		System.out.println(12345667);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select a.coffee_name, count(a.coffee_name) count " + 
-				"from coffee a, cart b " + 
-				"where a.coffee_num = b.coffee_num and b.id = ? " + 
-				"group by a.coffee_name " + 
-				"order by count(a.coffee_name) desc limit 0,3";
-		
 		String favoriteList = "";
+		String sql = "select id from cart where id = ?";
+		System.out.println("id : "+id);
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				favoriteList+=rs.getString("coffee_name")+",";
-				favoriteList+=rs.getInt("count")+",";
-			}
-			favoriteList+="/";
-			sql = "select a.cafe_name, count(a.cafe_name) count " + 
-					"from cafe a, cart b " + 
-					"where a.cafe_num = b.cafe_num and b.id = ? " + 
-					"group by a.cafe_name " + 
-					"order by count(a.cafe_name) desc limit 0,3";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				favoriteList+=rs.getString("cafe_name")+",";
-				favoriteList+=rs.getInt("count")+",";
-			}
-			favoriteList+="/";
-			sql = "select getTime, count(getTime) count " + 
-					"from payment " + 
-					"where id = ? " + 
-					"order by count(getTime) desc limit 0,3 ";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				favoriteList+=rs.getString("getTime")+",";
-				favoriteList+=rs.getInt("count")+",";
-			}
-			favoriteList+="/";
-			sql = "select sum(price*amount) cost from cart where id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				favoriteList+=rs.getInt("cost");
+				System.out.println("분기문 들어옴");
+				sql = "select a.coffee_name, count(a.coffee_name) count " + "from coffee a, cart b "
+						+ "where a.coffee_num = b.coffee_num and b.id = ? " + "group by a.coffee_name "
+						+ "order by count(a.coffee_name) desc limit 0,3";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					favoriteList += rs.getString("coffee_name") + ",";
+					favoriteList += rs.getInt("count") + ",";
+				}
+				favoriteList += "/";
+				sql = "select a.cafe_name, count(a.cafe_name) count " + "from cafe a, cart b "
+						+ "where a.cafe_num = b.cafe_num and b.id = ? " + "group by a.cafe_name "
+						+ "order by count(a.cafe_name) desc limit 0,3";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					favoriteList += rs.getString("cafe_name") + ",";
+					favoriteList += rs.getInt("count") + ",";
+				}
+				favoriteList += "/";
+				sql = "select getTime, count(getTime) count " + "from payment " + "where id = ? "
+						+ "order by count(getTime) desc limit 0,3 ";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					favoriteList += rs.getString("getTime") + ",";
+					favoriteList += rs.getInt("count") + ",";
+				}
+				favoriteList += "/";
+				sql = "select sum(price*amount) cost from cart where id = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					favoriteList += rs.getInt("cost");
+				}
+			}else {
+				System.out.println(1234);
+				System.out.println(favoriteList);
 			}
 		} catch (SQLException e) {
 			System.out.println("Exception : "+e.getMessage());

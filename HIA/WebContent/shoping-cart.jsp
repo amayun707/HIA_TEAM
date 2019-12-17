@@ -150,11 +150,11 @@ th{
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-<%-- 								<%if(size>0){  --%>
-<%-- 									for(int i = 0; i<coffee.length; i+=2) { %> --%>
-<%-- 									<%=coffee[i] %>(<%=coffee[i+1] %>)<br><br> --%>
-<%-- 									<%}  --%>
-<%-- 									}%> --%>
+								<%if(size>0){ 
+ 									for(int i = 0; i<coffee.length; i+=2) { %> 
+									<%=coffee[i] %>(<%=coffee[i+1] %>)<br><br>
+									<%} 
+									}%> 
 								</p>
 							</div>
 							</div>
