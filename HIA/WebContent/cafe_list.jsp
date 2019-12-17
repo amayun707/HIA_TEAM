@@ -50,6 +50,8 @@ int listCount = pi.getListCount();
 <%} else {%>
 	width:17%;
 <%}%>
+	position: absolute;
+    z-index: 100;
 }
 .p-r{
 	margin-right:70px;}
