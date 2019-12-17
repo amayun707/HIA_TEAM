@@ -35,7 +35,7 @@ int listCount = pi.getListCount();
     left: -15px;}
 .info{
 	height: 250px;}
-.size-b{
+.b-size{
 	min-width: 150px;
     height: 50px;
     position: relative;
@@ -60,16 +60,13 @@ int listCount = pi.getListCount();
 .widful{
 	width: 100%; padding-left:50px;}
 .select {
-	text-align: center;
-	margin-bottom: 20px;
-	margin-left: 50px;
-}	
-
-.select1 {
-	margin-right: 30px;
+	margin-right: 14px;
+    transform: translateX(-10px);
 }
-
-
+/* 	text-align: center; */
+/* 	margin-bottom: 20px; */
+/* 	margin-left: 50px; */
+}
 </style>
 <title>Product</title>
 <meta charset="UTF-8">
@@ -346,15 +343,15 @@ int listCount = pi.getListCount();
 								<div class="flex-w flex-r-m p-b-10">
 										<%if(coffee_name==""){ %>
 										<button
-											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04 select">
+											class="flex-c-m stext-102 cl0 b-size bg1 bor1 hov-btn1 p-lr-15 trans-04 select">
 											커피 리스트</button>
 											<%}else{ %>
 										<button
-											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04">
+											class="flex-c-m stext-102 cl0 b-size bg1 bor1 hov-btn1 p-lr-15 trans-04">
 											커피 구매</button>
 											<%} %>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
-											class="flex-c-m stext-101 cl0 size-b bg1 bor1 hov-btn1 p-lr-15 trans-04 select1"> 
+										<button
+											class="flex-c-m stext-102 cl0 b-size bg1 bor1 hov-btn1 p-lr-15 trans-04 select1"> 
 <%-- 											onclick = "location.href='cafeDetail.bo?cafe_num=<%=cafe.get("cafe_num") %>&page=<%=nowPage%>'"> --%>
 <%-- 											카페 상세<%=cafe.get("cafe_name")%> --%>
 											카페상세</button>
