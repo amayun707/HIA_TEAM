@@ -40,6 +40,10 @@
 					</div>	
 
 					<!-- Icon header -->
+					<%
+					String id = (String)session.getAttribute("id");
+					if(id != null){
+					%>
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 							
 						<div class="flex-c-m h-full p-l-18 p-r-25 bor5">
@@ -54,6 +58,7 @@
 							</div>
 						</div>
 					</div>
+					<%} %>
 				</nav>
 			</div>	
 		</div>

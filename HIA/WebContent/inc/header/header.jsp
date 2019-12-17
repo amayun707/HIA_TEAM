@@ -45,7 +45,7 @@
 					<a href="Main.me" class="logo">
 						<img src="images/icons/hia_logo.png" alt="IMG-LOGO">
 					</a>
-
+					
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
@@ -72,6 +72,9 @@
 					</div>	
 
 					<!-- Icon header -->
+					<%
+					if(id != null){	 
+					%>
 					<div class="wrap-icon-header flex-w flex-r-m">
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
@@ -85,6 +88,7 @@
 				</nav>
 			</div>	
 		</div>
+		<%} %>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">

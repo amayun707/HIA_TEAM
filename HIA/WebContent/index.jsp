@@ -1,3 +1,6 @@
+<%@page import="vo.CartBean"%>
+<%@page import="svc.CartListService"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,6 +45,12 @@
 	<!-- Header -->
 	<jsp:include page="./inc/header/header.jsp"/>
 	<!-- Cart -->
+	<%
+	CartListService cartListService = new CartListService();
+	String id = (String)session.getAttribute("id");
+	ArrayList cartList = cartListService.getCartList(id);
+	int total = 0;
+	%>
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
@@ -58,51 +67,50 @@
 			
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img"></div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"></a>
-
-							<span class="header-cart-item-info"></span>
+				<%for(Object i : cartList) {
+						CartBean cartBean = (CartBean)i;%>
+					<li class="<%=cartBean.getCoffee_num() %> header-cart-item flex-w flex-t m-b-12">
+						<div class="header-cart-item-img">
+							<img src="images/item-cart-01.jpg" alt="IMG">
+						</div>
+						<div class = "cCategory coffee_in_cart"><%=cartBean.getCoffee_num() %></div>
+						<div class='cCategory cafe_num'><%=cartBean.getCafe_num() %></div>
+						<div class="header-cart-item-txt pt">
+							<a href="#" class="header-cart-item-name mb hov-cl1 trans-04"><%=cartBean.getCoffee_name() %></a>
+							<a href="#" class="header-cart-item-name mb hov-cl1 trans-04"><%=cartBean.getCafe_name() %></a>
+							<div class = "price_amount">
+							<span class="header-cart-item-info"><%=cartBean.getPrice() %>
+							</span>&nbsp;X<button class = "payBtn">구매</button>
+							<input type = "text" value = "<%=cartBean.getAmount() %>" class = "amount">
+							</div>
 						</div>
 					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img"></div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"></a>
-
-							<span class="header-cart-item-info"></span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img"></div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04"></a>
-
-							<span class="header-cart-item-info"></span>
-						</div>
-					</li>
+				<%
+				total += cartBean.getPrice()*cartBean.getAmount();
+				} %>
 				</ul>
 				
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40"></div>
-
+					<div class="header-cart-total w-full">
+						Total: 
+					</div><br>
+					<div class="header-cart-total w-full total padding2">
+						<%=total %>
+					</div>
+					<br>
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="MemberLogin.me" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							로그인 필요
+						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 addCart">
+							장바구니 담기
+						</a>
+
+						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP addCart">
+							구매
 						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-		
 
 	<!-- Slider -->
 	<section class="section-slide">

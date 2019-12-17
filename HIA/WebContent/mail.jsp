@@ -66,10 +66,14 @@
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input type="file" name="attachment" multiple>
 						</div>
-
+						<%
+						String id = (String)session.getAttribute("id");
+						if(id != null){
+						%>
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 							문의 메일 보내기 
 						</button>
+						<%} %>
 					</form>
 				</div>
 
