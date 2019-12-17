@@ -2,119 +2,14 @@
 <%@page import="vo.CartBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	CartListService cartListService = new CartListService();
 	String id  = (String)session.getAttribute("id");
 	ArrayList cartList = cartListService.getCartList(id);
 	int total = 0;
 %>
-<script src = "./js/jquery-3.4.1.js"></script>
-<script>
-$(document).ready(function(){
-	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
-	$('div.js-show-cart').click(function(){
-		//장바구니를 열었을 때 총 금액 얼마인지 설정.
-		$('ul.header-cart-wrapitem').find('.amount').each(function(){
-			$(this).keyup(function(){
-				var ftotal = 0;
-				$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
-					var price = Number($(this).find('.header-cart-item-info').text())*
-					Number($(this).find('.amount').val());
-					ftotal += price;
-				});
-				$('.total').html(ftotal);
-			});
-		});
-	});
-		// 카트 클릭 후 이미지 클릭시 해당 개체 제거하고 총금액, 갯수 재설정.
-	$('div.js-show-cart').click(function(){
-		$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
-			var list = this;
-			var coffee_num = $(this).find('div.coffee_in_cart').text();	
-			$(this).find('div.header-cart-item-img').click(function(){
-				$(list).remove();
-				var ftotal = 0;
-				$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
-					var price = Number($(this).find('.header-cart-item-info').text())*
-					Number($(this).find('.amount').val());
-					ftotal += price;
-				});
-				$('.total').html(ftotal);
-				var count = 0;
-				$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
-					count += 1;
-				});
-				$('div.icon-header-noti').attr('data-notify', count);
-			});
-		});
-	});
-		//카트 클릭후 수량 바꾸면 바뀐 수량에 맞추어 총 금액 변환
-	$('ul.header-cart-wrapitem').find('.amount').each(function(){
-		$(this).change(function(){
-			var ftotal = 0;
-			$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
-				var price = Number($(this).find('.header-cart-item-info').text())*
-				Number($(this).find('.amount').val());
-				ftotal += price;
-			});
-			$('.total').html(ftotal);
-		});
-	});
-	//카트 목록 db에 저장
-	$('.addCart').click(function(){
-		var cart = new Array();
-		$('ul.header-cart-wrapitem').find('li').each(function(index, item){
-			var coffee_num = $(item).find('.coffee_in_cart').text();
-			cart.push(coffee_num);
-		});
-		var amount = new Array();
-		$('ul.header-cart-wrapitem').find('li').each(function(){
-			var coffee_amount = $(this).find('.amount').val();
-			amount.push(coffee_amount);
-		});
-		$.ajax({
-    		type : "POST",
-			url: "insertCart.bo", // 클라이언트가 요청을 보낼 서버의 URL 주소
-			dataType : "text",
-    		data: { 'cart' : String(cart),
-    					'amount' : String(amount)},         // HTTP 요청과 함께 서버로 보낼 데이터
-    		success: function(data){
-    		},
-    		error : function(xhr, status, error){
-    			alert("에러!: " + error);
-    		}	
-		});
-	});
-	//결제 누르면 결제창의 리스트 초기화 후 카트에 있는 리스트 넣어주기.
-	$('.modal_payP').click(function(){
-		$('ul#payList').children().remove();
-		$('span.totalP2').html(Number($('.total').text()));
-		$('ul.header-cart-wrapitem').find('li').each(function(){
-			$(this).clone().appendTo('ul#payList');
-		});
-		$('div.modalP').addClass('view');
-	});
-	//결제창의 닫기 버튼 클릭시 결제창 닫힘.
-	$('div.close').click(function(){
-		$('div.modalP').removeClass('view');
-	});
-	
-	$('a.order').click(function(){
-		var total =  Number($('span.totalP2').text());
-		var getTime =  $('.getTime').val();
-		location.href="PaymentPro.or?total="+total+"&getTime="+getTime;
-	});
-	
-	$('.payBtn').click(function(){
-		$('ul#payList').children().remove();
-		$(this).closest('li.header-cart-item').clone().appendTo('ul#payList');	
-		$('div.modalP').addClass('view');
-	});	
-});
-
-</script>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <style>
 .padding2{
 	padding-top: 20px;
@@ -294,4 +189,110 @@ option{
 			</a>                                                 
       </div>
     </div>
+    
+    <script src = "./js/jquery-3.4.1.js"></script>
+<script>
+$(document).ready(function(){
+	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
+	$('div.js-show-cart').click(function(){
+		//장바구니를 열었을 때 총 금액 얼마인지 설정.
+		$('ul.header-cart-wrapitem').find('.amount').each(function(){
+			$(this).keyup(function(){
+				var ftotal = 0;
+				$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
+					var price = Number($(this).find('.header-cart-item-info').text())*
+					Number($(this).find('.amount').val());
+					ftotal += price;
+				});
+				$('.total').html(ftotal);
+			});
+		});
+	});
+		// 카트 클릭 후 이미지 클릭시 해당 개체 제거하고 총금액, 갯수 재설정.
+	$('div.js-show-cart').click(function(){
+		$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
+			var list = this;
+			var coffee_num = $(this).find('div.coffee_in_cart').text();	
+			$(this).find('div.header-cart-item-img').click(function(){
+				$(list).remove();
+				var ftotal = 0;
+				$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
+					var price = Number($(this).find('.header-cart-item-info').text())*
+					Number($(this).find('.amount').val());
+					ftotal += price;
+				});
+				$('.total').html(ftotal);
+				var count = 0;
+				$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
+					count += 1;
+				});
+				$('div.icon-header-noti').attr('data-notify', count);
+			});
+		});
+	});
+		//카트 클릭후 수량 바꾸면 바뀐 수량에 맞추어 총 금액 변환
+	$('ul.header-cart-wrapitem').find('.amount').each(function(){
+		$(this).change(function(){
+			var ftotal = 0;
+			$('ul.header-cart-wrapitem').find('.price_amount').each(function(){
+				var price = Number($(this).find('.header-cart-item-info').text())*
+				Number($(this).find('.amount').val());
+				ftotal += price;
+			});
+			$('.total').html(ftotal);
+		});
+	});
+	//카트 목록 db에 저장
+	$('.addCart').click(function(){
+		var cart = new Array();
+		$('ul.header-cart-wrapitem').find('li').each(function(index, item){
+			var coffee_num = $(item).find('.coffee_in_cart').text();
+			cart.push(coffee_num);
+		});
+		var amount = new Array();
+		$('ul.header-cart-wrapitem').find('li').each(function(){
+			var coffee_amount = $(this).find('.amount').val();
+			amount.push(coffee_amount);
+		});
+		$.ajax({
+    		type : "POST",
+			url: "insertCart.bo", // 클라이언트가 요청을 보낼 서버의 URL 주소
+			dataType : "text",
+    		data: { 'cart' : String(cart),
+    					'amount' : String(amount)},         // HTTP 요청과 함께 서버로 보낼 데이터
+    		success: function(data){
+    		},
+    		error : function(xhr, status, error){
+    			alert("에러!: " + error);
+    		}	
+		});
+	});
+	//결제 누르면 결제창의 리스트 초기화 후 카트에 있는 리스트 넣어주기.
+	$('.modal_payP').click(function(){
+		$('ul#payList').children().remove();
+		$('span.totalP2').html(Number($('.total').text()));
+		$('ul.header-cart-wrapitem').find('li').each(function(){
+			$(this).clone().appendTo('ul#payList');
+		});
+		$('div.modalP').addClass('view');
+	});
+	//결제창의 닫기 버튼 클릭시 결제창 닫힘.
+	$('div.close').click(function(){
+		$('div.modalP').removeClass('view');
+	});
+	
+	$('a.order').click(function(){
+		var total =  Number($('span.totalP2').text());
+		var getTime =  $('.getTime').val();
+		location.href="PaymentPro.or?total="+total+"&getTime="+getTime;
+	});
+	
+	$('.payBtn').click(function(){
+		$('ul#payList').children().remove();
+		$(this).closest('li.header-cart-item').clone().appendTo('ul#payList');	
+		$('div.modalP').addClass('view');
+	});	
+});
+
+</script>
 	
