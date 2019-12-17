@@ -81,7 +81,7 @@ ArrayList receiptList2 = (ArrayList)receiptList.get(1);
                                        <div class="form-group text-center p-t-10">
                                         <button type="button" class="btn btn-dark" 
                                         onclick="location.href='ReceiptDeletePro.or?pay_num=<%=paymentBean1.getPay_num() %>'">
-                                                                                         주문확인<i class="fa fa-check spaceLeft"></i></button>
+                                                                                         수령완료<i class="fa fa-check spaceLeft"></i></button>
                                        </div>
                                     </td>
                                 </tr>

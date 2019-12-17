@@ -27,7 +27,7 @@ public class OrderDAO {
 		this.con = con;
 	}
 
-	public List selectReceiptList() {
+	public List selectReceiptList(String id) {
 		System.out.println("OrderDAO-selectReceiptList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -40,10 +40,11 @@ public class OrderDAO {
 		try {
 			String sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
 					+ "from payment p, cart c, coffee co, cafe cf "
-					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 "
+					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 and cf.id=?"
 					+ "GROUP BY p.pay_num ORDER BY pay_num asc";
 			
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -61,9 +62,11 @@ public class OrderDAO {
 			
 			sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
 				+ "from payment p, cart c, coffee co, cafe cf "
-				+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 ORDER BY pay_num asc";
+				+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 and cf.id=?"
+				+ "ORDER BY pay_num asc";
 			
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

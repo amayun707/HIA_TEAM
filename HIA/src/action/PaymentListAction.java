@@ -29,7 +29,7 @@ public class PaymentListAction implements Action {
 		FavoriteListService favoriteListService = new FavoriteListService();
 		String favoriteList =  favoriteListService.getFavoriteList(id);
 		
-		List receiptList = ReceiptListService.getReceiptList();
+		List receiptList = ReceiptListService.getReceiptList(id);
 		
 		ActionForward forward = new ActionForward();
 		request.setAttribute("receiptList", receiptList);

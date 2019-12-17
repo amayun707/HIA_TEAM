@@ -14,6 +14,7 @@ import action.InsertPaymentAction;
 import action.MemberUpdateProAction;
 import action.PaymentListAction;
 import action.PaymentProAction;
+import action.ReceiptDeleteAction;
 import action.ReceiptListAction;
 import vo.ActionForward;
 
@@ -65,6 +66,14 @@ public class OrderFrontController extends HttpServlet {
 		}
 		else if(command.equals("/PaymentList.or")) {
 			action = new PaymentListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception  e ) {
+				System.out.println("Exception : "+e.getMessage());
+			}
+		}
+		else if(command.equals("/ReceiptDeletePro.or")) {
+			action = new ReceiptDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception  e ) {
