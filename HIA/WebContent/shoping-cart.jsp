@@ -53,7 +53,7 @@
 <style>
 th{
 	font-size: 20px;}
-.cn{
+.cN{
 	text-align: center;}
 .cList{
 	width: 400px;
