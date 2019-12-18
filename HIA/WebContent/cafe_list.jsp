@@ -63,10 +63,10 @@ int listCount = pi.getListCount();
 	margin-right: 14px;
     transform: translateX(-10px);
 }
-/* 	text-align: center; */
-/* 	margin-bottom: 20px; */
-/* 	margin-left: 50px; */
-}
+#pageList{
+	margin:auto;
+	width: 1024px;
+	text-align: center;}
 </style>
 <title>Product</title>
 <meta charset="UTF-8">
@@ -223,11 +223,11 @@ int listCount = pi.getListCount();
 					<!-- Block2 -->
 					<div class="block2"><div class="cafe_num nDisplay"><%=cafeList.get(i).getCafe_num()  %></div>
 						<div class="block2-pic hov-img0 <%=cafeList.get(i).getCoffee_num() %>">	
-							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> 
+							<img src="images/<%=cafeList.get(i).getCafe_file() %>" alt="IMG-PRODUCT"> 
 							<%if(coffee_name==""){ %>
 							<a href="#"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1 detail">
-								커피 선택 </a>
+								커피 선택</a>
 							<%} %>
 						</div>
 
@@ -250,17 +250,38 @@ int listCount = pi.getListCount();
 					}
 				%>
 			</div>
-			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#"
-					class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More </a>
-			</div>
-		</div>
-	</div>
+
+<!-- -------------------------------------------------------------------- -->         
+         
+      <section id="pageList">
+   <%if(nowPage <= 1) {%>
+         [이전]&nbsp;
+   <%} else {%>
+         <a href="CafeList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+   <%} %>
+   
+   <%for(int i = startPage; i <= endPage; i++) { 
+         if(i == nowPage) { %>
+            [<%=i %>]
+      <%} else { %>
+            <a href="CafeList.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+      <%} %>
+   <%} %>
+   
+   <%if(nowPage >= maxPage) { %>
+         [다음]
+   <%} else { %>
+         <a href="CafeList.bo?page=<%=nowPage + 1 %>">[다음]</a>
+   <%} %>
+   </section>
+   
+<!-- -------------------------------------------------------------------- -->   
+         
+      </div>
+   </div>
 
 
-	<!-- Footer -->
+   <!-- Footer -->
 	<jsp:include page="./inc/footer/footer.jsp" />
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
@@ -554,7 +575,7 @@ int listCount = pi.getListCount();
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img'>"+
-									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
+									"<img src='images/<%=cafeList.get(0).getCoffee_file() %>' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
 								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+

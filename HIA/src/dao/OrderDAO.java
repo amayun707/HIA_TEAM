@@ -200,7 +200,7 @@ public class OrderDAO {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select a.coffee_name, a.price, b.amount, b.pay_num, c.cafe_name, d.orderTime, d.getTime "
+		String sql = "select a.coffee_name, a.price, a.coffee_file, b.amount, b.pay_num, c.cafe_name, d.orderTime, d.getTime "
 				+ "from coffee a, cart b, cafe c, payment d "
 				+ "where b.id = ? and b.pay_num>0 and a.coffee_num = b.coffee_num and b.cafe_num = c.cafe_num and b.pay_num = d.pay_num "
 				+ "order by b.pay_num desc;";
@@ -220,6 +220,7 @@ public class OrderDAO {
 				cartBean.setPay_num(rs.getInt("pay_num"));
 				cartBean.setDate(rs.getDate("orderTime"));
 				cartBean.setGetTime(rs.getString("getTime"));
+				cartBean.setCoffee_file(rs.getString("coffee_file"));
 				paymentList.add(cartBean);
 			}
 		} catch (SQLException e) {

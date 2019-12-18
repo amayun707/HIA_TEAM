@@ -7,6 +7,7 @@ public class CartBean {
 	private int pay_num;
 	private int cafe_num;
 	private int coffee_num;
+	private String coffee_file;
 	private int price;
 	private int amount;
 	private String id;
@@ -17,6 +18,12 @@ public class CartBean {
 	
 	
 	
+	public String getCoffee_file() {
+		return coffee_file;
+	}
+	public void setCoffee_file(String coffee_file) {
+		this.coffee_file = coffee_file;
+	}
 	public String getGetTime() {
 		return getTime;
 	}
