@@ -488,6 +488,7 @@ int listCount = pi.getListCount();
 					var coffee_name = $(this).find('a.stext-104').text();
 					var cafe_name = $(this).find('div.cafe_name').text();
 					var price = Number($(this).find('span.stext-105').text());
+					var img = $(this).find('img').attr('src');
 					if(filter!='blur(4px)'){
 						count = count + 1;
 						total = total + price;
@@ -495,7 +496,7 @@ int listCount = pi.getListCount();
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img'>"+
-									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
+									"<img src='"+img+"' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
 								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
