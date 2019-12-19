@@ -114,7 +114,6 @@ int listCount = pi.getListCount();
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body class="animsition">
 
@@ -254,14 +253,12 @@ int listCount = pi.getListCount();
 					}
 				%>
 			</div>
-
-<!-- -------------------------------------------------------------------- -->         
-         
-      <section id="pageList">
+<!-- --------------------------------------------------------------------------------------------- -->
+ <section id="pageList">
    <%if(nowPage <= 1) {%>
-         <span class="glyphicon glyphicon-menu-left"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+         ＜&nbsp;&nbsp;&nbsp;&nbsp;
    <%} else {%>
-         <a href="CafeList.bo?page=<%=nowPage - 1%>"><span class="glyphicon glyphicon-menu-left"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="CafeList.bo?page=<%=nowPage - 1%>">＜</a>&nbsp;&nbsp;&nbsp;&nbsp;
    <%} %>
    <%for(int i = startPage; i <= endPage; i++) { 
          if(i == nowPage) { %>
@@ -271,13 +268,12 @@ int listCount = pi.getListCount();
       <%} %>
    <%} %>
    <%if(nowPage >= maxPage) { %>
-         <span class="glyphicon glyphicon-menu-right"></span>
+         ＞
    <%} else { %>
-         <a href="CafeList.bo?page=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-menu-right"></span></a>
+         <a href="CafeList.bo?page=<%=nowPage + 1 %>">＞</a>
    <%} %>
    </section>
-   
-<!-- -------------------------------------------------------------------- -->   
+<!-- --------------------------------------------------------------------------------------------- -->
          
       </div>
    </div>
