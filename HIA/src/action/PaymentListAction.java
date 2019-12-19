@@ -29,10 +29,10 @@ public class PaymentListAction implements Action {
 		FavoriteListService favoriteListService = new FavoriteListService();
 		String favoriteList =  favoriteListService.getFavoriteList(id);
 		
-		List receiptList = ReceiptListService.getReceiptList(id);
+//		List receiptList = ReceiptListService.getReceiptList(id);
 		
 		ActionForward forward = new ActionForward();
-		request.setAttribute("receiptList", receiptList);
+//		request.setAttribute("receiptList", receiptList);
 		request.setAttribute("paymentList", paymentList);
 		request.setAttribute("favoriteList",favoriteList);
 		forward.setPath("/shoping-cart.jsp");
