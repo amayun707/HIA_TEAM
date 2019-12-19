@@ -51,8 +51,7 @@
 
 						<li><a href="CafeList.bo">Cafe Order</a></li>
 
-						<li class="label1" data-label1="hot"><a href="CoffeeList.bo">Coffee
-								Order</a>
+						<li><a href="CoffeeList.bo">Coffee Order</a>
 						<li><a href="streetview.jsp">Street View</a></li>
 
 						<li><a href="Mail.me">Member Service</a></li>
@@ -84,8 +83,13 @@
 					%>
 					<a href="ReceiptListPro.or"
 						class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11"
-						data-notify="0"> <img src="images/icons/icon_receipt.png"
+						data-notify="0" style="padding-right: 7px"> <img src="images/icons/icon_receipt.png"
 						alt="receipt">
+					</a>
+					<a href="Graph.bo"
+						class="dis-block cl2 hov-cl1 trans-04 p-l-22 p-r-11"
+						data-notify="0" style="padding-left: 2px"> <img src="images/icons/icon_graph.png"
+						alt="graph">
 					</a>
 					<%
 						}
@@ -134,8 +138,7 @@
 
 			<li><a href="CafeList.bo">Cafe Order</a></li>
 
-			<li class="label1" data-label1="hot"><a href="CoffeeList.bo">Coffee
-					Order</a></li>
+			<li><a href="CoffeeList.bo">Coffee Order</a></li>
 
 			<li><a href="streetview.jsp">Street View</a></li>
 

@@ -61,7 +61,7 @@
 								
 							<div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									카페명1
+									2인칭 시점
 								</h2>
 							</div>
 								
@@ -85,7 +85,7 @@
 								
 							<div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									카페명2
+									LOVESOME
 								</h2>
 							</div>
 								
@@ -109,7 +109,7 @@
 								
 							<div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
 								<h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-									카페명3
+									 라운지커피
 								</h2>
 							</div>
 								
