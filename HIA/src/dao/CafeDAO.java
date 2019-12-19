@@ -102,7 +102,7 @@ public class CafeDAO {
 		String sql = "";
 		try {
 			if(sortBy.equals("count")) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, count(b.cafe_num) " + 
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, count(b.cafe_num) " + 
 						"from cafe a " + 
 						"left outer join cart b " + 
 						"on a.cafe_num = b.cafe_num " +
@@ -110,7 +110,7 @@ public class CafeDAO {
 						"group by a.cafe_num " + 
 						"order by count(b.cafe_num) desc ";
 			}else {
-			sql = "select cafe_num, cafe_name, cafe_file, cafe_location "
+			sql = "select cafe_num, cafe_name, cafe_file, cafe_location, rating "
 					+ "from cafe "
 					+ "where cafe_name like ? "
 					+ "order by "+sortBy;
@@ -128,6 +128,7 @@ public class CafeDAO {
 				cafeBean.setCafe_name(rs.getString("cafe_name"));
 				cafeBean.setCafe_file(rs.getString("cafe_file"));
 				cafeBean.setCafe_location(rs.getString("cafe_location"));
+				cafeBean.setRating(rs.getDouble("rating"));
 				cafeList.add(cafeBean);
 			}
 		} catch (SQLException e) {
@@ -151,20 +152,20 @@ public class CafeDAO {
 		String sql = "";
 		if(!sortBy.equals("count")) {
 			if(price==0) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, b.price, b.coffee_num, b.coffee_file "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? ";
 			} else if(price==7000){
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
 						+ "and price>7000 ";
 			} else {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
@@ -174,7 +175,7 @@ public class CafeDAO {
 			sql+="order by "+sortBy+ " limit ?,?";
 		} else {
 			if(price==0) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location,  a.rating, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -183,7 +184,7 @@ public class CafeDAO {
 						+ "and a.cafe_name like ? "
 						+ "group by a.cafe_num ";
 			} else if(price==7000){
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location,  a.rating, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -193,7 +194,7 @@ public class CafeDAO {
 						+ "and b.price>7000 "
 						+ "group by a.cafe_num ";
 			} else {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location,  a.rating, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -230,6 +231,7 @@ public class CafeDAO {
 				cafeBean.setPrice(rs.getInt("price"));
 				cafeBean.setCoffee_num(rs.getInt("coffee_num"));
 				cafeBean.setCoffee_file(rs.getString("coffee_file"));
+				cafeBean.setRating(rs.getDouble("rating"));
 				cafeList.add(cafeBean);
 			}
 		} catch (SQLException e) {
