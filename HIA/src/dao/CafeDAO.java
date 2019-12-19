@@ -98,7 +98,7 @@ public class CafeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList cafeList = null;
-		int startRow = (page -1) * 10;
+		int startRow = (page -1) * limit;
 		String sql = "";
 		try {
 			if(sortBy.equals("count")) {
@@ -147,24 +147,24 @@ public class CafeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList cafeList = null;
-		int startRow = (page -1) * 10;
+		int startRow = (page -1) * limit;
 		String sql = "";
 		if(!sortBy.equals("count")) {
 			if(price==0) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? ";
 			} else if(price==5000){
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
 						+ "and price>5000 ";
 			} else {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
@@ -174,7 +174,7 @@ public class CafeDAO {
 			sql+="order by "+sortBy+ " limit ?,?";
 		} else {
 			if(price==0) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -183,7 +183,7 @@ public class CafeDAO {
 						+ "and a.cafe_name like ? "
 						+ "group by a.cafe_num ";
 			} else if(price==5000){
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -193,8 +193,7 @@ public class CafeDAO {
 						+ "and b.price>5000 "
 						+ "group by a.cafe_num ";
 			} else {
-				System.out.println(1234);
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -203,7 +202,6 @@ public class CafeDAO {
 						+ "and a.cafe_name like ? "
 						+ "and b.price>=? and b.price<=? "
 						+ "group by a.cafe_num ";
-				System.out.println(5678);
 			}
 			sql += "order by count(c.cafe_num) desc limit ?, ?";
 			
@@ -231,6 +229,7 @@ public class CafeDAO {
 				cafeBean.setCafe_location(rs.getString("cafe_location"));
 				cafeBean.setPrice(rs.getInt("price"));
 				cafeBean.setCoffee_num(rs.getInt("coffee_num"));
+				cafeBean.setCoffee_file(rs.getString("coffee_file"));
 				cafeList.add(cafeBean);
 			}
 		} catch (SQLException e) {
@@ -359,7 +358,7 @@ public class CafeDAO {
 		System.out.println("CafeDAO-getCoffeeList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int startRow = (page -1) * 10;
+		int startRow = (page -1) * limit;
 		ArrayList coffeeList = null;
 		String sql = "";
 		if(!sortBy.equals("count")) {
@@ -387,7 +386,7 @@ public class CafeDAO {
 					+ "and a.coffee_category like ? "
 					+ "and price>=? and price<=? ";
 			}
-			sql+="order by "+sortBy+ " limit ?,?";
+			sql+="order by "+sortBy;
 		} else {
 			if(price==0) {
 				sql = "select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, "
@@ -436,12 +435,7 @@ public class CafeDAO {
 			if(price!=0&price!=5000) {
 				pstmt.setInt(4, price);
 				pstmt.setInt(5, price+1000);
-				pstmt.setInt(6, startRow);
-				pstmt.setInt(7, limit);
-			} else {
-				pstmt.setInt(4, startRow);
-				pstmt.setInt(5, limit);
-			}
+			} 
 			rs = pstmt.executeQuery();
 			coffeeList = new ArrayList();
 			while(rs.next()) {
@@ -471,20 +465,17 @@ public class CafeDAO {
 		System.out.println("CafeDAO-getCoffeeList2");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int startRow = (page -1) * 10;
+		int startRow = (page -1) * limit;
 		ArrayList coffeeList = null;
 		String sql = "";
 			sql="select distinct coffee_file, coffee_name, coffee_category "
 					+ "from coffee "
 					+ "where coffee_name like ? "
-					+ "and coffee_category like ? "
-					+ "limit ?,?";
+					+ "and coffee_category like ? ";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, "%"+category+"%");
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, limit);
 			rs = pstmt.executeQuery();
 			coffeeList = new ArrayList();
 			while(rs.next()) {

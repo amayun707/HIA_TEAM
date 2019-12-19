@@ -10,11 +10,18 @@ public class CafeBean {
 	private String cafe_file;
 	private String open_time;
 	private int coffee_num;
+	private String coffee_file;
 	private int price;
 	private double rating;
 	
 	
 	
+	public String getCoffee_file() {
+		return coffee_file;
+	}
+	public void setCoffee_file(String coffee_file) {
+		this.coffee_file = coffee_file;
+	}
 	public int getCoffee_num() {
 		return coffee_num;
 	}

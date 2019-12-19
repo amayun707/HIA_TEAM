@@ -107,17 +107,21 @@ int listCount = pi.getListCount();
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
 						value="">All Coffee</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						value="category1">category1</button>
+						value="coffee">coffee</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						value="category2">category2</button>
+						value="latte">latte</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						value="category3">category3</button>
+						value="smoothie">smoothie</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						value="category4">category4</button>
+						value="frappe">frappe</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						value="category5">category5</button>
+						value="ade">ade</button>
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
-						value="category6">category6</button>
+						value="juice">juice</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+						value="tea">tea</button>
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"
+						value="etc">etc</button>
 					<div class = "nDisplay category"><%=category %></div>
 					<div class = "nDisplay cafe"><%=cafe_num %></div>
 				</div>
@@ -224,7 +228,7 @@ int listCount = pi.getListCount();
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0 <%=coffeeList.get(i).getCoffee_num() %>">
-							<img src="images/product-01.jpg" alt="IMG-PRODUCT"> 
+							<img src="images/<%=coffeeList.get(i).getCoffee_file() %>" alt="IMG-PRODUCT"> 
 							<%if(cafe_num==0){ %><a
 								href="CafeList.bo?coffee_name=<%=coffeeList.get(i).getCoffee_name() %>"
 								class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
@@ -253,12 +257,6 @@ int listCount = pi.getListCount();
 				<%
 					}
 				%>
-			</div>
-			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#"
-					class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More "<%=category %>"</a>
 			</div>
 		</div>
 	</div>
@@ -490,6 +488,7 @@ int listCount = pi.getListCount();
 					var coffee_name = $(this).find('a.stext-104').text();
 					var cafe_name = $(this).find('div.cafe_name').text();
 					var price = Number($(this).find('span.stext-105').text());
+					var img = $(this).find('img').attr('src');
 					if(filter!='blur(4px)'){
 						count = count + 1;
 						total = total + price;
@@ -497,7 +496,7 @@ int listCount = pi.getListCount();
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img'>"+
-									"<img src='images/item-cart-01.jpg' alt='IMG'>"+
+									"<img src='"+img+"' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
 								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+

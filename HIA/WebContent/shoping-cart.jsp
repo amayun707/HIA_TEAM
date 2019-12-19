@@ -106,7 +106,7 @@ th{
 								<tr class="table_row">
 									<td class="column-1">
 										<div class="how-itemcart1">
-											<img src="images/item-cart-04.jpg" alt="IMG">
+											<img src="images/<%=i.getCoffee_file() %>" alt="IMG">
 										</div>
 									</td>
 									<td class="column-2"><%=i.getCafe_name() %><br><%=i.getCoffee_name() %></td>
