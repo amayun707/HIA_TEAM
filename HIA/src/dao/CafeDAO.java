@@ -156,13 +156,13 @@ public class CafeDAO {
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? ";
-			} else if(price==5000){
+			} else if(price==7000){
 				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
-						+ "and price>5000 ";
+						+ "and price>7000 ";
 			} else {
 				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
@@ -182,7 +182,7 @@ public class CafeDAO {
 						+ "where b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
 						+ "group by a.cafe_num ";
-			} else if(price==5000){
+			} else if(price==7000){
 				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
@@ -190,7 +190,7 @@ public class CafeDAO {
 						+ "on a.cafe_num = c.cafe_num "
 						+ "where b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
-						+ "and b.price>5000 "
+						+ "and b.price>7000 "
 						+ "group by a.cafe_num ";
 			} else {
 				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
@@ -210,7 +210,7 @@ public class CafeDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, coffee_name);
 			pstmt.setString(2, "%"+search+"%");
-			if(price!=0&price!=5000) {
+			if(price!=0&price!=7000) {
 				pstmt.setInt(3, price);
 				pstmt.setInt(4, price+1000);
 				pstmt.setInt(5, startRow);
@@ -287,12 +287,12 @@ public class CafeDAO {
 					+ "where cafe_num=? "
 					+ "and coffee_name like ? "
 					+ "and coffee_category like ?";
-		} else if(price==5000){
+		} else if(price==7000){
 			sql = "select count(*) from coffee "
 					+ "where cafe_num=? "
 					+ "and coffee_name like ? "
 					+ "and coffee_category like ? "
-					+ "and price > 5000";
+					+ "and price > 7000";
 		} else {
 			sql = "select count(*) from coffee "
 					+ "where cafe_num=? "
@@ -305,7 +305,7 @@ public class CafeDAO {
 			pstmt.setInt(1, cafe_num);
 			pstmt.setString(2, "%"+search+"%");
 			pstmt.setString(3, "%"+category+"%");
-			if(price!=0&price!=5000) {
+			if(price!=0&price!=7000) {
 				pstmt.setInt(4, price);
 				pstmt.setInt(5, price+1000);
 			}
@@ -369,14 +369,14 @@ public class CafeDAO {
 					+ "and a.cafe_num=? "
 					+ "and a.coffee_name like ? "
 					+ "and a.coffee_category like ? ";
-			} else if(price==5000){
+			} else if(price==7000){
 				sql="select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, b.cafe_name "
 					+ "from coffee a, cafe b "
 					+ "where a.cafe_num = b.cafe_num "
 					+ "and a.cafe_num=? "
 					+ "and a.coffee_name like ? "
 					+ "and a.coffee_category like ? "
-					+ "and price>5000 ";
+					+ "and price>7000 ";
 			} else {
 				sql="select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, b.cafe_name "
 					+ "from coffee a, cafe b "
@@ -399,7 +399,7 @@ public class CafeDAO {
 						+ "and a.coffee_name like ? "
 						+ "and a.coffee_category like ? "
 						+ "group by a.coffee_num ";
-			} else if(price==5000){
+			} else if(price==7000){
 				sql = "select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, "
 						+ "b.cafe_name, count(c.coffee_num) count " 
 						+ "from coffee a join cafe b " 
@@ -409,7 +409,7 @@ public class CafeDAO {
 						+ "where a.cafe_num = ? " 
 						+ "and a.coffee_name like ? "
 						+ "and a.coffee_category like ? "
-						+ "and a.price>5000 "
+						+ "and a.price>7000 "
 						+ "group by a.coffee_num ";
 			} else {
 				sql = "select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, "
@@ -432,7 +432,7 @@ public class CafeDAO {
 			pstmt.setInt(1, cafe_num);
 			pstmt.setString(2, "%"+search+"%");
 			pstmt.setString(3, "%"+category+"%");
-			if(price!=0&price!=5000) {
+			if(price!=0&price!=7000) {
 				pstmt.setInt(4, price);
 				pstmt.setInt(5, price+1000);
 			} 

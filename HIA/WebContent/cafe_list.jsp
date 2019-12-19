@@ -194,14 +194,6 @@ int listCount = pi.getListCount();
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">1000원 - 2000원</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">2000원 - 3000원</a>
-								</li>
-
-								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">3000원 - 4000원</a>
 								</li>
 
@@ -210,7 +202,15 @@ int listCount = pi.getListCount();
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">5000원+</a>
+									<a href="#" class="filter-link stext-106 trans-04">5000원 - 6000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">6000원 - 7000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">7000원+</a>
 								</li>
 							</ul>
 						</div>
@@ -660,16 +660,16 @@ int listCount = pi.getListCount();
 				var price = "<%=price%>";
 				if(price=="0"){
 					price="모두";
-				}else if(price=="1000"){
-					price="1000원 - 2000원";
-				}else if(price=="2000"){
-					price="2000원 - 3000원";
 				}else if(price=="3000"){
 					price="3000원 - 4000원";
 				}else if(price=="4000"){
 					price="4000원 - 5000원";
 				}else if(price=="5000"){
-					price="5000원+";
+					price="5000원 - 6000원";
+				}else if(price=="6000"){
+					price="6000원 - 7000원";
+				}else if(price=="7000"){
+					price="7000원+";
 				}
 				if($(this).find('a').text()==price){
 					$(this).find('a').addClass('filter-link-active');
@@ -699,16 +699,16 @@ int listCount = pi.getListCount();
 						var Price = $('ul.filul2').find('a.filter-link-active').text();
 						if(Price=="모두"){
 							Price=0;
-						}else if(Price=="1000원 - 2000원"){
-							Price=1000;
-						}else if(Price=="2000원 - 3000원"){
-							Price=2000;
 						}else if(Price=="3000원 - 4000원"){
 							Price=3000;
 						}else if(Price=="4000원 - 5000원"){
 							Price=4000;
-						}else if(Price=="5000원+"){
+						}else if(Price=="5000원 - 6000원"){
 							Price=5000;
+						}else if(Price=="6000원 - 7000원"){
+							Price=6000;
+						}else if(Price=="7000원+"){
+							Price=7000;
 						}
 					}
 					location.href="CafeList.bo?coffee_name=<%=coffee_name%>&SortBy="+SortBy+"&Price="+Price;
