@@ -7,6 +7,10 @@
 <%
 PageInfo pi = (PageInfo)request.getAttribute("pageInfo");
 ArrayList<CafeBean> cafeList =  (ArrayList)request.getAttribute("cafeList");
+String img = "";
+if(cafeList.size()>0){
+	img = cafeList.get(0).getCoffee_file();
+}
 JSONObject cafe = (JSONObject)request.getAttribute("cafeBean");
 String coffee_name = request.getParameter("coffee_name");
 String id = (String)session.getAttribute("id");
@@ -17,7 +21,6 @@ int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 int listCount = pi.getListCount();
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,14 +197,6 @@ int listCount = pi.getListCount();
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">1000원 - 2000원</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">2000원 - 3000원</a>
-								</li>
-
-								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">3000원 - 4000원</a>
 								</li>
 
@@ -210,7 +205,15 @@ int listCount = pi.getListCount();
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">5000원+</a>
+									<a href="#" class="filter-link stext-106 trans-04">5000원 - 6000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">6000원 - 7000원</a>
+								</li>
+
+								<li class="p-b-6">
+									<a href="#" class="filter-link stext-106 trans-04">7000원+</a>
 								</li>
 							</ul>
 						</div>
@@ -253,32 +256,27 @@ int listCount = pi.getListCount();
 					}
 				%>
 			</div>
-
-<!-- -------------------------------------------------------------------- -->         
-         
-      <section id="pageList">
+<!-- --------------------------------------------------------------------------------------------- -->
+ <section id="pageList">
    <%if(nowPage <= 1) {%>
-         [이전]&nbsp;
+         ＜&nbsp;&nbsp;&nbsp;&nbsp;
    <%} else {%>
-         <a href="CafeList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+         <a href="CafeList.bo?page=<%=nowPage - 1%>">＜</a>&nbsp;&nbsp;&nbsp;&nbsp;
    <%} %>
-   
    <%for(int i = startPage; i <= endPage; i++) { 
          if(i == nowPage) { %>
-            [<%=i %>]
+            <%=i %>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} else { %>
-            <a href="CafeList.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+            <a href="CafeList.bo?page=<%=i %>"><%=i %></a>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} %>
    <%} %>
-   
    <%if(nowPage >= maxPage) { %>
-         [다음]
+         ＞
    <%} else { %>
-         <a href="CafeList.bo?page=<%=nowPage + 1 %>">[다음]</a>
+         <a href="CafeList.bo?page=<%=nowPage + 1 %>">＞</a>
    <%} %>
    </section>
-   
-<!-- -------------------------------------------------------------------- -->   
+<!-- --------------------------------------------------------------------------------------------- -->
          
       </div>
    </div>
@@ -519,6 +517,20 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
+// 		var i = 0;
+// 		var height = new Array();
+// 		$('.isotope-grid').find('.block2').each(function(){
+// 			if(i>=0&i<4){
+// 				height[i] = (Number($(this).css('height').toString().replace("px",""))+50);
+// 			}else if(i>3&i<8){
+// 				height[i] = (height[i-4]+Number($(this).css('height').toString().replace("px",""))+50);
+// 			}
+// 			if(i>=4&i<=11){
+// 				var ht = height[i-4]+"px";
+// 				$(this).parent().css('top', ht);
+// 			}
+// 			i++
+// 		});
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기
 			$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
@@ -580,7 +592,7 @@ int listCount = pi.getListCount();
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img cartItem'>"+
-									"<img src='images/<%=cafeList.get(0).getCoffee_file() %>' alt='IMG'>"+
+									"<img src='images/<%=img%>' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
 								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
@@ -608,12 +620,14 @@ int listCount = pi.getListCount();
 			}
 			$('.searching').click(function(){
 				var search = $('.search-cafe').val();
-				location.href="CafeList.bo?search="+search;
+				var coffee_name = $('#h1').text();
+				location.href="CafeList.bo?search="+search+"&coffe_name="+coffee_name;
 			});
 			$('.search-cafe').keydown(function(key){
 				if(key.keyCode == 13) {
 					var search = $('.search-cafe').val();
-					location.href="CafeList.bo?search="+search;
+					var coffee_name = $('#h1').text();
+					location.href="CafeList.bo?search="+search+"&coffe_name="+coffee_name;
 				}
 			});
 			
@@ -660,16 +674,16 @@ int listCount = pi.getListCount();
 				var price = "<%=price%>";
 				if(price=="0"){
 					price="모두";
-				}else if(price=="1000"){
-					price="1000원 - 2000원";
-				}else if(price=="2000"){
-					price="2000원 - 3000원";
 				}else if(price=="3000"){
 					price="3000원 - 4000원";
 				}else if(price=="4000"){
 					price="4000원 - 5000원";
 				}else if(price=="5000"){
-					price="5000원+";
+					price="5000원 - 6000원";
+				}else if(price=="6000"){
+					price="6000원 - 7000원";
+				}else if(price=="7000"){
+					price="7000원+";
 				}
 				if($(this).find('a').text()==price){
 					$(this).find('a').addClass('filter-link-active');
@@ -699,16 +713,16 @@ int listCount = pi.getListCount();
 						var Price = $('ul.filul2').find('a.filter-link-active').text();
 						if(Price=="모두"){
 							Price=0;
-						}else if(Price=="1000원 - 2000원"){
-							Price=1000;
-						}else if(Price=="2000원 - 3000원"){
-							Price=2000;
 						}else if(Price=="3000원 - 4000원"){
 							Price=3000;
 						}else if(Price=="4000원 - 5000원"){
 							Price=4000;
-						}else if(Price=="5000원+"){
+						}else if(Price=="5000원 - 6000원"){
 							Price=5000;
+						}else if(Price=="6000원 - 7000원"){
+							Price=6000;
+						}else if(Price=="7000원+"){
+							Price=7000;
 						}
 					}
 					location.href="CafeList.bo?coffee_name=<%=coffee_name%>&SortBy="+SortBy+"&Price="+Price;

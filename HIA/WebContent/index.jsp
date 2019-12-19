@@ -45,73 +45,7 @@
 	<!-- Header -->
 	<jsp:include page="./inc/header/header.jsp"/>
 	<!-- Cart -->
-	<%
-	CartListService cartListService = new CartListService();
-	String id = (String)session.getAttribute("id");
-	ArrayList cartList = cartListService.getCartList(id);
-	int total = 0;
-	%>
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-				<%for(Object i : cartList) {
-						CartBean cartBean = (CartBean)i;%>
-					<li class="<%=cartBean.getCoffee_num() %> header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
-						</div>
-						<div class = "cCategory coffee_in_cart"><%=cartBean.getCoffee_num() %></div>
-						<div class='cCategory cafe_num'><%=cartBean.getCafe_num() %></div>
-						<div class="header-cart-item-txt pt">
-							<a href="#" class="header-cart-item-name mb hov-cl1 trans-04"><%=cartBean.getCoffee_name() %></a>
-							<a href="#" class="header-cart-item-name mb hov-cl1 trans-04"><%=cartBean.getCafe_name() %></a>
-							<div class = "price_amount">
-							<span class="header-cart-item-info"><%=cartBean.getPrice() %>
-							</span>&nbsp;X<button class = "payBtn">구매</button>
-							<input type = "text" value = "<%=cartBean.getAmount() %>" class = "amount">
-							</div>
-						</div>
-					</li>
-				<%
-				total += cartBean.getPrice()*cartBean.getAmount();
-				} %>
-				</ul>
-				
-				<div class="w-full">
-					<div class="header-cart-total w-full">
-						Total: 
-					</div><br>
-					<div class="header-cart-total w-full total padding2">
-						<%=total %>
-					</div>
-					<br>
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10 addCart">
-							장바구니 담기
-						</a>
-
-						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10 modal_payP addCart">
-							구매
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<jsp:include page="./inc/cart/cart.jsp" />
 	<!-- Slider -->
 	<section class="section-slide">
 		<div class="wrap-slick1">

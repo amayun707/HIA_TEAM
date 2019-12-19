@@ -38,8 +38,9 @@ display:none;}
 .modal-contentP {
 	background-color: #fefefe;
 	margin: 15% auto; 
-	padding: 20px; width: 20%;	height: 70%;
-	position: relative; top: -20%;}
+	padding: 20px; width: 20%;	height: 75%;
+	position: fixed; top: -20%; left: 36%}
+
 .close {
 	width: 5%;
     position: relative;
@@ -75,7 +76,7 @@ display:none;}
 	width: 90px;
     float: left;
     font-size: 20px;
-    margin-left: 62px;}
+    margin-left: 47px;}
 .totalP2{
 	width: 100px;
     float: left;
@@ -86,7 +87,7 @@ display:none;}
     padding-top: 5px;}
 .getTime{
 	position: relative;
-    left: 63px;
+    left: 51px;
     font-size: 20px;
     margin-bottom: 10px;}
 select{
@@ -273,7 +274,9 @@ $(document).ready(function(){
 		$('ul#payList').children().remove();
 		$('span.totalP2').html(Number($('.total').text()));
 		$('ul.header-cart-wrapitem').find('li').each(function(){
-			$(this).clone().appendTo('ul#payList');
+			var li = $(this).clone();
+			li.find('.payBtn').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+			li.appendTo('ul#payList');
 		});
 		$('div.modalP').addClass('view');
 	});
@@ -290,7 +293,9 @@ $(document).ready(function(){
 	
 	$('.payBtn').click(function(){
 		$('ul#payList').children().remove();
-		$(this).closest('li.header-cart-item').clone().appendTo('ul#payList');	
+		var li = $(this).closest('li.header-cart-item').clone();
+		li.find('.payBtn').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+		li.appendTo('ul#payList');	
 		$('span.totalP2').html(Number($(this).parent().find('span.header-cart-item-info').text())*Number($(this).parent().find('.amount').val()));
 		$('div.modalP').addClass('view');
 	});	

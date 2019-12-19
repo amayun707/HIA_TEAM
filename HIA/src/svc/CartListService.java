@@ -14,15 +14,11 @@ public class CartListService {
 
 	public ArrayList getCartList(String id) {
 		System.out.println("CartListService");
-		
 		Connection con = getConnection();
-		
 		OrderDAO orderDAO = OrderDAO.getInstance();
 		orderDAO.setConnection(con);
-		
 		ArrayList<CartBean>  cartList = null;
 		cartList = orderDAO.getCartList(id);
-		
 		close(con);
 		return cartList;
 	}

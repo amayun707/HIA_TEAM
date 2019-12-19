@@ -16,6 +16,7 @@ import action.CartListAction;
 import action.CoffeeListAction;
 import action.CommentListAction;
 import action.CommentWriteProAction;
+import action.GraphAction;
 import action.InsertCartAction;
 import vo.ActionForward;
 
@@ -85,6 +86,13 @@ public class CafeFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		} else if(command.equals("/Graph.bo")) {
+			action = new GraphAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception  e ) {
+				System.out.println("Exception : "+e.getMessage());
 			}
 		}		
 		

@@ -101,7 +101,7 @@ public class CafeDAO {
 		String sql = "";
 		try {
 			if(sortBy.equals("count")) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, count(b.cafe_num) " + 
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, count(b.cafe_num) " + 
 						"from cafe a " + 
 						"left outer join cart b " + 
 						"on a.cafe_num = b.cafe_num " +
@@ -109,7 +109,7 @@ public class CafeDAO {
 						"group by a.cafe_num " + 
 						"order by count(b.cafe_num) desc ";
 			}else {
-			sql = "select cafe_num, cafe_name, cafe_file, cafe_location "
+			sql = "select cafe_num, cafe_name, cafe_file, cafe_location, rating "
 					+ "from cafe "
 					+ "where cafe_name like ? "
 					+ "order by "+sortBy;
@@ -127,6 +127,7 @@ public class CafeDAO {
 				cafeBean.setCafe_name(rs.getString("cafe_name"));
 				cafeBean.setCafe_file(rs.getString("cafe_file"));
 				cafeBean.setCafe_location(rs.getString("cafe_location"));
+				cafeBean.setRating(rs.getDouble("rating"));
 				cafeList.add(cafeBean);
 			}
 		} catch (SQLException e) {
@@ -150,20 +151,20 @@ public class CafeDAO {
 		String sql = "";
 		if(!sortBy.equals("count")) {
 			if(price==0) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, b.price, b.coffee_num, b.coffee_file "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? ";
-			} else if(price==5000){
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
+			} else if(price==7000){
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
-						+ "and price>5000 ";
+						+ "and price>7000 ";
 			} else {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, a.rating, b.price, b.coffee_num, b.coffee_file  "
 						+ "from cafe a, coffee b "
 						+ "where a.cafe_num = b.cafe_num "
 						+ "and b.coffee_name = ? "
@@ -173,7 +174,7 @@ public class CafeDAO {
 			sql+="order by "+sortBy+ " limit ?,?";
 		} else {
 			if(price==0) {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location,  a.rating, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -181,18 +182,18 @@ public class CafeDAO {
 						+ "where b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
 						+ "group by a.cafe_num ";
-			} else if(price==5000){
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
+			} else if(price==7000){
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location,  a.rating, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
 						+ "on a.cafe_num = c.cafe_num "
 						+ "where b.coffee_name = ? "
 						+ "and a.cafe_name like ? "
-						+ "and b.price>5000 "
+						+ "and b.price>7000 "
 						+ "group by a.cafe_num ";
 			} else {
-				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location, b.price, b.coffee_num, b.coffee_file  "  
+				sql = "select a.cafe_num, a.cafe_name, a.cafe_file, a.cafe_location,  a.rating, b.price, b.coffee_num, b.coffee_file  "  
 						+ "from cafe a join coffee b  "
 						+ "on a.cafe_num = b.cafe_num "
 						+ "left outer join cart c "
@@ -209,7 +210,7 @@ public class CafeDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, coffee_name);
 			pstmt.setString(2, "%"+search+"%");
-			if(price!=0&price!=5000) {
+			if(price!=0&price!=7000) {
 				pstmt.setInt(3, price);
 				pstmt.setInt(4, price+1000);
 				pstmt.setInt(5, startRow);
@@ -229,6 +230,7 @@ public class CafeDAO {
 				cafeBean.setPrice(rs.getInt("price"));
 				cafeBean.setCoffee_num(rs.getInt("coffee_num"));
 				cafeBean.setCoffee_file(rs.getString("coffee_file"));
+				cafeBean.setRating(rs.getDouble("rating"));
 				cafeList.add(cafeBean);
 			}
 		} catch (SQLException e) {
@@ -286,12 +288,12 @@ public class CafeDAO {
 					+ "where cafe_num=? "
 					+ "and coffee_name like ? "
 					+ "and coffee_category like ?";
-		} else if(price==5000){
+		} else if(price==7000){
 			sql = "select count(*) from coffee "
 					+ "where cafe_num=? "
 					+ "and coffee_name like ? "
 					+ "and coffee_category like ? "
-					+ "and price > 5000";
+					+ "and price > 7000";
 		} else {
 			sql = "select count(*) from coffee "
 					+ "where cafe_num=? "
@@ -304,7 +306,7 @@ public class CafeDAO {
 			pstmt.setInt(1, cafe_num);
 			pstmt.setString(2, "%"+search+"%");
 			pstmt.setString(3, "%"+category+"%");
-			if(price!=0&price!=5000) {
+			if(price!=0&price!=7000) {
 				pstmt.setInt(4, price);
 				pstmt.setInt(5, price+1000);
 			}
@@ -368,14 +370,14 @@ public class CafeDAO {
 					+ "and a.cafe_num=? "
 					+ "and a.coffee_name like ? "
 					+ "and a.coffee_category like ? ";
-			} else if(price==5000){
+			} else if(price==7000){
 				sql="select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, b.cafe_name "
 					+ "from coffee a, cafe b "
 					+ "where a.cafe_num = b.cafe_num "
 					+ "and a.cafe_num=? "
 					+ "and a.coffee_name like ? "
 					+ "and a.coffee_category like ? "
-					+ "and price>5000 ";
+					+ "and price>7000 ";
 			} else {
 				sql="select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, b.cafe_name "
 					+ "from coffee a, cafe b "
@@ -398,7 +400,7 @@ public class CafeDAO {
 						+ "and a.coffee_name like ? "
 						+ "and a.coffee_category like ? "
 						+ "group by a.coffee_num ";
-			} else if(price==5000){
+			} else if(price==7000){
 				sql = "select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, "
 						+ "b.cafe_name, count(c.coffee_num) count " 
 						+ "from coffee a join cafe b " 
@@ -408,7 +410,7 @@ public class CafeDAO {
 						+ "where a.cafe_num = ? " 
 						+ "and a.coffee_name like ? "
 						+ "and a.coffee_category like ? "
-						+ "and a.price>5000 "
+						+ "and a.price>7000 "
 						+ "group by a.coffee_num ";
 			} else {
 				sql = "select a.coffee_file, a.coffee_name, a.price, a.coffee_num, a.cafe_num, a.coffee_category, a.hot_ice, "
@@ -431,7 +433,7 @@ public class CafeDAO {
 			pstmt.setInt(1, cafe_num);
 			pstmt.setString(2, "%"+search+"%");
 			pstmt.setString(3, "%"+category+"%");
-			if(price!=0&price!=5000) {
+			if(price!=0&price!=7000) {
 				pstmt.setInt(4, price);
 				pstmt.setInt(5, price+1000);
 			} 
@@ -613,6 +615,197 @@ public class CafeDAO {
 		return cafeBean;
 	}
 	
+	//=====================================================================================================================
+
+	public ArrayList getGraph() {
+		System.out.println("CafeDAO-getGraph");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList coffee_name = null;
+		ArrayList count = null;
+		try {
+			String sql = "select a.coffee_name, count(a.coffee_name) count " + 
+						"from coffee a, cart b " + 
+						"where a.coffee_num = b.coffee_num " + 
+						"group by a.coffee_name " + "limit 0,10";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			coffee_name = new ArrayList();
+			count = new ArrayList();
+			while (rs.next()) {
+				coffee_name.add("\"" + rs.getString("coffee_name") + "\"");
+				count.add(rs.getString("count"));
+			}
+			graph = new ArrayList();
+			graph.add(coffee_name);
+			graph.add(count);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return graph;
+	}
+	
+	//=====================================================================================================================
+
+	public ArrayList getMonthGraph() {
+		System.out.println("CafeDAO-getMonthGraph");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList coffee_name = null;
+		ArrayList count = null;
+		try {
+			String sql = "select a.coffee_name, count(a.coffee_name) count " + 
+								"from coffee a, cart b, payment c " + 
+								"where a.coffee_num = b.coffee_num "+
+								"and b.pay_num = c.pay_num "+
+								"and month(c.orderTime) = month(now()) "+
+								"and year(c.orderTime) = year(now()) "+
+								"group by a.coffee_name "+ 
+								"limit 0,10";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			coffee_name = new ArrayList();
+			count = new ArrayList();
+			while (rs.next()) {
+				coffee_name.add("\"" + rs.getString("coffee_name") + "\"");
+				count.add(rs.getString("count"));
+			}
+			graph = new ArrayList();
+			graph.add(coffee_name);
+			graph.add(count);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return graph;
+	}
+
 //=====================================================================================================================
+	public ArrayList getCafeGraph(String id) {
+		System.out.println("CafeDAO-getCafeGraph");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList coffee_name = null;
+		ArrayList count = null;
+		try {
+			String sql = "select a.coffee_name, count(a.coffee_name) count " + 
+								"from coffee a, cafe b, cart c, payment d " + 
+								"where c.coffee_num = a.coffee_num " +
+								"and a.cafe_num = b.cafe_num "+
+								"and c.pay_num = d.pay_num " + 
+								"and b.id = ? " + 
+								"group by a.coffee_name ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			coffee_name = new ArrayList();
+			count = new ArrayList();
+			while (rs.next()) {
+				coffee_name.add("\"" + rs.getString("coffee_name") + "\"");
+				count.add(rs.getString("count"));
+			}
+			graph = new ArrayList();
+			graph.add(coffee_name);
+			graph.add(count);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return graph;
+	}
+	
+	//=====================================================================================================================
+	
+	public ArrayList getCafeIncomeByDay(String id) {
+		System.out.println("CafeDAO-getCafeIncome");
+		System.out.println(id);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList day = null;
+		ArrayList income = null;
+		try {
+			String sql = "select sum(b.price*b.amount) income, day(a.orderTime) day " + 
+					"from payment a, cart b, cafe c " + 
+					"where a.pay_num = b.pay_num " + 
+					"and b.cafe_num = c.cafe_num " + 
+					"and c.id = ? " + 
+					"and year(a.orderTime)=year(now()) " + 
+					"and month(a.orderTime)=month(now()) " + 
+					"group by day(a.orderTime);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			day = new ArrayList();
+			income = new ArrayList();
+			while (rs.next()) {
+				day.add("\"" + rs.getInt("day") + "\"");
+				income.add(rs.getString("income"));
+			}
+			graph = new ArrayList();
+			graph.add(day);
+			graph.add(income);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return graph;
+	}
+	
+	//=====================================================================================================================
+	
+	public ArrayList getCafeIncomeByMonth(String id) {
+		System.out.println("CafeDAO-getCafeIncome");
+		System.out.println(id);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList month = null;
+		ArrayList income = null;
+		try {
+			String sql = "select sum(b.price*b.amount) income, month(a.orderTime) month " + 
+					"from payment a, cart b, cafe c " + 
+					"where a.pay_num = b.pay_num " + 
+					"and b.cafe_num = c.cafe_num " + 
+					"and c.id = ? " + 
+					"and year(a.orderTime)=year(now()) " + 
+					"group by month(a.orderTime);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			month = new ArrayList();
+			income = new ArrayList();
+			while (rs.next()) {
+				month.add("\"" + rs.getInt("month") + "\"");
+				income.add(rs.getString("income"));
+			}
+			graph = new ArrayList();
+			graph.add(month);
+			graph.add(income);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return graph;
+	}
 	
 }
