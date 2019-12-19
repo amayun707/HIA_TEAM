@@ -616,6 +616,197 @@ public class CafeDAO {
 		return cafeBean;
 	}
 	
+	//=====================================================================================================================
+
+	public ArrayList getGraph() {
+		System.out.println("CafeDAO-getGraph");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList coffee_name = null;
+		ArrayList count = null;
+		try {
+			String sql = "select a.coffee_name, count(a.coffee_name) count " + 
+						"from coffee a, cart b " + 
+						"where a.coffee_num = b.coffee_num " + 
+						"group by a.coffee_name " + "limit 0,10";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			coffee_name = new ArrayList();
+			count = new ArrayList();
+			while (rs.next()) {
+				coffee_name.add("\"" + rs.getString("coffee_name") + "\"");
+				count.add(rs.getString("count"));
+			}
+			graph = new ArrayList();
+			graph.add(coffee_name);
+			graph.add(count);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return graph;
+	}
+	
+	//=====================================================================================================================
+
+	public ArrayList getMonthGraph() {
+		System.out.println("CafeDAO-getMonthGraph");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList coffee_name = null;
+		ArrayList count = null;
+		try {
+			String sql = "select a.coffee_name, count(a.coffee_name) count " + 
+								"from coffee a, cart b, payment c " + 
+								"where a.coffee_num = b.coffee_num "+
+								"and b.pay_num = c.pay_num "+
+								"and month(c.orderTime) = month(now()) "+
+								"and year(c.orderTime) = year(now()) "+
+								"group by a.coffee_name "+ 
+								"limit 0,10";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			coffee_name = new ArrayList();
+			count = new ArrayList();
+			while (rs.next()) {
+				coffee_name.add("\"" + rs.getString("coffee_name") + "\"");
+				count.add(rs.getString("count"));
+			}
+			graph = new ArrayList();
+			graph.add(coffee_name);
+			graph.add(count);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return graph;
+	}
+
 //=====================================================================================================================
+	public ArrayList getCafeGraph(String id) {
+		System.out.println("CafeDAO-getCafeGraph");
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList coffee_name = null;
+		ArrayList count = null;
+		try {
+			String sql = "select a.coffee_name, count(a.coffee_name) count " + 
+								"from coffee a, cafe b, cart c, payment d " + 
+								"where c.coffee_num = a.coffee_num " +
+								"and a.cafe_num = b.cafe_num "+
+								"and c.pay_num = d.pay_num " + 
+								"and b.id = ? " + 
+								"group by a.coffee_name ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			coffee_name = new ArrayList();
+			count = new ArrayList();
+			while (rs.next()) {
+				coffee_name.add("\"" + rs.getString("coffee_name") + "\"");
+				count.add(rs.getString("count"));
+			}
+			graph = new ArrayList();
+			graph.add(coffee_name);
+			graph.add(count);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return graph;
+	}
+	
+	//=====================================================================================================================
+	
+	public ArrayList getCafeIncomeByDay(String id) {
+		System.out.println("CafeDAO-getCafeIncome");
+		System.out.println(id);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList day = null;
+		ArrayList income = null;
+		try {
+			String sql = "select sum(b.price*b.amount) income, day(a.orderTime) day " + 
+					"from payment a, cart b, cafe c " + 
+					"where a.pay_num = b.pay_num " + 
+					"and b.cafe_num = c.cafe_num " + 
+					"and c.id = ? " + 
+					"and year(a.orderTime)=year(now()) " + 
+					"and month(a.orderTime)=month(now()) " + 
+					"group by day(a.orderTime);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			day = new ArrayList();
+			income = new ArrayList();
+			while (rs.next()) {
+				day.add("\"" + rs.getInt("day") + "\"");
+				income.add(rs.getString("income"));
+			}
+			graph = new ArrayList();
+			graph.add(day);
+			graph.add(income);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return graph;
+	}
+	
+	//=====================================================================================================================
+	
+	public ArrayList getCafeIncomeByMonth(String id) {
+		System.out.println("CafeDAO-getCafeIncome");
+		System.out.println(id);
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList graph = null;
+		ArrayList month = null;
+		ArrayList income = null;
+		try {
+			String sql = "select sum(b.price*b.amount) income, month(a.orderTime) month " + 
+					"from payment a, cart b, cafe c " + 
+					"where a.pay_num = b.pay_num " + 
+					"and b.cafe_num = c.cafe_num " + 
+					"and c.id = ? " + 
+					"and year(a.orderTime)=year(now()) " + 
+					"group by month(a.orderTime);";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			month = new ArrayList();
+			income = new ArrayList();
+			while (rs.next()) {
+				month.add("\"" + rs.getInt("month") + "\"");
+				income.add(rs.getString("income"));
+			}
+			graph = new ArrayList();
+			graph.add(month);
+			graph.add(income);
+		} catch (SQLException e) {
+			System.out.println("Exception : " + e.getMessage());
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return graph;
+	}
 	
 }
