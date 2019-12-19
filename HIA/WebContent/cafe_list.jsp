@@ -7,6 +7,10 @@
 <%
 PageInfo pi = (PageInfo)request.getAttribute("pageInfo");
 ArrayList<CafeBean> cafeList =  (ArrayList)request.getAttribute("cafeList");
+String img = "";
+if(cafeList.size()>0){
+	img = cafeList.get(0).getCoffee_file();
+}
 JSONObject cafe = (JSONObject)request.getAttribute("cafeBean");
 String coffee_name = request.getParameter("coffee_name");
 String id = (String)session.getAttribute("id");
@@ -17,7 +21,6 @@ int maxPage = pi.getMaxPage();
 int startPage = pi.getStartPage();
 int endPage = pi.getEndPage();
 int listCount = pi.getListCount();
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -514,6 +517,20 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
+// 		var i = 0;
+// 		var height = new Array();
+// 		$('.isotope-grid').find('.block2').each(function(){
+// 			if(i>=0&i<4){
+// 				height[i] = (Number($(this).css('height').toString().replace("px",""))+50);
+// 			}else if(i>3&i<8){
+// 				height[i] = (height[i-4]+Number($(this).css('height').toString().replace("px",""))+50);
+// 			}
+// 			if(i>=4&i<=11){
+// 				var ht = height[i-4]+"px";
+// 				$(this).parent().css('top', ht);
+// 			}
+// 			i++
+// 		});
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기
 			$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
@@ -575,7 +592,7 @@ int listCount = pi.getListCount();
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
 								"<div class='header-cart-item-img cartItem'>"+
-									"<img src='images/<%=cafeList.get(0).getCoffee_file() %>' alt='IMG'>"+
+									"<img src='images/<%=img%>' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
 								"<div class='nDisplay cafe_num'>"+cafe_num+"</div>"+
@@ -603,12 +620,14 @@ int listCount = pi.getListCount();
 			}
 			$('.searching').click(function(){
 				var search = $('.search-cafe').val();
-				location.href="CafeList.bo?search="+search;
+				var coffee_name = $('#h1').text();
+				location.href="CafeList.bo?search="+search+"&coffe_name="+coffee_name;
 			});
 			$('.search-cafe').keydown(function(key){
 				if(key.keyCode == 13) {
 					var search = $('.search-cafe').val();
-					location.href="CafeList.bo?search="+search;
+					var coffee_name = $('#h1').text();
+					location.href="CafeList.bo?search="+search+"&coffe_name="+coffee_name;
 				}
 			});
 			

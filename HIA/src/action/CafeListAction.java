@@ -69,7 +69,6 @@ public class CafeListAction implements Action {
 		}else {
 			cafeList = cafeListService.getCafeList(page,limit,coffee_name,search, sortBy, price);
 		}
-
 		String strCafe_num = request.getParameter("cafe_num");
 		int cafe_num = 1;
 		if(request.getParameter("cafe_num")!=null) {
@@ -78,17 +77,13 @@ public class CafeListAction implements Action {
 		JSONObject cafeBean = null;
 		CafeDetailService cafeDetailService = new CafeDetailService();
 		cafeBean = cafeDetailService.getCafeDetail(cafe_num);
-		
 		ActionForward forward = new ActionForward();
 		PageInfo pageinfo = new PageInfo(page,maxPage,startPage,endPage,listCount);
 		request.setAttribute("pageInfo", pageinfo); 
 		request.setAttribute("cafeList", cafeList);
 		request.setAttribute("cafeBean", cafeBean);
-	
 		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name+"&sortBy="+sortBy+"&price="+price);
-		
-		HttpSession session  = request.getSession();
-		
+		System.out.println(coffee_name);
 		return forward;
 	}
 }

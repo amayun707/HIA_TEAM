@@ -38,8 +38,8 @@ display:none;}
 .modal-contentP {
 	background-color: #fefefe;
 	margin: 15% auto; 
-	padding: 20px; width: 20%;	height: 70%;
-	position: relative; top: -20%;}
+	padding: 20px; width: 20%;	height: 75%;
+	position: fixed; top: -20%; left: 36%}
 
 .close {
 	width: 5%;
