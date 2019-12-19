@@ -56,7 +56,7 @@ display:none;}
 #payList{
 	list-style-type: none;
     padding-left: 20px;
-    height: 380px;
+    height: 335px;
     overflow-y: scroll; 
     margin-bottom: 20px;}
 #payList>li{
@@ -99,6 +99,9 @@ option{
 .payBtn{
 	float:right;
 	margin-left: 30px;}
+.cartItem{
+	position: relative;
+    top: 10px;}
 </style>
 <div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
@@ -119,8 +122,8 @@ option{
 				<%for(Object i : cartList) {
 						CartBean cartBean = (CartBean)i;%>
 					<li class="<%=cartBean.getCoffee_num() %> header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="images/item-cart-01.jpg" alt="IMG">
+						<div class="header-cart-item-img cartItem">
+							<img src="images/<%=cartBean.getCoffee_file() %>" alt="IMG">
 						</div>
 						<div class = "cCategory coffee_in_cart"><%=cartBean.getCoffee_num() %></div>
 						<div class='cCategory cafe_num'><%=cartBean.getCafe_num() %></div>

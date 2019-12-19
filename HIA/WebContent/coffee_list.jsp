@@ -46,6 +46,12 @@ int listCount = pi.getListCount();
 	width: 141px;}
 .widful{
 	width: 100%; padding-left:100px;}
+.p-t-7{
+	position: relative;
+    top: -8px;}
+.cartItem{
+	position: relative;
+    top: 10px;}
 </style>
 <html lang="en">
 <head>
@@ -246,7 +252,7 @@ int listCount = pi.getListCount();
 								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
+							<div class="block2-txt-child2 flex-r p-t-3 p-t-7">
 								<%=coffeeList.get(i).getCoffee_category() %>
 							</div>
 							<div class="nDisplay coffee"><%=coffeeList.get(i).getCoffee_num() %></div>
@@ -495,7 +501,7 @@ int listCount = pi.getListCount();
 						$(this).find('img').css('filter','blur(4px)');
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
-								"<div class='header-cart-item-img'>"+
+								"<div class='header-cart-item-img cartItem'>"+
 									"<img src='"+img+"' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+
