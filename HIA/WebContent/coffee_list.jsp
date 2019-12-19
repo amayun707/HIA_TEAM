@@ -46,6 +46,9 @@ int listCount = pi.getListCount();
 	width: 141px;}
 .widful{
 	width: 100%; padding-left:100px;}
+.p-t-7{
+	position: relative;
+    top: -8px;}
 </style>
 <html lang="en">
 <head>
@@ -246,7 +249,7 @@ int listCount = pi.getListCount();
 								</span>
 							</div>
 
-							<div class="block2-txt-child2 flex-r p-t-3">
+							<div class="block2-txt-child2 flex-r p-t-3 p-t-7">
 								<%=coffeeList.get(i).getCoffee_category() %>
 							</div>
 							<div class="nDisplay coffee"><%=coffeeList.get(i).getCoffee_num() %></div>
