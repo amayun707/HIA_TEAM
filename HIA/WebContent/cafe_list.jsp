@@ -114,6 +114,7 @@ int listCount = pi.getListCount();
 <link rel="stylesheet" type="text/css" href="css/util.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body class="animsition">
 
@@ -258,23 +259,21 @@ int listCount = pi.getListCount();
          
       <section id="pageList">
    <%if(nowPage <= 1) {%>
-         [이전]&nbsp;
+         <span class="glyphicon glyphicon-menu-left"></span>&nbsp;&nbsp;&nbsp;&nbsp;
    <%} else {%>
-         <a href="CafeList.bo?page=<%=nowPage - 1%>">[이전]</a>&nbsp;
+         <a href="CafeList.bo?page=<%=nowPage - 1%>"><span class="glyphicon glyphicon-menu-left"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
    <%} %>
-   
    <%for(int i = startPage; i <= endPage; i++) { 
          if(i == nowPage) { %>
-            [<%=i %>]
+            <%=i %>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} else { %>
-            <a href="CafeList.bo?page=<%=i %>">[<%=i %>]</a>&nbsp;
+            <a href="CafeList.bo?page=<%=i %>"><%=i %></a>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} %>
    <%} %>
-   
    <%if(nowPage >= maxPage) { %>
-         [다음]
+         <span class="glyphicon glyphicon-menu-right"></span>
    <%} else { %>
-         <a href="CafeList.bo?page=<%=nowPage + 1 %>">[다음]</a>
+         <a href="CafeList.bo?page=<%=nowPage + 1 %>"><span class="glyphicon glyphicon-menu-right"></span></a>
    <%} %>
    </section>
    
