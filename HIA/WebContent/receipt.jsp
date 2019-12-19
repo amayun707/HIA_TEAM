@@ -1,3 +1,4 @@
+<%@page import="com.mysql.jdbc.PreparedStatement.ParseInfo"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.PaymentBean"%>
@@ -50,6 +51,7 @@ List receiptList = (List)request.getAttribute("receiptList");
 
 ArrayList receiptList1 = (ArrayList)receiptList.get(0);
 ArrayList receiptList2 = (ArrayList)receiptList.get(1);
+
 %>
     <form id="ReceiptList" method="post" name="ReceiptList">
     <%
@@ -87,7 +89,7 @@ ArrayList receiptList2 = (ArrayList)receiptList.get(1);
                                     <td>
                                        <div class="form-group text-center p-t-10">
                                         <button type="button" class="btn btn-dark" 
-                                        onclick="location.href='ReceiptDeletePro.or?pay_num=<%=paymentBean1.getPay_num() %>'">
+                                        onclick="location.href='OrderCheckPro.or?pay_num=<%=paymentBean1.getPay_num() %>'">
                                                                                          수령완료<i class="fa fa-check spaceLeft"></i></button>
                                        </div>
                                     </td>

@@ -12,8 +12,15 @@ public class PaymentBean {
 	private int amount;
 	private String coffee_name;
 	private String cafe_name;
+	private String confirm;
 	
 	
+	public String getConfirm() {
+		return confirm;
+	}
+	public void setConfirm(String confirm) {
+		this.confirm = confirm;
+	}
 	public String getCafe_name() {
 		return cafe_name;
 	}

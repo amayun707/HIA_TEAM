@@ -8,6 +8,13 @@
 String id = (String)session.getAttribute("id");
 String customer_owner = (String)session.getAttribute("customer_owner");
 %>
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			url: "getCartList.bo"
+		});
+	});
+</script>
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
 			<!-- Topbar -->

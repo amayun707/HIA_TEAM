@@ -40,7 +40,6 @@ display:none;}
 	margin: 15% auto; 
 	padding: 20px; width: 20%;	height: 70%;
 	position: relative; top: -20%;}
-
 .close {
 	width: 5%;
     position: relative;
@@ -142,8 +141,6 @@ option{
 				} %>
 				</ul>
 				
-				<ul class="header-cart-wrapitem2 w-full"></ul>
-				
 				<div class="w-full">
 					<div class="header-cart-total w-full">
 						Total: 
@@ -198,11 +195,7 @@ option{
 <script>
 $(document).ready(function(){
 	$('div.icon-header-noti').attr('data-notify', <%=cartList.size()%>);
-	
 	$('div.js-show-cart').click(function(){
-		
-		$('ul.header-cart-wrapitem').clone().appendTo('ul.header-cart-wrapitem2');
-		$('li.header-cart-item').load(window.location + 'li.header-cart-item');
 		//장바구니를 열었을 때 총 금액 얼마인지 설정.
 		$('ul.header-cart-wrapitem').find('.amount').each(function(){
 			$(this).keyup(function(){
@@ -302,6 +295,4 @@ $(document).ready(function(){
 		$('div.modalP').addClass('view');
 	});	
 });
-
 </script>
-	

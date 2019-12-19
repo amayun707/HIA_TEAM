@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.InsertPaymentAction;
 import action.MemberUpdateProAction;
+import action.OrderCheckProAction;
 import action.PaymentListAction;
 import action.PaymentProAction;
-import action.ReceiptDeleteAction;
 import action.ReceiptListAction;
 import vo.ActionForward;
 
@@ -72,8 +72,8 @@ public class OrderFrontController extends HttpServlet {
 				System.out.println("Exception : "+e.getMessage());
 			}
 		}
-		else if(command.equals("/ReceiptDeletePro.or")) {
-			action = new ReceiptDeleteAction();
+		else if(command.equals("/OrderCheckPro.or")) {
+			action = new OrderCheckProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception  e ) {

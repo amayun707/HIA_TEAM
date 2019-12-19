@@ -225,7 +225,7 @@ div .logo1 {
 			            '            <div class="desc">' + 
 			            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
 			            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-			            '                <div><a href="cafeDetail.bo?cafe_num=1&page=1">카페상페이지 <<<< 클릭!</a></div>' + 
+			            '                <div><a href="cafeDetail.bo?cafe_num=101&page=1">카페상페이지 <<<< 클릭!</a></div>' + 
 			            '            </div>' + 
 			            '        </div>' + 
 			            '    </div>' +    

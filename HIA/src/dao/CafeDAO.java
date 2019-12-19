@@ -14,7 +14,6 @@ import org.json.simple.JSONObject;
 import vo.CafeBean;
 import vo.CartBean;
 import vo.CoffeeBean;
-import vo.ReviewBean;
 
 import static db.JdbcUtil.*;
 

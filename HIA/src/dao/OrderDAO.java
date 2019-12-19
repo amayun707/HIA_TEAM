@@ -40,7 +40,7 @@ public class OrderDAO {
 		try {
 			String sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
 					+ "from payment p, cart c, coffee co, cafe cf "
-					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 and cf.id=?"
+					+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 and cf.id=? and p.confirm='x'"
 					+ "GROUP BY p.pay_num ORDER BY pay_num asc";
 			
 			pstmt = con.prepareStatement(sql);
@@ -62,7 +62,7 @@ public class OrderDAO {
 			
 			sql = "select p.pay_num, cf.cafe_name, p.orderTime, p.getTime, p.id, p.cost, c.price, c.amount, co.coffee_name "
 				+ "from payment p, cart c, coffee co, cafe cf "
-				+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 and cf.id=?"
+				+ "WHERE p.pay_num=c.pay_num and c.coffee_num=co.coffee_num and c.cafe_num=cf.cafe_num and p.pay_num>0 and cf.id=? and p.confirm='x'"
 				+ "ORDER BY pay_num asc";
 			
 			pstmt = con.prepareStatement(sql);
@@ -236,7 +236,6 @@ public class OrderDAO {
 	//=====================================================================================================================
 
 	public String getFavoriteList(String id) {
-		System.out.println("OrderDAO-getFavoriteList");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String favoriteList = "";
@@ -290,5 +289,28 @@ public class OrderDAO {
 			System.out.println("Exception : "+e.getMessage());
 		}
 		return favoriteList;
+	}
+
+	public int orderCheck(int pay_num) {
+		System.out.println("orderCheck");
+		PreparedStatement pstmt = null;
+		
+		int checkResult = 0;
+		
+		try {
+			String sql = "Update payment set confirm=? where pay_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "o");
+			pstmt.setInt(2, pay_num);
+			checkResult = pstmt.executeUpdate();
+		} 
+		catch (SQLException e) {
+			System.out.println("orderCheck() 오류 - " + e.getMessage());
+		}
+		finally {
+			close(pstmt);
+		}
+		
+		return checkResult;
 	}
 }
