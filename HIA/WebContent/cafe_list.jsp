@@ -67,6 +67,9 @@ int listCount = pi.getListCount();
 	margin:auto;
 	width: 1024px;
 	text-align: center;}
+.cartItem{
+	position: relative;
+    top: 10px;}
 </style>
 <title>Product</title>
 <meta charset="UTF-8">
@@ -574,7 +577,7 @@ int listCount = pi.getListCount();
 						$(this).find('img').css('filter','blur(4px)');
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
-								"<div class='header-cart-item-img'>"+
+								"<div class='header-cart-item-img cartItem'>"+
 									"<img src='images/<%=cafeList.get(0).getCoffee_file() %>' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+

@@ -49,6 +49,9 @@ int listCount = pi.getListCount();
 .p-t-7{
 	position: relative;
     top: -8px;}
+.cartItem{
+	position: relative;
+    top: 10px;}
 </style>
 <html lang="en">
 <head>
@@ -498,7 +501,7 @@ int listCount = pi.getListCount();
 						$(this).find('img').css('filter','blur(4px)');
 						$('ul.header-cart-wrapitem').append(
 							"<li class='"+coffee_num+" header-cart-item flex-w flex-t m-b-12'>"+
-								"<div class='header-cart-item-img'>"+
+								"<div class='header-cart-item-img cartItem'>"+
 									"<img src='"+img+"' alt='IMG'>"+
 								"</div>"+
 								"<div class = 'nDisplay coffee_in_cart'>"+coffee_num+"</div>"+

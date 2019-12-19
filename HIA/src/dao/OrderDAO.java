@@ -105,7 +105,7 @@ public class OrderDAO {
 	public ArrayList<CartBean> getCartList(String id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select a.coffee_num, a.cafe_num, a.price, a.amount, b.coffee_name, c.cafe_name "
+		String sql = "select a.coffee_num, a.cafe_num, a.price, a.amount, b.coffee_file, b.coffee_name, c.cafe_name "
 				+ "from cart a, coffee b, cafe c "
 				+ "where a.pay_num = 0 and a.coffee_num = b.coffee_num and b.cafe_num = c.cafe_num and a.id = ?";
 		ArrayList cartList = new ArrayList();
@@ -118,6 +118,7 @@ public class OrderDAO {
 				CartBean cartBean = new CartBean();
 				cartBean.setCafe_num(rs.getInt("cafe_num"));
 				cartBean.setCoffee_num(rs.getInt("coffee_num"));
+				cartBean.setCoffee_file(rs.getString("coffee_file"));
 				cartBean.setPrice(rs.getInt("price"));
 				cartBean.setAmount(rs.getInt("amount"));
 				cartBean.setCoffee_name(rs.getString("coffee_name"));
