@@ -605,6 +605,7 @@ public class CafeDAO {
 				cafeBean.setOpen_time(rs.getString("openTime"));
 				cafeBean.setRating(rs.getDouble("rating"));
 				cafeBean.setCafe_file(rs.getString("cafe_file"));
+				cafeBean.setCafe_phone(rs.getString("cafe_phone"));
 			}
 		} catch (SQLException e) {
 			System.out.println("CafeDAO : getCafe() " + e.getMessage());

@@ -30,7 +30,7 @@
    <link rel="stylesheet" type="text/css" href="css/util.css">
    <link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <!-- ====================================CSS 시작===================================== -->
@@ -176,7 +176,54 @@ div .logo1 {
 .close {
 	margin-left: 10px;
 }
+
+.geul {
+	text-align: center;
+}
+
+.geul > a {
+	color: rgba(0,0,255,.9);
+  	display:inline-block; 
+ 	margin:0;
+  	text-transform:uppercase;
+	font-size: 14px;
+}
+
+.geul > a:after {
+ 	display:block; 
+   	content: ''; 
+  	border-bottom: solid 3px #ea2129;  
+  	transform: scaleX(0);   
+    transition: transform 250ms ease-in-out;  
+}
+
+.geul > a:hover:after { transform: scaleX(1); }
+
+
+
+
+.geul {
+	margin-top : 10px;
+	font-weight: bold;
+}
+
+.ellipsisPhone {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 3px;
+}
+
+.ellipsis{
+	font-weight: bold;
+}
+
+
+
+
 </style>
+
+
 
 <!-- ====================================CSS 끝===================================== -->
 
@@ -205,8 +252,8 @@ div .logo1 {
 			var markerA1 = new kakao.maps.Marker({
 			    image : markerImageA1,
 			    map: mapA, 
-			    title: '코티지피',
-			    position: new kakao.maps.LatLng(35.156938, 129.064489)
+			    title: '듀랩',
+			    position: new kakao.maps.LatLng(35.157179, 129.064457)
 			});
 
 			//A구역 1번 마커 생성 메서드 끝
@@ -214,18 +261,18 @@ div .logo1 {
 			// A구역 1번 오버레이(작은창) 생성 메서드 시작
 			var contentA1 = '<div class="wrap">' + 
 			            '    <div class="info">' + 
-			            '        <div class="title">' + 
-			            '            <div style="text-align: center;color: red;">전포카페거리</div>' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">듀랩</div>' + 
 			            '            <div class="close" onclick="closeOverlayA1()" title="닫기"></div>' + 
 			            '        </div>' + 
 			            '        <div class="body">' + 
 			            '            <div class="img">' +
-			            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
+			            '                <img src="images/101.jpg" width="73" height="70">' +
 			            '           </div>' + 
 			            '            <div class="desc">' + 
-			            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-			            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-			            '                <div><a href="cafeDetail.bo?cafe_num=101&page=1">카페상페이지 <<<< 클릭!</a></div>' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                <div class="geul" ><a href="cafeDetail.bo?cafe_num=101&page=1" >카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
 			            '            </div>' + 
 			            '        </div>' + 
 			            '    </div>' +    
@@ -261,8 +308,8 @@ div .logo1 {
 			var markerA2 = new kakao.maps.Marker({
 			    image : markerImageA2,
 			    map: mapA,
-			    title: '북그러움',
-			    position: new kakao.maps.LatLng(35.157175, 129.064473)
+			    title: '기븐',
+			    position: new kakao.maps.LatLng(35.156611, 129.064739)
 			});
 
 			//------------- A구역 2번 마커 생성 메서드 끝
@@ -270,18 +317,18 @@ div .logo1 {
 			// ------------  A구역 2번 오버레이(작은창) 생성 메서드 시작
 			var contentA2 = '<div class="wrap">' + 
 			            '    <div class="info">' + 
-			            '        <div class="title">' + 
-			            '            전포카페거리' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">기븐</div>' + 
 			            '            <div class="close" onclick="closeOverlayA2()" title="닫기"></div>' + 
 			            '        </div>' + 
 			            '        <div class="body">' + 
 			            '            <div class="img">' +
-			            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
+			            '                <img src="images/102.jpg" width="73" height="70">' +
 			            '           </div>' + 
 			            '            <div class="desc">' + 
-			            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-			            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-			            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' +
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=102&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
 			            '            </div>' + 
 			            '        </div>' + 
 			            '    </div>' +    
@@ -317,25 +364,25 @@ div .logo1 {
 			var markerA3 = new kakao.maps.Marker({
 			    image : markerImageA3,
 			    map: mapA, 
-			    title: '더블링',
-			    position: new kakao.maps.LatLng(35.156590, 129.064724)
+			    title: '라운지커피',
+			    position: new kakao.maps.LatLng(35.156745, 129.064636)
 			});
 
 			// ------------  A구역 3번 오버레이(작은창) 생성 메서드 시작
 			var contentA3 = '<div class="wrap">' + 
 			            '    <div class="info">' + 
-			            '        <div class="title">' + 
-			            '            전포카페거리' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">라운지커피</div>' + 
 			            '            <div class="close" onclick="closeOverlayA3()" title="닫기"></div>' + 
 			            '        </div>' + 
 			            '        <div class="body">' + 
 			            '            <div class="img">' +
-			            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
+			            '                <img src="images/103.jpg" width="73" height="70">' +
 			            '           </div>' + 
 			            '            <div class="desc">' + 
-			            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-			            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-			            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=103&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
 			            '            </div>' + 
 			            '        </div>' + 
 			            '    </div>' +    
@@ -360,6 +407,114 @@ div .logo1 {
 			   overlayA3.setMap(null);
 			}
 			// -------------- A구역 3번 레이아웃(작은창) 생성 메서드 끝
+			
+			// 구분선 ----------------------------------------------------------------------------------
+
+			//A구역 4번 마커 생성 메서드 시작 
+			var imageSrcA4 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			var imageSizeA4 = new kakao.maps.Size(24, 35); 
+			var markerImageA4 = new kakao.maps.MarkerImage(imageSrcA4, imageSizeA4); 
+
+			var markerA4= new kakao.maps.Marker({
+			    image : markerImageA4,
+			    map: mapA, 
+			    title: '컬렉션',
+			    position: new kakao.maps.LatLng(35.157180, 129.064688)
+			});
+
+			// ------------  A구역 3번 오버레이(작은창) 생성 메서드 시작
+			var contentA4 = '<div class="wrap">' + 
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">컬렉션</div>' + 
+			            '            <div class="close" onclick="closeOverlayA4()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/104.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' +
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=104&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
+
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlayA4 = new kakao.maps.CustomOverlay({
+			    content: contentA4,
+//			     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+			    position: markerA4.getPosition()       
+			});
+
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			kakao.maps.event.addListener(markerA4, 'click', function() {
+//			    overlay.setMap(map);
+			    overlayA4.setMap(mapA);
+			});
+
+			// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			closeOverlayA4 = function () {
+			   overlayA4.setMap(null);
+			}
+			// -------------- A구역 4번 레이아웃(작은창) 생성 메서드 끝
+			
+			// 구분선 ----------------------------------------------------------------------------------
+
+			//A구역 5번 마커 생성 메서드 시작 
+			var imageSrcA5 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			var imageSizeA5 = new kakao.maps.Size(24, 35); 
+			var markerImageA5 = new kakao.maps.MarkerImage(imageSrcA5, imageSizeA5); 
+
+			var markerA5= new kakao.maps.Marker({
+			    image : markerImageA5,
+			    map: mapA, 
+			    title: '피크닉',
+			    position: new kakao.maps.LatLng(35.156746, 129.064747)
+			});
+
+			// ------------  A구역 5번 오버레이(작은창) 생성 메서드 시작
+			var contentA5 = '<div class="wrap">' + 
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">피크닉</div>' + 
+			            '            <div class="close" onclick="closeOverlayA5()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/105.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=105&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
+
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlayA5 = new kakao.maps.CustomOverlay({
+			    content: contentA5,
+//			     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+			    position: markerA5.getPosition()       
+			});
+
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			kakao.maps.event.addListener(markerA5, 'click', function() {
+//			    overlay.setMap(map);
+			    overlayA5.setMap(mapA);
+			});
+
+			// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			closeOverlayA5 = function () {
+			   overlayA5.setMap(null);
+			}
+			// -------------- A구역 5번 레이아웃(작은창) 생성 메서드 끝
 		}); // A버튼 이벤트 끝 
 	//----------------------------------------------------------------------------
 	
@@ -382,36 +537,36 @@ div .logo1 {
 		var markerB1 = new kakao.maps.Marker({
 		    image : markerImageB1,
 		    map: mapB, 
-		    title: '블루마운틴',
-		    position: new kakao.maps.LatLng(35.156313, 129.064717)
+		    title: '굿굿웨더',
+		    position: new kakao.maps.LatLng(35.156336, 129.064699)
 		});
 
 		// ------------  B구역 1번 오버레이(작은창) 생성 메서드 시작
 		var contentB1 = '<div class="wrap">' + 
-		            '    <div class="info">' + 
-		            '        <div class="title">' + 
-		            '            전포카페거리' + 
-		            '            <div class="close" onclick="closeOverlayB1()" title="닫기"></div>' + 
-		            '        </div>' + 
-		            '        <div class="body">' + 
-		            '            <div class="img">' +
-		            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-		            '           </div>' + 
-		            '            <div class="desc">' + 
-		            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-		            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-		            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-		            '            </div>' + 
-		            '        </div>' + 
-		            '    </div>' +    
-		            '</div>';
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">굿굿웨더</div>' + 
+			            '            <div class="close" onclick="closeOverlayB1()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/106.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=106&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
 		// 마커 위에 커스텀오버레이를 표시합니다
 		// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 		var overlayB1 = new kakao.maps.CustomOverlay({
 		    content: contentB1,
-//		     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
-		    position: markerB1.getPosition()       
+//		     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 35.156195, 129.064731
+		    position: new kakao.maps.LatLng(35.156195, 129.064731)      
 		});
 
 		// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
@@ -436,29 +591,29 @@ div .logo1 {
 		var markerB2 = new kakao.maps.Marker({
 		    image : markerImageB2,
 		    map: mapB, 
-		    title: '화화정',
-		    position: new kakao.maps.LatLng(35.156210, 129.064402)
+		    title: '로스노비오스',
+		    position: new kakao.maps.LatLng(35.155959, 129.064541)
 		});
 
 		// ------------  B구역 2번 오버레이(작은창) 생성 메서드 시작
 		var contentB2 = '<div class="wrap">' + 
-		            '    <div class="info">' + 
-		            '        <div class="title">' + 
-		            '            전포카페거리' + 
-		            '            <div class="close" onclick="closeOverlayB2()" title="닫기"></div>' + 
-		            '        </div>' + 
-		            '        <div class="body">' + 
-		            '            <div class="img">' +
-		            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-		            '           </div>' + 
-		            '            <div class="desc">' + 
-		            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-		            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-		            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-		            '            </div>' + 
-		            '        </div>' + 
-		            '    </div>' +    
-		            '</div>';
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">로스노비오스</div>' + 
+			            '            <div class="close" onclick="closeOverlayB2()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/107.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로38번길 43-13</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=107&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
 		// 마커 위에 커스텀오버레이를 표시합니다
 		// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -490,29 +645,29 @@ div .logo1 {
 		var markerB3 = new kakao.maps.Marker({
 		    image : markerImageB3,
 		  map: mapB, 
-		  title: '피플스',
-		  position: new kakao.maps.LatLng(35.156195, 129.064731)
+		  title: '망원동티라미수',
+		  position: new kakao.maps.LatLng(35.155721, 129.064274)
 		});
 
 		//------------  B구역 3번 오버레이(작은창) 생성 메서드 시작
 		var contentB3 = '<div class="wrap">' + 
-		          '    <div class="info">' + 
-		          '        <div class="title">' + 
-		          '            전포카페거리' + 
-		          '            <div class="close" onclick="closeOverlayB3()" title="닫기"></div>' + 
-		          '        </div>' + 
-		          '        <div class="body">' + 
-		          '            <div class="img">' +
-		          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-		          '           </div>' + 
-		          '            <div class="desc">' + 
-		          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-		          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-		          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-		          '            </div>' + 
-		          '        </div>' + 
-		          '    </div>' +    
-		          '</div>';
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">망원동티라미수</div>' + 
+			            '            <div class="close" onclick="closeOverlayB3()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/108.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로38번길 43-8</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=108&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
 		//마커 위에 커스텀오버레이를 표시합니다
 		//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -546,29 +701,29 @@ div .logo1 {
 		var markerB4 = new kakao.maps.Marker({
 		    image : markerImageB4,
 		  map: mapB, 
-		  title: '카페미드나잇',
-		  position: new kakao.maps.LatLng(35.156025, 129.064389)
+		  title: 'LOVESOME',
+		  position: new kakao.maps.LatLng(35.156004, 129.063960)
 		});
 
 		//------------  B구역 4번 오버레이(작은창) 생성 메서드 시작
 		var contentB4 = '<div class="wrap">' + 
-		          '    <div class="info">' + 
-		          '        <div class="title">' + 
-		          '            전포카페거리' + 
-		          '            <div class="close" onclick="closeOverlayB4()" title="닫기"></div>' + 
-		          '        </div>' + 
-		          '        <div class="body">' + 
-		          '            <div class="img">' +
-		          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-		          '           </div>' + 
-		          '            <div class="desc">' + 
-		          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-		          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-		          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-		          '            </div>' + 
-		          '        </div>' + 
-		          '    </div>' +    
-		          '</div>';
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">LOVESOME</div>' + 
+			            '            <div class="close" onclick="closeOverlayB4()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/109.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로38번길 37</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=109&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
 		//마커 위에 커스텀오버레이를 표시합니다
 		//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -601,29 +756,29 @@ div .logo1 {
 		var markerB5 = new kakao.maps.Marker({
 		    image : markerImageB5,
 		map: mapB, 
-		title: '아뜰리에 마카롱',
-		position: new kakao.maps.LatLng(35.155827, 129.063975)
+		title: '다운트',
+		position: new kakao.maps.LatLng(35.155689, 129.064135)
 		});
 
 		//------------  B구역 5번 오버레이(작은창) 생성 메서드 시작
 		var contentB5 = '<div class="wrap">' + 
-		        '    <div class="info">' + 
-		        '        <div class="title">' + 
-		        '            전포카페거리' + 
-		        '            <div class="close" onclick="closeOverlayB5()" title="닫기"></div>' + 
-		        '        </div>' + 
-		        '        <div class="body">' + 
-		        '            <div class="img">' +
-		        '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-		        '           </div>' + 
-		        '            <div class="desc">' + 
-		        '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-		        '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-		        '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-		        '            </div>' + 
-		        '        </div>' + 
-		        '    </div>' +    
-		        '</div>';
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">다운트</div>' + 
+			            '            <div class="close" onclick="closeOverlayB5()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/110.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로38번길 43-</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=110&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
 		//마커 위에 커스텀오버레이를 표시합니다
 		//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -667,29 +822,29 @@ div .logo1 {
 		var markerC1 = new kakao.maps.Marker({
 	    	image : markerImageC1,
 		    map: mapC, 
-	  		title: '뚱카롱',
-	  		position: new kakao.maps.LatLng(35.155312,  129.062777)
+	  		title: '2인칭 시점',
+	  		position: new kakao.maps.LatLng(35.154822, 129.062929)
 		});
 
 		//------------  C구역 1번 오버레이(작은창) 생성 메서드 시작
 		var contentC1 = '<div class="wrap">' + 
-	          '    <div class="info">' + 
-	          '        <div class="title">' + 
-	          '            전포카페거리' + 
-	          '            <div class="close" onclick="closeOverlayC1()" title="닫기"></div>' + 
-	          '        </div>' + 
-	          '        <div class="body">' + 
-	          '            <div class="img">' +
-	          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-	          '           </div>' + 
-	          '            <div class="desc">' + 
-	          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-	          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-	          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-	          '            </div>' + 
-	          '        </div>' + 
-	          '    </div>' +    
-	          '</div>';
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">2인칭 시점</div>' + 
+			            '            <div class="close" onclick="closeOverlayC1()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/111.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산진구 전포대로199번길 40-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=111&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
 	//마커 위에 커스텀오버레이를 표시합니다
 	//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -710,9 +865,228 @@ div .logo1 {
 	   overlayC1.setMap(null);
 	}
 	
+	// --------------------------------------------- 구분선 ------------------------------------------------
+	
+	
+	//C구역 2번 마커 생성 메서드 시작 
+	var imageSrcC2 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	var imageSizeC2 = new kakao.maps.Size(24, 35); 
+	var markerImageC2 = new kakao.maps.MarkerImage(imageSrcC2, imageSizeC2); 
+
+	var markerC2 = new kakao.maps.Marker({
+    	image : markerImageC2,
+	    map: mapC, 
+  		title: 'FM 커피하우스 1호점',
+  		position: new kakao.maps.LatLng(35.154610, 129.063702)
+	});
+
+	//------------  C구역 2번 오버레이(작은창) 생성 메서드 시작
+	var contentC2 = '<div class="wrap">' + 
+		            '    <div class="info">' + 
+		            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+		            '            <div style="text-align: center;color: white;">FM 커피하우스 1호점</div>' + 
+		            '            <div class="close" onclick="closeOverlayC2()" title="닫기"></div>' + 
+		            '        </div>' + 
+		            '        <div class="body">' + 
+		            '            <div class="img">' +
+		            '                <img src="images/112.jpg" width="73" height="70">' +
+		            '           </div>' + 
+		            '            <div class="desc">' + 
+		            '                <div class="ellipsis">부산 부산진구 전포대로199번길 26</div>' + 
+		            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+		            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=112&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+		            '            </div>' + 
+		            '        </div>' + 
+		            '    </div>' +    
+		            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC2 = new kakao.maps.CustomOverlay({
+  content: contentC2,
+//   map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+  position: new kakao.maps.LatLng(35.154610, 129.063625)
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC2, 'click', function() {
+//   overlay.setMap(map);
+  overlayC2.setMap(mapC);
+});
+
+//// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC2 = function () {
+   overlayC2.setMap(null);
+}
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+
+//C구역 3번 마커 생성 메서드 시작 
+var imageSrcC3 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC3 = new kakao.maps.Size(24, 35); 
+var markerImageC3 = new kakao.maps.MarkerImage(imageSrcC3, imageSizeC3); 
+
+var markerC3 = new kakao.maps.Marker({
+	image : markerImageC3,
+    map: mapC, 
+		title: '고유커피로스터스',
+		position: new kakao.maps.LatLng(35.155308, 129.063166)
+});
+
+//------------  C구역 3번 오버레이(작은창) 생성 메서드 시작
+var contentC3 = '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">고유커피로스터스</div>' + 
+	            '            <div class="close" onclick="closeOverlayC3()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/113.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 전포대로209번길 39</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=113&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC3 = new kakao.maps.CustomOverlay({
+content: contentC3,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.155250, 129.063166)
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC3, 'click', function() {
+//overlay.setMap(map);
+overlayC3.setMap(mapC);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC3 = function () {
+overlayC3.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+
+//C구역 4번 마커 생성 메서드 시작 
+var imageSrcC4 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC4 = new kakao.maps.Size(24, 35); 
+var markerImageC4 = new kakao.maps.MarkerImage(imageSrcC4, imageSizeC4); 
+
+var markerC4 = new kakao.maps.Marker({
+	image : markerImageC4,
+  map: mapC, 
+		title: '로망34',
+		position: new kakao.maps.LatLng(35.154597, 129.063374)
+});
+
+//------------  C구역 4번 오버레이(작은창) 생성 메서드 시작
+var contentC4 = '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">로망34</div>' + 
+	            '            <div class="close" onclick="closeOverlayC4()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/114.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 전포대로199번길 34</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=114&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC4 = new kakao.maps.CustomOverlay({
+content: contentC4,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: markerC4.getPosition()
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC4, 'click', function() {
+//overlay.setMap(map);
+overlayC4.setMap(mapC);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC4 = function () {
+overlayC4.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+
+//C구역 5번 마커 생성 메서드 시작 
+var imageSrcC5 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC5 = new kakao.maps.Size(24, 35); 
+var markerImageC5 = new kakao.maps.MarkerImage(imageSrcC5, imageSizeC5); 
+
+var markerC5 = new kakao.maps.Marker({
+	image : markerImageC4,
+map: mapC, 
+		title: '코드지카페',
+		position: new kakao.maps.LatLng(35.154961, 129.062678)
+});
+
+//------------  C구역 4번 오버레이(작은창) 생성 메서드 시작
+var contentC5 = '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">코드지카페</div>' + 
+	            '            <div class="close" onclick="closeOverlayC5()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/115.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 동천로 70</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=115&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC5 = new kakao.maps.CustomOverlay({
+content: contentC5,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: markerC5.getPosition()
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC5, 'click', function() {
+//overlay.setMap(map);
+overlayC5.setMap(mapC);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC5 = function () {
+overlayC5.setMap(null);
+}
+//--------------------------------------------- 구분선 ------------------------------------------------		
+	
+	
+	
+	
 	}); // C구역 클릭 이벤트 끝
 	
-	// --------------------------------------------- 구분선 ------------------------------------------------
+// --------------------------------------------- 구분선 ------------------------------------------------
 	
 	// D구역 버튼클릭 이벤트 시작!
 	$('.btnD').click(function(){
@@ -735,28 +1109,28 @@ div .logo1 {
 	    	image : markerImageD1,
 		    map: mapD, 
 	  		title: '카페더맨션',
-	  		position: new kakao.maps.LatLng(35.155040,  129.064153)
+	  		position: new kakao.maps.LatLng(35.155041, 129.064166)
 		});
 
 		//------------  D구역 1번 오버레이(작은창) 생성 메서드 시작
 		var contentD1 = '<div class="wrap">' + 
-	          '    <div class="info">' + 
-	          '        <div class="title">' + 
-	          '            전포카페거리' + 
-	          '            <div class="close" onclick="closeOverlayD1()" title="닫기"></div>' + 
-	          '        </div>' + 
-	          '        <div class="body">' + 
-	          '            <div class="img">' +
-	          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-	          '           </div>' + 
-	          '            <div class="desc">' + 
-	          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-	          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-	          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-	          '            </div>' + 
-	          '        </div>' + 
-	          '    </div>' +    
-	          '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">카페더맨션</div>' + 
+	            '            <div class="close" onclick="closeOverlayD1()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/116.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 동천로 70</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=116&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 	//마커 위에 커스텀오버레이를 표시합니다
 	//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -777,17 +1151,231 @@ div .logo1 {
 	   overlayD1.setMap(null);
 	}
 	
+	
+	// --------------------------------------------- 구분선 ------------------------------------------------
+	
+		//D구역 2번 마커 생성 메서드 시작 
+		var imageSrcD2 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		var imageSizeD2 = new kakao.maps.Size(24, 35); 
+		var markerImageD2 = new kakao.maps.MarkerImage(imageSrcD2, imageSizeD2); 
+
+		var markerD2 = new kakao.maps.Marker({
+	    	image : markerImageD2,
+		    map: mapD, 
+	  		title: '하이안',
+	  		position: new kakao.maps.LatLng(35.155149, 129.064575)
+		});
+
+		//------------  D구역 1번 오버레이(작은창) 생성 메서드 시작
+		var contentD2 = '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">하이안</div>' + 
+	            '            <div class="close" onclick="closeOverlayD2()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/117.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로46번길 62-4</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=117&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
+
+	//마커 위에 커스텀오버레이를 표시합니다
+	//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+	var overlayD2 = new kakao.maps.CustomOverlay({
+	  content: contentD2,
+	//   map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+	  position: markerD2.getPosition()       
+	});
+
+	//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(markerD2, 'click', function() {
+	//   overlay.setMap(map);
+	  overlayD2.setMap(mapD);
+	});
+
+	//// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	closeOverlayD2 = function () {
+	   overlayD2.setMap(null);
+	}
+	
+	// --------------------------------------------- 구분선 ------------------------------------------------
+	
+	//D구역 3번 마커 생성 메서드 시작 
+	var imageSrcD3 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	var imageSizeD3 = new kakao.maps.Size(24, 35); 
+	var markerImageD3 = new kakao.maps.MarkerImage(imageSrcD3, imageSizeD3); 
+
+	var markerD3 = new kakao.maps.Marker({
+    	image : markerImageD3,
+	    map: mapD, 
+  		title: '카페 메인',
+  		position: new kakao.maps.LatLng(35.155341, 129.064113)
+	});
+
+	//------------  D구역 3번 오버레이(작은창) 생성 메서드 시작
+	var contentD3 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+            '            <div style="text-align: center;color: white;">카페 메인</div>' + 
+            '            <div class="close" onclick="closeOverlayD3()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="images/118.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">부산 부산진구 전포대로209번길 19</div>' + 
+            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=118&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayD3 = new kakao.maps.CustomOverlay({
+  content: contentD3,
+//   map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+  position: new kakao.maps.LatLng(35.155190, 129.064113)       
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerD3, 'click', function() {
+//   overlay.setMap(map);
+  overlayD3.setMap(mapD);
+});
+
+//// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayD3 = function () {
+   overlayD3.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+//D구역 4번 마커 생성 메서드 시작 
+var imageSrcD4 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeD4 = new kakao.maps.Size(24, 35); 
+var markerImageD4 = new kakao.maps.MarkerImage(imageSrcD4, imageSizeD4); 
+
+var markerD4 = new kakao.maps.Marker({
+	image : markerImageD4,
+    map: mapD, 
+		title: '카페 레이지',
+		position: new kakao.maps.LatLng(35.155330, 129.064323)
+});
+
+//------------  D구역 4번 오버레이(작은창) 생성 메서드 시작
+var contentD4 = '<div class="wrap">' + 
+        '    <div class="info">' + 
+        '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+        '            <div style="text-align: center;color: white;">카페 레이지</div>' + 
+        '            <div class="close" onclick="closeOverlayD4()" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="images/119.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">부산 부산진구 전포대로209번길 15</div>' + 
+        '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+        '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=119&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayD4 = new kakao.maps.CustomOverlay({
+content: contentD4,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.155230, 129.064743)       
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerD4, 'click', function() {
+//overlay.setMap(map);
+overlayD4.setMap(mapD);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayD4 = function () {
+overlayD4.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+//D구역 5번 마커 생성 메서드 시작 
+var imageSrcD5 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeD5 = new kakao.maps.Size(24, 35); 
+var markerImageD5 = new kakao.maps.MarkerImage(imageSrcD5, imageSizeD5); 
+
+var markerD5 = new kakao.maps.Marker({
+	image : markerImageD5,
+  map: mapD, 
+		title: '카페 씬',
+		position: new kakao.maps.LatLng(35.155246, 129.064631)
+});
+
+//------------  D구역 5번 오버레이(작은창) 생성 메서드 시작
+var contentD5 = '<div class="wrap">' + 
+      '    <div class="info">' + 
+      '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+      '            <div style="text-align: center;color: white;">카페 씬</div>' + 
+      '            <div class="close" onclick="closeOverlayD5()" title="닫기"></div>' + 
+      '        </div>' + 
+      '        <div class="body">' + 
+      '            <div class="img">' +
+      '                <img src="images/120.jpg" width="73" height="70">' +
+      '           </div>' + 
+      '            <div class="desc">' + 
+      '                <div class="ellipsis">부산 부산진구 전포대로209번길 9</div>' + 
+      '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+      '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=120&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+      '            </div>' + 
+      '        </div>' + 
+      '    </div>' +    
+      '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayD5 = new kakao.maps.CustomOverlay({
+content: contentD5,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.155, 129.064631)       
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerD5, 'click', function() {
+//overlay.setMap(map);
+overlayD5.setMap(mapD);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayD5 = function () {
+overlayD5.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+	
+	
+	
+	
+	
 	}); // D구역 버튼클릭 이벤트 끝!
 	
 	
-	
-	
 		
-		
-		
-		
-		
-	}); // jQuery 끝
+}); // jQuery 끝
 <!-- ******************************************** jQuey 로 버튼 이벤트 하는 부분 끝 ************************************** -->
 </script>
 </head>
@@ -1026,8 +1614,8 @@ var marker = new kakao.maps.Marker({
 // 별도의 이벤트 메소드를 제공하지 않습니다 
 var content = '<div class="wrap">' + 
             '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            전포카페거리' + 
+            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+            '            <div style="text-align: center;color: white;">전포카페거리</div>' + 
             '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
             '        </div>' + 
             '        <div class="body">' + 
@@ -1035,9 +1623,9 @@ var content = '<div class="wrap">' +
             '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
             '           </div>' + 
             '            <div class="desc">' + 
-            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
+            '                <div class="ellipsisPhone">부산 부산진구 동천로 92</div>' + 
+            '                <div class="ellipsisPhone">지번 전포동 668-1</div>' + 
+            '                <div class="geul"><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기←클릭!</a></div>' + 
             '            </div>' + 
             '        </div>' + 
             '    </div>' +    
@@ -1099,175 +1687,279 @@ kakao.maps.event.addListener(rectangle, 'mouseout', function() {
          level: 1
     };
  
-var mapA = new kakao.maps.Map(containerA, optionsA);
+   var mapA = new kakao.maps.Map(containerA, optionsA);
 
 // A구역 1번 마커 생성 및 오버레이 표시
-var imageSrcA1 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-var imageSizeA1 = new kakao.maps.Size(24, 35); 
-var markerImageA1 = new kakao.maps.MarkerImage(imageSrcA1, imageSizeA1); 
+	var imageSrcA1 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	var imageSizeA1 = new kakao.maps.Size(24, 35); 
+	var markerImageA1 = new kakao.maps.MarkerImage(imageSrcA1, imageSizeA1); 
 
-var markerA1 = new kakao.maps.Marker({
-    image : markerImageA1,
-    map: mapA, 
-    title: '코티지피',
-    position: new kakao.maps.LatLng(35.156938, 129.064489)
-});
+	var markerA1 = new kakao.maps.Marker({
+	    image : markerImageA1,
+	    map: mapA, 
+	    title: '듀랩',
+	    position: new kakao.maps.LatLng(35.157179, 129.064457)
+	});
 
-//A구역 1번 마커 생성 메서드 끝
+	//A구역 1번 마커 생성 메서드 끝
 
-// A구역 1번 오버레이(작은창) 생성 메서드 시작
-var contentA1 = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            전포카페거리' + 
-            '            <div class="close" onclick="closeOverlayA1()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-            '                <div><a href="/jidotest.jsp?cafenum=13">지도 테스트</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
+	// A구역 1번 오버레이(작은창) 생성 메서드 시작
+	var contentA1 = '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">듀랩</div>' + 
+	            '            <div class="close" onclick="closeOverlayA1()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/101.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                <div class="geul" ><a href="cafeDetail.bo?cafe_num=101&page=1" >카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
-// 마커 위에 커스텀오버레이를 표시합니다
-// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlayA1 = new kakao.maps.CustomOverlay({
-    content: contentA1,
-//     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
-    position: markerA1.getPosition()       
-});
+	// 마커 위에 커스텀오버레이를 표시합니다
+	// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+	var overlayA1 = new kakao.maps.CustomOverlay({
+	    content: contentA1,
+//	     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+	    position: markerA1.getPosition()       
+	});
 
-// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-kakao.maps.event.addListener(markerA1, 'click', function() {
-//    overlay.setMap(map);
-    overlayA1.setMap(mapA);
-});
+	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(markerA1, 'click', function() {
+//	    overlay.setMap(map);
+	    overlayA1.setMap(mapA);
+	});
 
-// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-closeOverlayA1 = function () {
-   overlayA1.setMap(null);
-}
-//A구역 1번 마커 생성 및 오버레이 표시
+	// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	closeOverlayA1 = function () {
+	   overlayA1.setMap(null);
+	}
+	//A구역 1번 마커 생성 및 오버레이 표시
 
-// 구분선 ----------------------------------------------------------------------------------
+	// 구분선 ----------------------------------------------------------------------------------
 
-//A구역 2번 마커 생성 메서드 시작 
-var imageSrcA2 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-var imageSizeA2 = new kakao.maps.Size(24, 35); 
-var markerImageA2 = new kakao.maps.MarkerImage(imageSrcA2, imageSizeA2); 
+	//A구역 2번 마커 생성 메서드 시작 
+			var imageSrcA2 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			var imageSizeA2 = new kakao.maps.Size(24, 35); 
+			var markerImageA2 = new kakao.maps.MarkerImage(imageSrcA2, imageSizeA2); 
 
-var markerA2 = new kakao.maps.Marker({
-    image : markerImageA2,
-    map: mapA,
-    title: '북그러움',
-    position: new kakao.maps.LatLng(35.157175, 129.064473)
-});
+			var markerA2 = new kakao.maps.Marker({
+			    image : markerImageA2,
+			    map: mapA,
+			    title: '기븐',
+			    position: new kakao.maps.LatLng(35.156611, 129.064739)
+			});
 
-//------------- A구역 2번 마커 생성 메서드 끝
+			//------------- A구역 2번 마커 생성 메서드 끝
 
-// ------------  A구역 2번 오버레이(작은창) 생성 메서드 시작
-var contentA2 = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            전포카페거리' + 
-            '            <div class="close" onclick="closeOverlayA2()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
+			// ------------  A구역 2번 오버레이(작은창) 생성 메서드 시작
+			var contentA2 = '<div class="wrap">' + 
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">기븐</div>' + 
+			            '            <div class="close" onclick="closeOverlayA2()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/102.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' +
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=102&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
-// 마커 위에 커스텀오버레이를 표시합니다
-// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlayA2 = new kakao.maps.CustomOverlay({
-    content: contentA2,
-//     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
-    position: markerA2.getPosition()       
-});
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlayA2 = new kakao.maps.CustomOverlay({
+			    content: contentA2,
+//			     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+			    position: markerA2.getPosition()       
+			});
 
-// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-kakao.maps.event.addListener(markerA2, 'click', function() {
-//    overlay.setMap(map);
-    overlayA2.setMap(mapA);
-});
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			kakao.maps.event.addListener(markerA2, 'click', function() {
+//			    overlay.setMap(map);
+			    overlayA2.setMap(mapA);
+			});
 
-// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-closeOverlayA2 = function () {
-   overlayA2.setMap(null);
-}
-// -------------- A구역 2번 레이아웃(작은창) 생성 메서드 끝
+			// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			closeOverlayA2 = function () {
+			   overlayA2.setMap(null);
+			}
+			// -------------- A구역 2번 레이아웃(작은창) 생성 메서드 끝
 
-// 구분선 ----------------------------------------------------------------------------------
+			// 구분선 ----------------------------------------------------------------------------------
+
+
 
 //A구역 3번 마커 생성 메서드 시작 
-var imageSrcA3 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-var imageSizeA3 = new kakao.maps.Size(24, 35); 
-var markerImageA3 = new kakao.maps.MarkerImage(imageSrcA3, imageSizeA3); 
+			var imageSrcA3 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			var imageSizeA3 = new kakao.maps.Size(24, 35); 
+			var markerImageA3 = new kakao.maps.MarkerImage(imageSrcA3, imageSizeA3); 
 
-var markerA3 = new kakao.maps.Marker({
-    image : markerImageA3,
-    map: mapA, 
-    title: '더블링',
-    position: new kakao.maps.LatLng(35.156590, 129.064724)
-});
+			var markerA3 = new kakao.maps.Marker({
+			    image : markerImageA3,
+			    map: mapA, 
+			    title: '라운지커피',
+			    position: new kakao.maps.LatLng(35.156745, 129.064636)
+			});
 
-// ------------  A구역 3번 오버레이(작은창) 생성 메서드 시작
-var contentA3 = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            전포카페거리' + 
-            '            <div class="close" onclick="closeOverlayA3()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
+			// ------------  A구역 3번 오버레이(작은창) 생성 메서드 시작
+			var contentA3 = '<div class="wrap">' + 
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">라운지커피</div>' + 
+			            '            <div class="close" onclick="closeOverlayA3()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/103.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=103&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
-// 마커 위에 커스텀오버레이를 표시합니다
-// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-var overlayA3 = new kakao.maps.CustomOverlay({
-    content: contentA3,
-//     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
-    position: markerA3.getPosition()       
-});
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlayA3 = new kakao.maps.CustomOverlay({
+			    content: contentA3,
+//			     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+			    position: markerA3.getPosition()       
+			});
 
-// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-kakao.maps.event.addListener(markerA3, 'click', function() {
-//    overlay.setMap(map);
-    overlayA3.setMap(mapA);
-});
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			kakao.maps.event.addListener(markerA3, 'click', function() {
+//			    overlay.setMap(map);
+			    overlayA3.setMap(mapA);
+			});
 
-// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-closeOverlayA3 = function () {
-   overlayA3.setMap(null);
-}
-// -------------- A구역 3번 레이아웃(작은창) 생성 메서드 끝
+			// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			closeOverlayA3 = function () {
+			   overlayA3.setMap(null);
+			}
+			// -------------- A구역 3번 레이아웃(작은창) 생성 메서드 끝
+			
+				//A구역 4번 마커 생성 메서드 시작 
+			var imageSrcA4 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			var imageSizeA4 = new kakao.maps.Size(24, 35); 
+			var markerImageA4 = new kakao.maps.MarkerImage(imageSrcA4, imageSizeA4); 
 
+			var markerA4= new kakao.maps.Marker({
+			    image : markerImageA4,
+			    map: mapA, 
+			    title: '컬렉션',
+			    position: new kakao.maps.LatLng(35.157180, 129.064688)
+			});
 
+			// ------------  A구역 3번 오버레이(작은창) 생성 메서드 시작
+			var contentA4 = '<div class="wrap">' + 
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">컬렉션</div>' + 
+			            '            <div class="close" onclick="closeOverlayA4()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/104.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' +
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=104&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
 
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlayA4 = new kakao.maps.CustomOverlay({
+			    content: contentA4,
+//			     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+			    position: markerA4.getPosition()       
+			});
 
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			kakao.maps.event.addListener(markerA4, 'click', function() {
+//			    overlay.setMap(map);
+			    overlayA4.setMap(mapA);
+			});
+
+			// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			closeOverlayA4 = function () {
+			   overlayA4.setMap(null);
+			}
+			// -------------- A구역 4번 레이아웃(작은창) 생성 메서드 끝
+			
+			// 구분선 ----------------------------------------------------------------------------------
+
+			//A구역 5번 마커 생성 메서드 시작 
+			var imageSrcA5 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+			var imageSizeA5 = new kakao.maps.Size(24, 35); 
+			var markerImageA5 = new kakao.maps.MarkerImage(imageSrcA5, imageSizeA5); 
+
+			var markerA5= new kakao.maps.Marker({
+			    image : markerImageA5,
+			    map: mapA, 
+			    title: '피크닉',
+			    position: new kakao.maps.LatLng(35.156746, 129.064747)
+			});
+
+			// ------------  A구역 5번 오버레이(작은창) 생성 메서드 시작
+			var contentA5 = '<div class="wrap">' + 
+			            '    <div class="info">' + 
+			            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+			            '            <div style="text-align: center;color: white;">피크닉</div>' + 
+			            '            <div class="close" onclick="closeOverlayA5()" title="닫기"></div>' + 
+			            '        </div>' + 
+			            '        <div class="body">' + 
+			            '            <div class="img">' +
+			            '                <img src="images/105.jpg" width="73" height="70">' +
+			            '           </div>' + 
+			            '            <div class="desc">' + 
+			            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+			            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+			            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=105&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+			            '            </div>' + 
+			            '        </div>' + 
+			            '    </div>' +    
+			            '</div>';
+
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlayA5 = new kakao.maps.CustomOverlay({
+			    content: contentA5,
+//			     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+			    position: markerA5.getPosition()       
+			});
+
+			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+			kakao.maps.event.addListener(markerA5, 'click', function() {
+//			    overlay.setMap(map);
+			    overlayA5.setMap(mapA);
+			});
+
+			// // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+			closeOverlayA5 = function () {
+			   overlayA5.setMap(null);
+			}
+			// -------------- A구역 5번 레이아웃(작은창) 생성 메서드 끝
     
 });
 //============== A구역 클릭이벤트 끝 ===============
@@ -1308,36 +2000,36 @@ var markerImageB1 = new kakao.maps.MarkerImage(imageSrcB1, imageSizeB1);
 var markerB1 = new kakao.maps.Marker({
     image : markerImageB1,
     map: mapB, 
-    title: '블루마운틴',
-    position: new kakao.maps.LatLng(35.156313, 129.064717)
+    title: '굿굿웨더',
+    position: new kakao.maps.LatLng(35.156336, 129.064699)
 });
 
 // ------------  B구역 1번 오버레이(작은창) 생성 메서드 시작
 var contentB1 = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            전포카페거리' + 
-            '            <div class="close" onclick="closeOverlayB1()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">굿굿웨더</div>' + 
+	            '            <div class="close" onclick="closeOverlayB1()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/106.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로46번길 10-7</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=106&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 // 마커 위에 커스텀오버레이를 표시합니다
 // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 var overlayB1 = new kakao.maps.CustomOverlay({
     content: contentB1,
-//     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
-    position: markerB1.getPosition()       
+//     map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 35.156195, 129.064731
+    position: new kakao.maps.LatLng(35.156195, 129.064731)      
 });
 
 // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
@@ -1362,29 +2054,29 @@ var markerImageB2 = new kakao.maps.MarkerImage(imageSrcB2, imageSizeB2);
 var markerB2 = new kakao.maps.Marker({
     image : markerImageB2,
     map: mapB, 
-    title: '화화정',
-    position: new kakao.maps.LatLng(35.156210, 129.064402)
+    title: '로스노비오스',
+    position: new kakao.maps.LatLng(35.155959, 129.064541)
 });
 
 // ------------  B구역 2번 오버레이(작은창) 생성 메서드 시작
 var contentB2 = '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            전포카페거리' + 
-            '            <div class="close" onclick="closeOverlayB2()" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-            '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-            '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">로스노비오스</div>' + 
+	            '            <div class="close" onclick="closeOverlayB2()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/107.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로38번길 43-13</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=107&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 // 마커 위에 커스텀오버레이를 표시합니다
 // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -1416,29 +2108,29 @@ var markerImageB3 = new kakao.maps.MarkerImage(imageSrcB3, imageSizeB3);
 var markerB3 = new kakao.maps.Marker({
     image : markerImageB3,
   map: mapB, 
-  title: '피플스',
-  position: new kakao.maps.LatLng(35.156195, 129.064731)
+  title: '망원동티라미수',
+  position: new kakao.maps.LatLng(35.155721, 129.064274)
 });
 
 //------------  B구역 3번 오버레이(작은창) 생성 메서드 시작
 var contentB3 = '<div class="wrap">' + 
-          '    <div class="info">' + 
-          '        <div class="title">' + 
-          '            전포카페거리' + 
-          '            <div class="close" onclick="closeOverlayB3()" title="닫기"></div>' + 
-          '        </div>' + 
-          '        <div class="body">' + 
-          '            <div class="img">' +
-          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-          '           </div>' + 
-          '            <div class="desc">' + 
-          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-          '            </div>' + 
-          '        </div>' + 
-          '    </div>' +    
-          '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">망원동티라미수</div>' + 
+	            '            <div class="close" onclick="closeOverlayB3()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/108.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로38번길 43-8</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=108&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 //마커 위에 커스텀오버레이를 표시합니다
 //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -1472,29 +2164,29 @@ var markerImageB4 = new kakao.maps.MarkerImage(imageSrcB4, imageSizeB4);
 var markerB4 = new kakao.maps.Marker({
     image : markerImageB4,
   map: mapB, 
-  title: '카페미드나잇',
-  position: new kakao.maps.LatLng(35.156025, 129.064389)
+  title: 'LOVESOME',
+  position: new kakao.maps.LatLng(35.156004, 129.063960)
 });
 
 //------------  B구역 4번 오버레이(작은창) 생성 메서드 시작
 var contentB4 = '<div class="wrap">' + 
-          '    <div class="info">' + 
-          '        <div class="title">' + 
-          '            전포카페거리' + 
-          '            <div class="close" onclick="closeOverlayB4()" title="닫기"></div>' + 
-          '        </div>' + 
-          '        <div class="body">' + 
-          '            <div class="img">' +
-          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-          '           </div>' + 
-          '            <div class="desc">' + 
-          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-          '            </div>' + 
-          '        </div>' + 
-          '    </div>' +    
-          '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">LOVESOME</div>' + 
+	            '            <div class="close" onclick="closeOverlayB4()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/109.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로38번길 37</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=109&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 //마커 위에 커스텀오버레이를 표시합니다
 //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -1527,29 +2219,29 @@ var markerImageB5 = new kakao.maps.MarkerImage(imageSrcB5, imageSizeB5);
 var markerB5 = new kakao.maps.Marker({
     image : markerImageB5,
 map: mapB, 
-title: '아뜰리에 마카롱',
-position: new kakao.maps.LatLng(35.155827, 129.063975)
+title: '다운트',
+position: new kakao.maps.LatLng(35.155689, 129.064135)
 });
 
 //------------  B구역 5번 오버레이(작은창) 생성 메서드 시작
 var contentB5 = '<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '            전포카페거리' + 
-        '            <div class="close" onclick="closeOverlayB5()" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-        '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-        '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
-        '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">다운트</div>' + 
+	            '            <div class="close" onclick="closeOverlayB5()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/110.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로38번길 43-</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=110&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 //마커 위에 커스텀오버레이를 표시합니다
 //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -1568,8 +2260,7 @@ overlayB5.setMap(mapB);
 ////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
 closeOverlayB5 = function () {
    overlayB5.setMap(null);
-}
-//-------------- B구역 5번 레이아웃(작은창) 생성 메서드 끝
+} //-------------- B구역 5번 레이아웃(작은창) 생성 메서드 끝
     
 });
 // ============================ B 구역 클릭 이벤트 끝 ===============================
@@ -1612,60 +2303,276 @@ var markerC1 = new kakao.maps.Marker({
   position: new kakao.maps.LatLng(35.155312,  129.062777)
 });
 
+//C구역 1번 마커 생성 메서드 시작 
+var imageSrcC1 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC1 = new kakao.maps.Size(24, 35); 
+var markerImageC1 = new kakao.maps.MarkerImage(imageSrcC1, imageSizeC1); 
+
+var markerC1 = new kakao.maps.Marker({
+	image : markerImageC1,
+    map: mapC, 
+		title: '2인칭 시점',
+		position: new kakao.maps.LatLng(35.154822, 129.062929)
+});
+
 //------------  C구역 1번 오버레이(작은창) 생성 메서드 시작
 var contentC1 = '<div class="wrap">' + 
-          '    <div class="info">' + 
-          '        <div class="title">' + 
-          '            전포카페거리' + 
-          '            <div class="close" onclick="closeOverlayC1()" title="닫기"></div>' + 
-          '        </div>' + 
-          '        <div class="body">' + 
-          '            <div class="img">' +
-          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-          '           </div>' + 
-          '            <div class="desc">' + 
-          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-          '            </div>' + 
-          '        </div>' + 
-          '    </div>' +    
-          '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">2인칭 시점</div>' + 
+	            '            <div class="close" onclick="closeOverlayC1()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/111.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산진구 전포대로199번길 40-7</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=111&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 //마커 위에 커스텀오버레이를 표시합니다
 //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 var overlayC1 = new kakao.maps.CustomOverlay({
-  content: contentC1,
+content: contentC1,
 //   map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
-  position: markerC1.getPosition()       
+position: markerC1.getPosition()       
 });
 
 //마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 kakao.maps.event.addListener(markerC1, 'click', function() {
 //   overlay.setMap(map);
-  overlayC1.setMap(mapC);
+overlayC1.setMap(mapC);
 });
 
 //// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
 closeOverlayC1 = function () {
-   overlayC1.setMap(null);
+overlayC1.setMap(null);
 }
 
+// --------------------------------------------- 구분선 ------------------------------------------------
 
 
+//C구역 2번 마커 생성 메서드 시작 
+var imageSrcC2 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC2 = new kakao.maps.Size(24, 35); 
+var markerImageC2 = new kakao.maps.MarkerImage(imageSrcC2, imageSizeC2); 
+
+var markerC2 = new kakao.maps.Marker({
+image : markerImageC2,
+map: mapC, 
+	title: 'FM 커피하우스 1호점',
+	position: new kakao.maps.LatLng(35.154610, 129.063702)
+});
+
+//------------  C구역 2번 오버레이(작은창) 생성 메서드 시작
+var contentC2 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+            '            <div style="text-align: center;color: white;">FM 커피하우스 1호점</div>' + 
+            '            <div class="close" onclick="closeOverlayC2()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="images/112.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">부산 부산진구 전포대로199번길 26</div>' + 
+            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=112&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC2 = new kakao.maps.CustomOverlay({
+content: contentC2,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.154610, 129.063625)
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC2, 'click', function() {
+//overlay.setMap(map);
+overlayC2.setMap(mapC);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC2 = function () {
+overlayC2.setMap(null);
+}
+//--------------------------------------------- 구분선 ------------------------------------------------
 
 
+//C구역 3번 마커 생성 메서드 시작 
+var imageSrcC3 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC3 = new kakao.maps.Size(24, 35); 
+var markerImageC3 = new kakao.maps.MarkerImage(imageSrcC3, imageSizeC3); 
+
+var markerC3 = new kakao.maps.Marker({
+image : markerImageC3,
+map: mapC, 
+title: '고유커피로스터스',
+position: new kakao.maps.LatLng(35.155308, 129.063166)
+});
+
+//------------  C구역 3번 오버레이(작은창) 생성 메서드 시작
+var contentC3 = '<div class="wrap">' + 
+        '    <div class="info">' + 
+        '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+        '            <div style="text-align: center;color: white;">고유커피로스터스</div>' + 
+        '            <div class="close" onclick="closeOverlayC3()" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="images/113.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">부산 부산진구 전포대로209번길 39</div>' + 
+        '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+        '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=113&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC3 = new kakao.maps.CustomOverlay({
+content: contentC3,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.155250, 129.063166)
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC3, 'click', function() {
+//overlay.setMap(map);
+overlayC3.setMap(mapC);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC3 = function () {
+overlayC3.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
 
 
+//C구역 4번 마커 생성 메서드 시작 
+var imageSrcC4 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC4 = new kakao.maps.Size(24, 35); 
+var markerImageC4 = new kakao.maps.MarkerImage(imageSrcC4, imageSizeC4); 
+
+var markerC4 = new kakao.maps.Marker({
+image : markerImageC4,
+map: mapC, 
+title: '로망34',
+position: new kakao.maps.LatLng(35.154597, 129.063374)
+});
+
+//------------  C구역 4번 오버레이(작은창) 생성 메서드 시작
+var contentC4 = '<div class="wrap">' + 
+        '    <div class="info">' + 
+        '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+        '            <div style="text-align: center;color: white;">로망34</div>' + 
+        '            <div class="close" onclick="closeOverlayC4()" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="images/114.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">부산 부산진구 전포대로199번길 34</div>' + 
+        '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+        '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=114&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC4 = new kakao.maps.CustomOverlay({
+content: contentC4,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: markerC4.getPosition()
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC4, 'click', function() {
+//overlay.setMap(map);
+overlayC4.setMap(mapC);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC4 = function () {
+overlayC4.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
 
 
+//C구역 5번 마커 생성 메서드 시작 
+var imageSrcC5 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeC5 = new kakao.maps.Size(24, 35); 
+var markerImageC5 = new kakao.maps.MarkerImage(imageSrcC5, imageSizeC5); 
 
+var markerC5 = new kakao.maps.Marker({
+image : markerImageC4,
+map: mapC, 
+title: '코드지카페',
+position: new kakao.maps.LatLng(35.154961, 129.062678)
+});
 
+//------------  C구역 4번 오버레이(작은창) 생성 메서드 시작
+var contentC5 = '<div class="wrap">' + 
+        '    <div class="info">' + 
+        '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+        '            <div style="text-align: center;color: white;">코드지카페</div>' + 
+        '            <div class="close" onclick="closeOverlayC5()" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="images/115.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">부산 부산진구 동천로 70</div>' + 
+        '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+        '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=115&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
 
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayC5 = new kakao.maps.CustomOverlay({
+content: contentC5,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: markerC5.getPosition()
+});
 
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerC5, 'click', function() {
+//overlay.setMap(map);
+overlayC5.setMap(mapC);
+});
 
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayC5 = function () {
+overlayC5.setMap(null);
+}
+//--------------------------------------------- 구분선 ------------------------------------------------		
     
 });
+
+
 
 //D 섹터 마우스 오버 이벤트
 kakao.maps.event.addListener(rectangle3, 'mouseover',function(){
@@ -1699,28 +2606,28 @@ kakao.maps.event.addListener(rectangle3, 'click', function(mouseEvent) {
 	    	image : markerImageD1,
 		    map: mapD, 
 	  		title: '카페더맨션',
-	  		position: new kakao.maps.LatLng(35.155040,  129.064153)
+	  		position: new kakao.maps.LatLng(35.155041, 129.064166)
 		});
 
 		//------------  D구역 1번 오버레이(작은창) 생성 메서드 시작
 		var contentD1 = '<div class="wrap">' + 
-	          '    <div class="info">' + 
-	          '        <div class="title">' + 
-	          '            전포카페거리' + 
-	          '            <div class="close" onclick="closeOverlayD1()" title="닫기"></div>' + 
-	          '        </div>' + 
-	          '        <div class="body">' + 
-	          '            <div class="img">' +
-	          '                <img src="https://scontent-icn1-1.xx.fbcdn.net/v/t31.0-8/23270260_305585979848521_1728404791928000445_o.jpg?_nc_cat=107&_nc_oc=AQlLsWlIbu2W-s_4j1xjgkZzDGOu-sXmcKyMPrnOOwkuFORG0r9VStcXrfiLy9uBJYM&_nc_ht=scontent-icn1-1.xx&oh=2a28ce24580b84a13caf88777d497279&oe=5E4F2C9A" width="73" height="70">' +
-	          '           </div>' + 
-	          '            <div class="desc">' + 
-	          '                <div class="ellipsis">부산 부산진구 동천로 92</div>' + 
-	          '                <div class="jibun ellipsis">지번 전포동 668-1</div>' + 
-	          '                <div><a href="https://map.kakao.com/link/to/전포 카페거리, 35.155426,129.062558" target="_blank" class="link">길찾기 바로가기</a></div>' + 
-	          '            </div>' + 
-	          '        </div>' + 
-	          '    </div>' +    
-	          '</div>';
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">카페더맨션</div>' + 
+	            '            <div class="close" onclick="closeOverlayD1()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/116.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 동천로 70</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=116&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
 
 	//마커 위에 커스텀오버레이를 표시합니다
 	//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
@@ -1740,6 +2647,220 @@ kakao.maps.event.addListener(rectangle3, 'click', function(mouseEvent) {
 	closeOverlayD1 = function () {
 	   overlayD1.setMap(null);
 	}
+	
+	
+	// --------------------------------------------- 구분선 ------------------------------------------------
+	
+		//D구역 2번 마커 생성 메서드 시작 
+		var imageSrcD2 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+		var imageSizeD2 = new kakao.maps.Size(24, 35); 
+		var markerImageD2 = new kakao.maps.MarkerImage(imageSrcD2, imageSizeD2); 
+
+		var markerD2 = new kakao.maps.Marker({
+	    	image : markerImageD2,
+		    map: mapD, 
+	  		title: '하이안',
+	  		position: new kakao.maps.LatLng(35.155149, 129.064575)
+		});
+
+		//------------  D구역 1번 오버레이(작은창) 생성 메서드 시작
+		var contentD2 = '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+	            '            <div style="text-align: center;color: white;">하이안</div>' + 
+	            '            <div class="close" onclick="closeOverlayD2()" title="닫기"></div>' + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="images/117.jpg" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">부산 부산진구 서전로46번길 62-4</div>' + 
+	            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+	            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=117&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>';
+
+	//마커 위에 커스텀오버레이를 표시합니다
+	//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+	var overlayD2 = new kakao.maps.CustomOverlay({
+	  content: contentD2,
+	//   map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+	  position: markerD2.getPosition()       
+	});
+
+	//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(markerD2, 'click', function() {
+	//   overlay.setMap(map);
+	  overlayD2.setMap(mapD);
+	});
+
+	//// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	closeOverlayD2 = function () {
+	   overlayD2.setMap(null);
+	}
+	
+	// --------------------------------------------- 구분선 ------------------------------------------------
+	
+	//D구역 3번 마커 생성 메서드 시작 
+	var imageSrcD3 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	var imageSizeD3 = new kakao.maps.Size(24, 35); 
+	var markerImageD3 = new kakao.maps.MarkerImage(imageSrcD3, imageSizeD3); 
+
+	var markerD3 = new kakao.maps.Marker({
+    	image : markerImageD3,
+	    map: mapD, 
+  		title: '카페 메인',
+  		position: new kakao.maps.LatLng(35.155341, 129.064113)
+	});
+
+	//------------  D구역 3번 오버레이(작은창) 생성 메서드 시작
+	var contentD3 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+            '            <div style="text-align: center;color: white;">카페 메인</div>' + 
+            '            <div class="close" onclick="closeOverlayD3()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="images/118.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">부산 부산진구 전포대로209번길 19</div>' + 
+            '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+            '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=118&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayD3 = new kakao.maps.CustomOverlay({
+  content: contentD3,
+//   map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+  position: new kakao.maps.LatLng(35.155190, 129.064113)       
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerD3, 'click', function() {
+//   overlay.setMap(map);
+  overlayD3.setMap(mapD);
+});
+
+//// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayD3 = function () {
+   overlayD3.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+//D구역 4번 마커 생성 메서드 시작 
+var imageSrcD4 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeD4 = new kakao.maps.Size(24, 35); 
+var markerImageD4 = new kakao.maps.MarkerImage(imageSrcD4, imageSizeD4); 
+
+var markerD4 = new kakao.maps.Marker({
+	image : markerImageD4,
+    map: mapD, 
+		title: '카페 레이지',
+		position: new kakao.maps.LatLng(35.155330, 129.064323)
+});
+
+//------------  D구역 4번 오버레이(작은창) 생성 메서드 시작
+var contentD4 = '<div class="wrap">' + 
+        '    <div class="info">' + 
+        '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+        '            <div style="text-align: center;color: white;">카페 레이지</div>' + 
+        '            <div class="close" onclick="closeOverlayD4()" title="닫기"></div>' + 
+        '        </div>' + 
+        '        <div class="body">' + 
+        '            <div class="img">' +
+        '                <img src="images/119.jpg" width="73" height="70">' +
+        '           </div>' + 
+        '            <div class="desc">' + 
+        '                <div class="ellipsis">부산 부산진구 전포대로209번길 15</div>' + 
+        '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+        '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=119&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+        '            </div>' + 
+        '        </div>' + 
+        '    </div>' +    
+        '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayD4 = new kakao.maps.CustomOverlay({
+content: contentD4,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.155230, 129.064743)       
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerD4, 'click', function() {
+//overlay.setMap(map);
+overlayD4.setMap(mapD);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayD4 = function () {
+overlayD4.setMap(null);
+}
+
+//--------------------------------------------- 구분선 ------------------------------------------------
+
+//D구역 5번 마커 생성 메서드 시작 
+var imageSrcD5 = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+var imageSizeD5 = new kakao.maps.Size(24, 35); 
+var markerImageD5 = new kakao.maps.MarkerImage(imageSrcD5, imageSizeD5); 
+
+var markerD5 = new kakao.maps.Marker({
+	image : markerImageD5,
+  map: mapD, 
+		title: '카페 씬',
+		position: new kakao.maps.LatLng(35.155246, 129.064631)
+});
+
+//------------  D구역 5번 오버레이(작은창) 생성 메서드 시작
+var contentD5 = '<div class="wrap">' + 
+      '    <div class="info">' + 
+      '        <div class="title" style="background-color: rgba(0,0,255,.3);">' + 
+      '            <div style="text-align: center;color: white;">카페 씬</div>' + 
+      '            <div class="close" onclick="closeOverlayD5()" title="닫기"></div>' + 
+      '        </div>' + 
+      '        <div class="body">' + 
+      '            <div class="img">' +
+      '                <img src="images/120.jpg" width="73" height="70">' +
+      '           </div>' + 
+      '            <div class="desc">' + 
+      '                <div class="ellipsis">부산 부산진구 전포대로209번길 9</div>' + 
+      '                <div class="ellipsisPhone"><span style="color:GREEN"><i class="fa fa-phone fa-lg"></i></span> 051)805-8423</div>' + 
+      '                 <div class="geul" ><a href="cafeDetail.bo?cafe_num=120&page=1">카페상세보기 ◀◀◀◀ 클릭!</a></div>' + 
+      '            </div>' + 
+      '        </div>' + 
+      '    </div>' +    
+      '</div>';
+
+//마커 위에 커스텀오버레이를 표시합니다
+//마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+var overlayD5 = new kakao.maps.CustomOverlay({
+content: contentD5,
+//map: map,  => 주석 풀면 오버레이 화면 뜰때 바로 띄움! 
+position: new kakao.maps.LatLng(35.155, 129.064631)       
+});
+
+//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(markerD5, 'click', function() {
+//overlay.setMap(map);
+overlayD5.setMap(mapD);
+});
+
+////커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+closeOverlayD5 = function () {
+overlayD5.setMap(null);
+}
+//----------------------------------------- 구분선 ---------------------------------------------------
     
 }); // d섹터 클릭 이벤트
 
@@ -1748,26 +2869,7 @@ kakao.maps.event.addListener(rectangle3, 'click', function(mouseEvent) {
 } // toMap() 끝
 
 
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
 </script>
-
-
-
 
    <!-- Footer -->
    <jsp:include page="./inc/footer/footer.jsp"/>

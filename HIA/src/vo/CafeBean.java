@@ -13,9 +13,16 @@ public class CafeBean {
 	private String coffee_file;
 	private int price;
 	private double rating;
+	private String cafe_phone;
 	
 	
 	
+	public String getCafe_phone() {
+		return cafe_phone;
+	}
+	public void setCafe_phone(String cafe_phone) {
+		this.cafe_phone = cafe_phone;
+	}
 	public String getCoffee_file() {
 		return coffee_file;
 	}

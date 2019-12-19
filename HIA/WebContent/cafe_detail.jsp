@@ -1,7 +1,7 @@
+<%@page import="vo.CafeBean"%>
 <%@page import="vo.CommentBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.CommentPageInfo"%>
-<%@page import="vo.CafeBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -60,7 +60,7 @@ section #pageList {
 		text-align: center;
 }
 #pageList input[type=button] { 
-		display: inline-block;
+		display: none;
 }
 
 #pagebutton{
@@ -92,15 +92,16 @@ section #pageList {
 .getcafe {
 	color: pink;
 	font-size: 30px;
+	text-align: center;
 }
 
 .DA9 {
-	margin-left: 200px;
+ 	margin-left: 250px;
 }
 
-.DA92 {
-	margin-left: 550px;
-}
+.DA92 { 
+ 	margin-left: 600px; 
+ } 
 
 .icons {
 	text-align: center;
@@ -108,6 +109,13 @@ section #pageList {
 
 .row {
 	text-align: center;
+}
+
+.info {
+	text-align: center;
+}
+
+
 }
 </style>
 </head>
@@ -199,12 +207,12 @@ section #pageList {
 			</div>
 		</div>
 	</div>
-	
+<!-- 	style="background-image: url('images/bg-01.jpg');" -->
 	<!-- 헤드제외한 첫 배너 -->
-	 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
-      <h2 class="ltext-105 cl0 txt-center">
-         Cafe Detail
-      </h2>
+	 <section class="bg-img1 txt-center p-lr-15 p-tb-105" style="background-image: url('images/bg-01.jpg')";>
+      	<h1 class="ltext-105 cl0 txt-center">
+  		<%=cafeBean.getCafe_name() %> 
+      </h1>
    </section>   
 
 		
@@ -220,11 +228,14 @@ section #pageList {
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="images/detail1.jpg">
+<!-- 							<h4 class="mtext-105 cl2 js-name-detail p-b-14 getcafe"> -->
+<%-- 								<%=cafeBean.getCafe_name() %> --%>
+<!-- 							</h4> -->
+								<div class="item-slick3" data-thumb="images/<%=cafeBean.getCafe_file() %>">
 									<div class="wrap-pic-w pos-relative">
-										<img src="images/detail1.jpg" alt="IMG-PRODUCT">
+										<img src="images/<%=cafeBean.getCafe_file() %>" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/detail1.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/<%=cafeBean.getCafe_file() %>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -257,15 +268,16 @@ section #pageList {
 			<div class="col-md-6 col-lg-5 p-b-30 DA92">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14 getcafe">
-								카페이름 : <%=cafeBean.getCafe_name() %>
+<%-- 									<%=cafeBean.getCafe_name() %> --%>
 						</h4>
 						
 						<!--  -->
 						
-						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
-						onclick="location.href='CoffeeList.bo?cafe_num=<%=cafeBean.getCafe_num() %>'">
-										주문하기
-						</button>
+						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"
+						onclick="location.href='CoffeeList.bo?cafe_num=<%=cafeBean.getCafe_num()%>'"
+						>
+										주문하러가기
+									</button>
 						<!--  -->
 					</div>
 				</div>
@@ -291,9 +303,9 @@ section #pageList {
 					<div class="tab-content p-t-43">
 						<!-- - -->
 						<div class="tab-pane fade" id="description" role="tabpanel">
-							<div class="how-pos2 p-lr-15-md">
+							<div class="how-pos2 p-lr-15-md info">
 								<p class="stext-102 cl6">
-									Aenean sit amet gravida nisi. Nam fermentum est felis, quis feugiat nunc fringilla sit amet. Ut in blandit ipsum. Quisque luctus dui at ante aliquet, in hendrerit lectus interdum. Morbi elementum sapien rhoncus pretium maximus. Nulla lectus enim, cursus et elementum sed, sodales vitae eros. Ut ex quam, porta consequat interdum in, faucibus eu velit. Quisque rhoncus ex ac libero varius molestie. Aenean tempor sit amet orci nec iaculis. Cras sit amet nulla libero. Curabitur dignissim, nunc nec laoreet consequat, purus nunc porta lacus, vel efficitur tellus augue in ipsum. Cras in arcu sed metus rutrum iaculis. Nulla non tempor erat. Duis in egestas nunc.
+								<%=cafeBean.getCafe_info() %>
 								</p>
 							</div>
 						</div>
@@ -309,7 +321,7 @@ section #pageList {
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												부산광역시 어린이 여러분
+												<%=cafeBean.getCafe_location() %>
 											</span>
 										</li>
 
@@ -319,37 +331,17 @@ section #pageList {
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												AM 09:00 ~ PM 09:00
+												<%=cafeBean.getOpen_time() %>
 											</span>
 										</li>
 
 										<li class="flex-w flex-t p-b-7">
 											<span class="stext-102 cl3 size-205">
-												카페 좌석
+												카페 전화번호
 											</span>
 
 											<span class="stext-102 cl6 size-206">
-												5테블 , 15좌석
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												카페 취급음료
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												커피, 에이드, 스무디, 마카롱
-											</span>
-										</li>
-
-										<li class="flex-w flex-t p-b-7">
-											<span class="stext-102 cl3 size-205">
-												카페 직원
-											</span>
-
-											<span class="stext-102 cl6 size-206">
-												5명
+												<%=cafeBean.getCafe_phone() %>
 											</span>
 										</li>
 									</ul>
@@ -411,6 +403,7 @@ section #pageList {
 												</p>
 											</div>
 										<%} %>	
+										
 											<section id="pageList">
 											<div id="pagebutton">
 											<%if(commentNowPage <= 1) {%>
@@ -471,14 +464,14 @@ section #pageList {
 
 												<div class="col-sm-6 p-b-5">
 													<label class="stext-102 cl3" for="name">Name</label>
-													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="comment_id" type="text" name="comment_id" value=<%=id %>>
+													<input class="size-111 bor8 stext-102 cl2 p-lr-20" id="comment_id" type="text" name="comment_id" value=<%=id %> readonly="readonly">
 												</div>
 											</div>
 											<div class="form-group">
 												<input type="button" class="btn btn-primary pull-center" value="댓글쓰기" id="comment_add_btn">
 											</div>	
 										</table>
-										<%} %>
+										<%}%>
 									</div>
 								</div>
 							</div>
