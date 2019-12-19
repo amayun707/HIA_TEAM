@@ -56,7 +56,7 @@ display:none;}
 #payList{
 	list-style-type: none;
     padding-left: 20px;
-    height: 380px;
+    height: 335px;
     overflow-y: scroll; 
     margin-bottom: 20px;}
 #payList>li{

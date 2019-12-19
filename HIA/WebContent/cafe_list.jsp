@@ -555,6 +555,8 @@ int listCount = pi.getListCount();
 			    			$('p.stext-102').html(data.cafe_info);
 			    			$('.select').attr("onclick","location.href='CoffeeList.bo?cafe_num="+data.cafe_num+"'");
 			    			$('.select1').attr("onclick","location.href='cafeDetail.bo?cafe_num="+data.cafe_num+"'");
+			    			$('img.cafeImg').attr("src","images/"+data.cafe_file);
+			    			$('a.how-pos1').attr("href","images/"+data.cafe_file);
 			    		},
 			    		error : function(xhr, status, error){
 			    			alert("에러!: " + error);
