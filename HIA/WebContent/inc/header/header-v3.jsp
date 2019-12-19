@@ -29,7 +29,7 @@ String id = (String)session.getAttribute("id");
 								<a href="CafeList.bo">Cafe Order</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
+							<li>
 								<a href="CoffeeList.bo">Coffee Order</a>
 							</li>
 
@@ -116,7 +116,7 @@ String id = (String)session.getAttribute("id");
 					<a href="CafeList.bo">Cafe Order</a>
 				</li>
 
-				<li class="label1" data-label1="hot">
+				<li>
 					<a href="CoffeeList.bo">Coffee Order</a>
 				</li>
 

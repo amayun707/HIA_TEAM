@@ -257,17 +257,15 @@ section #pageList {
 			<div class="col-md-6 col-lg-5 p-b-30 DA92">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14 getcafe">
-<%-- 								카페번호 : <%=cafeBean.getCafe_num() %><br> --%>
 								카페이름 : <%=cafeBean.getCafe_name() %>
-<%-- 								카페주소 : <%=cafeBean.getCafe_location() %><br> --%>
-<%-- 								카페소개 : <%=cafeBean.getCafe_info() %> --%>
 						</h4>
 						
 						<!--  -->
 						
-						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+						<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04"
+						onclick="location.href='CoffeeList.bo?cafe_num=<%=cafeBean.getCafe_num() %>'">
 										주문하기
-									</button>
+						</button>
 						<!--  -->
 					</div>
 				</div>

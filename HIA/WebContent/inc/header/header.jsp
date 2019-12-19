@@ -61,7 +61,7 @@ String customer_owner = (String)session.getAttribute("customer_owner");
 								<a href="CafeList.bo">Cafe Order</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
+							<li>
 								<a href="CoffeeList.bo">Coffee Order</a>
 							</li>
 
@@ -163,7 +163,7 @@ String customer_owner = (String)session.getAttribute("customer_owner");
 					<a href="CafeList.bo">Cafe Order</a>
 				</li>
 
-				<li class="label1" data-label1="hot">
+				<li>
 					<a href="CoffeeList.bo">Coffee Order</a>
 				</li>
 
