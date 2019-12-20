@@ -12,6 +12,7 @@ if(cafeList.size()>0){
 	img = cafeList.get(0).getCoffee_file();
 }
 JSONObject cafe = (JSONObject)request.getAttribute("cafeBean");
+String search = request.getParameter("search");
 String coffee_name = request.getParameter("coffee_name");
 String id = (String)session.getAttribute("id");
 String sortBy = request.getParameter("sortBy");
@@ -524,6 +525,7 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
+	//레이아웃 맞추기
 		var i = 0;
 		var height = new Array();
 		var maxHeight = new Array();
@@ -755,7 +757,7 @@ int listCount = pi.getListCount();
 							Price=7000;
 						}
 					}
-					location.href="CafeList.bo?coffee_name=<%=coffee_name%>&SortBy="+SortBy+"&Price="+Price;
+					location.href="CafeList.bo?coffee_name=<%=coffee_name%>&SortBy="+SortBy+"&Price="+Price+"&search=<%=search%>";
 				}
 			});
 		});
