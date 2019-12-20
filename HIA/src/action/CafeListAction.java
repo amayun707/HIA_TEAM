@@ -43,7 +43,7 @@ public class CafeListAction implements Action {
 		}
 		
 		int page = 1; 
-		int limit = 12; 
+		int limit = 16; 
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page")); 
 		}
