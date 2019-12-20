@@ -51,8 +51,8 @@ List receiptList = (List)request.getAttribute("receiptList");
 
 ArrayList receiptList1 = (ArrayList)receiptList.get(0);
 ArrayList receiptList2 = (ArrayList)receiptList.get(1);
-
 %>
+
     <form id="ReceiptList" method="post" name="ReceiptList">
     <%
     if(receiptList != null) {
