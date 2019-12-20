@@ -157,7 +157,7 @@ public class OrderDAO {
 		}
 		int[] pay_info = new int[2];
 		pay_info[0] = num;
-		sql = "insert into payment values(?,now(),?,?,?)";
+		sql = "insert into payment values(?,now(),?,?,?,?)";
 		int insertCount = 0;
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -165,6 +165,7 @@ public class OrderDAO {
 			pstmt.setString(2, getTime);
 			pstmt.setString(3, id);
 			pstmt.setInt(4, cost);
+			pstmt.setString(5, "x");
 			insertCount = pstmt.executeUpdate();
 			pay_info[1] = insertCount;
 		} catch (SQLException e) {

@@ -21,7 +21,7 @@ function addComment() {
 		        else {
 		        	
 //		        	loadCommentList();
-		        	$("#comment_id").val("");
+//		        	$("#comment_id").val("");
 		        	$("#comment_content").val("");
 //		        	alert('댓글 등록완료!');
 		        	getCommentList();
