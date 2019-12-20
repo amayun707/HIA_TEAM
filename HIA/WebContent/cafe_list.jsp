@@ -268,19 +268,19 @@ int listCount = pi.getListCount();
    <%if(nowPage <= 1) {%>
          ＜&nbsp;&nbsp;&nbsp;&nbsp;
    <%} else {%>
-         <a href="CafeList.bo?page=<%=nowPage - 1%>&SortBy=<%=sortBy %>&Price=<%=price%>">＜</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="CafeList.bo?page=<%=nowPage - 1%>&SortBy=<%=sortBy %>&Price=<%=price%>&coffee_name=<%=coffee_name %>">＜</a>&nbsp;&nbsp;&nbsp;&nbsp;
    <%} %>
    <%for(int i = startPage; i <= endPage; i++) { 
          if(i == nowPage) { %>
             <%=i %>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} else { %>
-            <a href="CafeList.bo?page=<%=i %>&SortBy=<%=sortBy %>&Price=<%=price%>"><%=i %></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="CafeList.bo?page=<%=i %>&SortBy=<%=sortBy %>&Price=<%=price%>&coffee_name=<%=coffee_name %>"><%=i %></a>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} %>
    <%} %>
    <%if(nowPage >= maxPage) { %>
          ＞
    <%} else { %>
-         <a href="CafeList.bo?page=<%=nowPage + 1 %>&SortBy=<%=sortBy %>&Price=<%=price%>"">＞</a>
+         <a href="CafeList.bo?page=<%=nowPage + 1 %>&SortBy=<%=sortBy %>&Price=<%=price%>&coffee_name=<%=coffee_name %>">＞</a>
    <%} %>
    </section>
 <!-- --------------------------------------------------------------------------------------------- -->
@@ -652,14 +652,12 @@ int listCount = pi.getListCount();
 			}
 			$('.searching').click(function(){
 				var search = $('.search-cafe').val();
-				var coffee_name = $('#h1').text();
-				location.href="CafeList.bo?search="+search+"&coffe_name="+coffee_name;
+				location.href="CafeList.bo?coffee_name=<%=coffee_name%>&search="+search;
 			});
 			$('.search-cafe').keydown(function(key){
 				if(key.keyCode == 13) {
 					var search = $('.search-cafe').val();
-					var coffee_name = $('#h1').text();
-					location.href="CafeList.bo?search="+search+"&coffe_name="+coffee_name;
+					location.href="CafeList.bo?coffee_name=<%=coffee_name%>&search="+search;
 				}
 			});
 			

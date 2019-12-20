@@ -55,7 +55,6 @@ public class CafeListAction implements Action {
 		}else {
 			listCount = cafeListService.getCafeListCount(coffee_name, search, price);
 		}
-		
 		int maxPage = (int)((double)listCount / limit + 0.95); //0.95 는 올림처리를 위한 덧셈
 		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
 		int endPage = startPage + 10 - 1;
@@ -83,7 +82,6 @@ public class CafeListAction implements Action {
 		request.setAttribute("cafeList", cafeList);
 		request.setAttribute("cafeBean", cafeBean);
 		forward.setPath("/cafe_list.jsp?coffee_name="+coffee_name+"&sortBy="+sortBy+"&price="+price);
-		System.out.println(coffee_name);
 		return forward;
 	}
 }

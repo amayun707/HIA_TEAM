@@ -66,16 +66,36 @@ public class CafeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int listCount = 0;
-		
+		String sql = "";
 		try {
-			String sql = "select count(b.cafe_num) "
-					+ "from coffee a, cafe b "
-					+ "where a.cafe_num = b.cafe_num "
-					+ "and a.coffee_name=? "
-					+ "and b.cafe_name like ?";
+			if(price==0) {
+				sql = "select count(b.cafe_num) "
+						+ "from coffee a, cafe b "
+						+ "where a.cafe_num = b.cafe_num "
+						+ "and a.coffee_name=? "
+						+ "and b.cafe_name like ?";
+			} else if(price ==7000) {
+				sql = "select count(b.cafe_num) "
+						+ "from coffee a, cafe b "
+						+ "where a.cafe_num = b.cafe_num "
+						+ "and a.coffee_name=? "
+						+ "and b.cafe_name like ? "
+						+ "and a.price > 7000";
+			} else {
+				sql = "select count(b.cafe_num) "
+						+ "from coffee a, cafe b "
+						+ "where a.cafe_num = b.cafe_num "
+						+ "and a.coffee_name=? "
+						+ "and b.cafe_name like ? "
+						+ "and a.price >= ? and a.price <= ?";
+			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, coffee_name);
 			pstmt.setString(2, "%"+search+"%");
+			if(price!=0&price!=7000) {
+				pstmt.setInt(3, price);
+				pstmt.setInt(4, price+1000);
+			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				listCount = rs.getInt("count(b.cafe_num)");
