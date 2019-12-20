@@ -73,6 +73,15 @@ int listCount = pi.getListCount();
 .cartItem{
 	position: relative;
     top: 10px;}
+.list-box{
+	position: relative;
+    display: inline-block;
+    width: 1380px;}
+.coffee-li{
+	width: 315px;
+    margin-right: 2%;
+    float: left;
+    position: absolute;}
 </style>
 <title>Product</title>
 <meta charset="UTF-8">
@@ -221,13 +230,12 @@ int listCount = pi.getListCount();
 					</div>
 			</div>
 			<h1 id = "h1"><%=coffee_name %></h1>
-			<div class="row isotope-grid">
+			<div class="list-box">
 				<%
 				for(int i = 0; i<cafeList.size(); i++){
 				%>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
 					<!-- Block2 -->
-					<div class="block2"><div class="cafe_num nDisplay"><%=cafeList.get(i).getCafe_num()  %></div>
+					<div class="coffee-li"><div class="cafe_num nDisplay"><%=cafeList.get(i).getCafe_num()  %></div>
 						<div class="block2-pic hov-img0 <%=cafeList.get(i).getCoffee_num() %>">	
 							<img src="images/<%=cafeList.get(i).getCafe_file() %>" alt="IMG-PRODUCT"> 
 							<%if(coffee_name==""){ %>
@@ -251,7 +259,6 @@ int listCount = pi.getListCount();
 							</div>
 						</div>
 					</div>
-				</div>
 				<%
 					}
 				%>
@@ -261,19 +268,19 @@ int listCount = pi.getListCount();
    <%if(nowPage <= 1) {%>
          ＜&nbsp;&nbsp;&nbsp;&nbsp;
    <%} else {%>
-         <a href="CafeList.bo?page=<%=nowPage - 1%>">＜</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="CafeList.bo?page=<%=nowPage - 1%>&SortBy=<%=sortBy %>&Price=<%=price%>">＜</a>&nbsp;&nbsp;&nbsp;&nbsp;
    <%} %>
    <%for(int i = startPage; i <= endPage; i++) { 
          if(i == nowPage) { %>
             <%=i %>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} else { %>
-            <a href="CafeList.bo?page=<%=i %>"><%=i %></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="CafeList.bo?page=<%=i %>&SortBy=<%=sortBy %>&Price=<%=price%>"><%=i %></a>&nbsp;&nbsp;&nbsp;&nbsp;
       <%} %>
    <%} %>
    <%if(nowPage >= maxPage) { %>
          ＞
    <%} else { %>
-         <a href="CafeList.bo?page=<%=nowPage + 1 %>">＞</a>
+         <a href="CafeList.bo?page=<%=nowPage + 1 %>&SortBy=<%=sortBy %>&Price=<%=price%>"">＞</a>
    <%} %>
    </section>
 <!-- --------------------------------------------------------------------------------------------- -->
@@ -517,25 +524,50 @@ int listCount = pi.getListCount();
 	<!--===============================================================================================-->
 	<script src = "js/jquery-3.4.1.js"></script>
 	<script>
-// 		var i = 0;
-// 		var height = new Array();
-// 		$('.isotope-grid').find('.block2').each(function(){
-// 			if(i>=0&i<4){
-// 				height[i] = (Number($(this).css('height').toString().replace("px",""))+50);
-// 			}else if(i>3&i<8){
-// 				height[i] = (height[i-4]+Number($(this).css('height').toString().replace("px",""))+50);
-// 			}
-// 			if(i>=4&i<=11){
-// 				var ht = height[i-4]+"px";
-// 				$(this).parent().css('top', ht);
-// 			}
-// 			i++
-// 		});
+		var i = 0;
+		var height = new Array();
+		var maxHeight = new Array();
+		maxHeight[0]=0;
+		maxHeight[1]=0;
+		maxHeight[2]=0;
+		maxHeight[3]=0;
+		$('.list-box').find('.coffee-li').each(function(){
+			
+			if(i<=3){
+				height[i] = (Number($(this).css('height').toString().replace("px",""))+30);
+			}else if(i>=4){
+				height[i] = (height[i-4]+Number($(this).css('height').toString().replace("px",""))+30);
+			}
+			if(i>=4){
+				$(this).css('top',height[i-4]);
+			}
+			if(i%4==0) {
+				$(this).css('left','0');
+				maxHeight[i%4] += (Number($(this).css('height').toString().replace("px",""))+30);
+			} else if(i%4==1) {
+				$(this).css('left','345px');
+				maxHeight[i%4] += (Number($(this).css('height').toString().replace("px",""))+30);
+			}  else if(i%4==2) {
+				$(this).css('left','690px');
+				maxHeight[i%4] += (Number($(this).css('height').toString().replace("px",""))+30);
+			} else if(i%4==3) {
+				$(this).css('left','1035px');
+				maxHeight[i%4] += (Number($(this).css('height').toString().replace("px",""))+30);
+			}
+			i++
+		});
+		mh = maxHeight[0];
+		for(var i = 0; i<4; i++){
+			if(maxHeight[i]>mh){
+				mh = maxHeight[i];
+			}
+		}
+		$('.list-box').css('height',mh);
 		$('document').ready(function(){
 			// 문서를 띄울때 장바구니에 있는 리스트 blur처리 해주기
 			$('ul.header-cart-wrapitem').find('li.header-cart-item').each(function(){
 				var coffee_in_cart = $(this).find('div.coffee_in_cart').text();
-				$('div.isotope-grid').find('.block2').each(function(){
+				$('div.list-box').find('.coffee-li').each(function(){
 					var coffee_in_list = $(this).find('div.coffee_num').text();
 					if(coffee_in_cart == coffee_in_list){
 						$(this).find('img').css('filter','blur(4px)');
@@ -549,14 +581,14 @@ int listCount = pi.getListCount();
 					var coffee_num = $(this).find('div.coffee_in_cart').text();	
 					//장바구니에서 이미지를 클릭했을 있던 리스트에서 블러 빼기
 					$(this).find('div.header-cart-item-img').click(function(){
-						$('div.isotope-grid').find('\.'+coffee_num).find('img').css('filter','');
+						$('div.list-box').find('\.'+coffee_num).find('img').css('filter','');
 					});
 				});
 			});
 			
 			var coffee_name = $('#h1').text();
 			if(coffee_name==""){
-				$('.block2').click(function(){
+				$('.coffee-li').click(function(){
 					$.ajax({
 						url: "cafe_sDetail.jsp", // 클라이언트가 요청을 보낼 서버의 URL 주소
 			    		data: { cafe_num: $(this).find('div.cafe_num').text() },         // HTTP 요청과 함께 서버로 보낼 데이터
@@ -576,7 +608,7 @@ int listCount = pi.getListCount();
 					});
 				});
 			}else{
-				$('.block2').click(function(){
+				$('.coffee-li').click(function(){
 					var total = Number($('.total').text());
 					var count = Number($('div.icon-header-noti').attr('data-notify'));
 					var coffee_num = $(this).find('div.coffee_num').text();
